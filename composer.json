@@ -1,0 +1,11 @@
+{
+    "require": {
+        "google/apiclient": "^2.0"
+    }
+}
+
+{
+    "require": {
+        "facebook/graph-sdk": "^5.7"
+    }
+}

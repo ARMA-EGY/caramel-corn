@@ -1,7 +1,8 @@
 <?
 
-include('include/header.php'); 
-include('include/function.php'); 
+include('ini.php'); 
+
+ 
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 

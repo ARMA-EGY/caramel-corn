@@ -1,13 +1,59 @@
 <?
 
-include('include/header.php'); 
-include('include/function.php'); 
+include('ini.php'); 
 
 ?>
 	
 
 <!-- above is menu -->
+
 <section id="sect" class="header">
+	
+
+  <div class="banner-content">
+    <div class="container">
+		
+	
+		
+	  <div class="row col-md-8 px-0 mx-auto mb-5">
+		  
+		<div class="top-search">
+
+				<select class="select-search" >
+					<option value="movie">Movies</option>
+					<option value="tv">TV Show</option>
+					<option value="person">Actors</option>
+				</select>
+			
+				<div style="width: 100%; position: relative;">
+					<input class="search_bar" type="text" placeholder="Search for a Movie, TV Show or Actor">
+					<div id="search_result"></div>
+				</div>
+			
+				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
+
+		</div>	  
+
+      </div>
+		
+		<ul class="social-mdedia">
+          <li>
+            <a href="#about" id="link" class="about">
+
+              <span class=" goToAbout ">
+        
+      <i class="fa fa-arrow-circle-down"></i>
+      </span>
+            </a>
+          </li>
+        </ul>
+		
+    </div>
+  </div>
+	
+
+	
+<!--
   <div class="banner-content">
     <div class="container">
       <div class="row">
@@ -44,55 +90,233 @@ include('include/function.php');
 
       </div>
     </div>
-    <!--end container-->
+    end container
   </div>
+	
+-->
 </section>
+
 <!-- End Banner -->
 
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
+
 <section id="about" class="section-spacing">
-  <div class="container">
+	<div style="background: rgba(0, 0, 0, 0.75);padding: 75px 0;">
+	
+ 		 <div class="container">
+			 
     <div class="row">
-      <div class="col-xs-12">
-        <div class="section-title text-center">
-          <h2>Playing Now</h2>
+      <div class="col-sm-12">
+        <div class="section-title">
+			
+		<h2 class="font-weight-bold mr-4" style="color:#fbd747;">Newest <span style="color:#fff;">Movies</span>
+
+			<a href="#" class="viewall" style="">View all <i class="ti-angle-right"></i></a>
+			
+			<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details"></i>
+
+			<i class="ti-layout-grid2 show_grid active" data-show=".show_cards" ></i>
+			
+		</h2>
+			
         </div>
       </div>
     </div>
+			 
+	 
 	  
-    <div class="row p-4">
+    <div class="p-4">
+	
 		
+	<div class="show_cards row justify-content-center fade show">
+				
 	<?
 
 		$playing_now = api_connect("https://api.themoviedb.org/3/movie/now_playing?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
+
+		$i=0;
 		
-		foreach(array_slice($playing_now->results, 0, 8) as $movie )
+		foreach(array_slice($playing_now->results, 0, 15) as $movie )
 		{
+			if ($movie->original_language == 'en')
+			{
+				
+			
 	    	$date =  $movie->release_date;
 			$newdate = date('j M, Y', strtotime($date));
+			
+			$rate = $movie->vote_average * 10 ;
 
 	?>
 		
 	  <!-- Start New Card -->
-			<div class="col-sm-6">               
-			<div class="poster-card" style="box-shadow: 0 0 5px 1px #000;">
-				<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/></div>
-				<div class="c-body">
-					<div class="wrapper">
-					<div class="rate">
-						 <h5><?= $movie->vote_average?> <p><small class="text-muted">&nbsp;&nbsp;<i class="fa fa-star"></i> </small></p></h5>
-				  </div>
-				<div class="c-title">
-					<a href="single.php?movie=<?= $movie->id?>"><?= $movie->title?> </a>  
-					<span class="mt-2"><?= $newdate ?></span>
+		<div class="col-sm-3 variable_card">  
+			
+			
+			<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+				<div class="poster"> 
+					<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/>
 				</div>
+				
+			</div>
+			
+			<div class="d-none">
+					
+				<div class="c-body" id="tooltip_content_<?= $movie->id?>">
+					
+				 <div class="wrapper">
+						
+					<div class="c-title">
+						<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+						<div class="ratings">
+						  <div class="empty-stars"></div>
+						  <div class="full-stars" style="width:<?= $rate?>%"></div>
+						</div>
+						<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
 					</div>
+						
+					<div class="rate">
+						 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+				  	</div>
+					 
+					
+						
+				  </div>
 
-				<p class="c-text"><?= substr($movie->overview,0,170) . '...'?></p>
-					<div class="details">
-				<a class="btn btn-outline-light my-2 my-sm-0" type="submit">View Details</a>
+				<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+					
+				<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+					
+					
+				<div class="cate mt-3" >
+					
+					<?
+		
+						foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+						{
+							$genre_cate = '_'.$genre;
+							?>
+					
+					<div class="mb-1 cate_color_<?= $genre;?>">
+						<a href="#"><?= $cate->$genre_cate;?></a>
 					</div>
+					
+							<?
+						}
+		
+					?>
+
+				</div>
+					
+					
+				<div class="details mt-3" >
+
+					<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+
+					<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+				</div>
+					
+					
+				</div>
+				
+			</div>
+
+		</div>
+		
+	  <!-- End New Card -->
+		
+			
+		
+	<? 
+				$i++;
+				
+				if($i==10) break;
+			} 
+		}
+	?>	
+		
+		
+	</div>	
+		
+	<!-- ================================================= . -->
+		
+	<div class="show_cards_details row justify-content-center fade">
+		
+	<?
+		
+			$i=0;
+		
+		foreach(array_slice($playing_now->results, 0, 15) as $movie )
+		{
+			if ($movie->original_language == 'en')
+			{
+				
+	    	$date =  $movie->release_date;
+			$newdate = date('j M, Y', strtotime($date));
+			
+			$rate = $movie->vote_average * 10 ;
+			
+	?>
+		
+	  <!-- Start New Card -->
+		<div class="col-sm-6">  
+				
+			<div class="poster-card">
+				<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/></div>
+				<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
+				  <div class="wrapper">
+						
+					<div class="c-title">
+						<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+						<div class="ratings">
+						  <div class="empty-stars"></div>
+						  <div class="full-stars" style="width:<?= $rate?>%"></div>
+						</div>
+						<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
+					</div>
+						
+					<div class="rate">
+						 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+				  	</div>
+					 
+					
+						
+				  </div>
+
+				<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+					
+				<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+					
+					
+				<div class="cate mt-3" >
+					
+					<?
+		
+						foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+						{
+							$genre_cate = '_'.$genre;
+							?>
+					
+					<div class="mb-1 cate_color_<?= $genre;?>">
+						<a href="#"><?= $cate->$genre_cate;?></a>
+					</div>
+					
+							<?
+						}
+		
+					?>
+
+				</div>
+					
+					
+				<div class="details mt-3" style="position: absolute;bottom: 0;">
+
+					<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+
+					<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+				</div>
+					
 				</div>
 			</div>
 
@@ -101,7 +325,16 @@ include('include/function.php');
 	  <!-- End New Card -->
 		
 		
-	<? } ?>	
+	<? 
+				$i++;
+				
+				if($i==10) break;
+			} 
+		}
+	?>	
+		
+		
+	</div>	
 		
 	</div>		
 	
@@ -109,13 +342,17 @@ include('include/function.php');
 	  
 	  
   </div>
+		
+	</div>
 </section>
+
 <!-- End Playing Now -->
 <!-- Movies ends -->
 
 
 
 <!-- Tv Shows Starts -->
+
 <section id="services" class="section-spacing inverse">
   <div class="container">
     <div class="row">
@@ -172,11 +409,13 @@ include('include/function.php');
 	  
 	  </div>
 </section>
+
 <!-- Tv Shows Ends -->
 
 	
 	
 	<!-- Actors Starts -->
+
 <section id="act" class="section-spacing actor">
   <div class="container">
     <div class="row">
@@ -225,6 +464,13 @@ include('include/function.php');
 	  
   </div>
 </section>
+
 <!-- Actors Ends -->
 	
 <? include('include/footer.php'); ?>
+
+
+
+
+
+
