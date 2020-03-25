@@ -63,7 +63,7 @@ $google_client->setClientId('652581811330-2amt9q1fhqph2dtkth6g5h35v9vl7stm.apps.
 $google_client->setClientSecret('giSMrA9WHvMzycOGVpFB-qmn');
 
 //Set the OAuth 2.0 Redirect URI
-$google_client->setRedirectUri('http://localhost:8080/corn/caramel-corn/index.php');
+$google_client->setRedirectUri('http://caramel-corn.com/');
 
 //
 $google_client->addScope('email');

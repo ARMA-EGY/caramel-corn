@@ -109,7 +109,7 @@ else
  // Get login url
     $facebook_permissions = ['email']; // Optional permissions
 
-    $facebook_login_url = $facebook_helper->getLoginUrl('http://localhost:8080/corn/caramel-corn/index.php', $facebook_permissions);
+    $facebook_login_url = $facebook_helper->getLoginUrl('http://caramel-corn.com/', $facebook_permissions);
     
     // Render Facebook login button
     $facebook_login_url = '<a class="btn btn-facebook" href="'.$facebook_login_url.'"><i class="fa fa-facebook-square mr-1"></i> Login With Facebook</a>';
