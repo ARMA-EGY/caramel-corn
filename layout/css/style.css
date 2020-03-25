@@ -495,7 +495,7 @@ a {cursor: pointer}
     padding: 10px 15px 9px;
   }
 	
-.variable_card {max-width: 120px;}
+.variable_card {max-width: 105px;}
 	
 }
 
@@ -936,7 +936,7 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.7);
     box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
     color: #fff; 
-    font-size: 18pt;
+    font-size: 14pt;
 	transition: all 0.3s linear;
 }
 		
