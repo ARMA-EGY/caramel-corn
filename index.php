@@ -110,7 +110,7 @@ include('ini.php');
       <div class="col-sm-12">
         <div class="section-title">
 			
-		<h2 class="font-weight-bold mr-4" style="color:#fbd747;">Newest <span style="color:#fff;">Movies</span>
+		<h2 class="font-weight-bold" style="color:#fbd747;">Newest <span style="color:#fff;">Movies</span>
 
 			<a href="#" class="viewall" style="">View all <i class="ti-angle-right"></i></a>
 			
