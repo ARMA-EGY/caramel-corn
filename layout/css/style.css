@@ -467,7 +467,7 @@ a {cursor: pointer}
     font-size: 28px;
   }
   h2 {
-    font-size: 24px;
+    font-size: 20px;
   }
   h3 {
     font-size: 20px;
@@ -495,7 +495,7 @@ a {cursor: pointer}
     padding: 10px 15px 9px;
   }
 	
-.variable_card {max-width: 105px;}
+.variable_card {max-width: 100px;}
 	
 }
 
