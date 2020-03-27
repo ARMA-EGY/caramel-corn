@@ -54,7 +54,7 @@ echo "<ul class='mb-0'>";
 	    	$date =  $tv->first_air_date;
 			$year = date('Y', strtotime($date));
 			
-			if ($movie->poster_path == '')
+			if ($tv->poster_path == '')
 			{
 				$img = 'layout/img/no_poster.jpeg';
 			}
