@@ -194,18 +194,7 @@ $('.select-search').change(function(){
 			
 		});
 	
-		$('.trend_btn').click(function(){
-			
-			var selected = $(this).attr('data-show');
-			
-			$(this).siblings('.trend_btn').removeClass('active');
-			$(this).addClass('active');
-			
-			$('.trends .hide').removeClass('hide');
-			
-			$(selected).addClass('hide');
-			
-		});
+	
 
 
 

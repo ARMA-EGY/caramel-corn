@@ -1,6 +1,18 @@
+<?
+
+
+	$stmt = $conn->prepare("SELECT * FROM footer ORDER BY RAND() LIMIT 1");
+
+	$stmt->execute();
+	$row = $stmt->fetch();
+
+	$background = $row['background'];
+
+?>
+
+
 	
-	
-	<section class="section-spacing1" style="background: url('layout/img/popcorn2.jpg');background-size: cover;    height: 400px;">
+	<section class="section-spacing1" style="background: url('layout/img/footer/<?= $background ?>');background-size: cover;    height: 400px;">
 	<div class="footer">
 
 	<b>All Copy Right 2018 &reg  Are Reserved To ARMA.</b>
@@ -43,6 +55,30 @@
 			  settings: {
 				centerMode: true,
 				centerPadding: '40px',
+				slidesToShow: 2
+			  }
+			}
+		  ]
+		});
+		
+		
+				
+		$('.vertical').slick({
+  		  infinite: true,
+		  slidesToShow: 6,
+			vertical: true,
+			verticalSwiping: true,
+		  responsive: [
+			{
+			  breakpoint: 768,
+			  settings: {
+				arrows: false,
+				slidesToShow: 4
+			  }
+			},
+			{
+			  breakpoint: 480,
+			  settings: {
 				slidesToShow: 2
 			  }
 			}

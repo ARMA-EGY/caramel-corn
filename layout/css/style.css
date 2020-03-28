@@ -957,10 +957,66 @@ h2 {
     margin: 5px 10px;
 }
 
-.viewall:hover {
+.viewall_light {
+	float: right;
+    font-family: 'Dosis', sans-serif;
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 5px 10px;
+}
+
+.viewall:hover, .viewall_light:hover {
 	text-decoration: none;
 	color: #fbd747;
 }
 		
 
+.slick-list {
+padding: 40px 60px !important;}	
+
+.slick-center {
+position: relative;
+-webkit-transform: scale(1.2);
+-ms-transform: scale(1.2);
+-o-transform: scale(1.2);
+transform: scale(1.2);}
+
+
+
+.slick-center .slick-card {border-bottom: none;}
+
+.slick-card
+{
+	margin: 10px auto;
+	border-bottom: 2px solid #fbd747;
+}
+
+.title_btn {
+margin: 0 5px;
+background: #000;
+padding: 5px;
+border-radius: 5px;
+border: 1px solid rgba(255, 255, 255, 0.7);
+box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+transition: all 0.3s linear;
+width: fit-content;
+display: inline-block;
+color: #fbd747;
+}
+
+.title_btn_light {
+margin: 0 5px;
+padding: 5px;
+border-radius: 5px;
+transition: all 0.3s linear;
+width: fit-content;
+display: inline-block;
+color: #fbd747;
+background: #fff;
+border: 1px solid #555;
+box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+}
+		
 
