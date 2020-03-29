@@ -85,6 +85,26 @@
 		  ]
 		});
 		
+		
+		
+	$('.trailer-card').click(function(){
+		
+		var background = $(this).attr('data-background');
+		
+		var video = $(this).attr('data-key');
+		
+		$(this).siblings('.trailer-card').removeClass('active');
+		$(this).addClass('active');
+		
+		
+    	$(".trailer-background").css({"background": background});
+		
+		$(".trailer-video").attr("src", video);
+		
+	});
+		
+	
+		
     </script>
 	
 

@@ -8,6 +8,20 @@ $last_month = strtotime("-2 Months");
 
 $start_from =  date("Y-m-01", $last_month) ;
 
+
+
+$playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=$start_from&primary_release_date.lte=$today");
+
+
+$f_movie_id = $playing_now->results[0]->id;
+
+$f_movie_background = $playing_now->results[0]->backdrop_path;
+
+$trailer = api_connect("https://api.themoviedb.org/3/movie/$f_movie_id/videos?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+
+$f_key = $trailer->results[0]->key;
+
 ?>
 
 <style>
@@ -19,15 +33,19 @@ $start_from =  date("Y-m-01", $last_month) ;
 		cursor: pointer;
 	}
 	
-.trailer-card:hover {background: rgba(255,255,255,0.3)}
+	
+.trailer-card:hover, .trailer-card.active {
+    background: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
 
 </style>
 
-
-
-	  <div class="my-4 ">
+	<div class="mt-4 trailer-background" style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$f_movie_background?>');background-size: cover;">
+		<div style="background: rgba(0,0,0,0.5)">
 		
-	 	<div class="container-fluid p-4">	
+	 		<div class="container p-4">	
 		
 			<div class="row">
 			  <div class="col-sm-12">
@@ -47,7 +65,7 @@ $start_from =  date("Y-m-01", $last_month) ;
 	<!-- =====================  In-Theaters  =====================  -->
 			
 			<div class="col-md-8 my-2">
-			<iframe width="100%" height="100%" src="https://www.youtube.com/embed/F95Fk255I4M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="
+			<iframe class="trailer-video" width="100%" height="100%" src="https://www.youtube.com/embed/<?=$f_key?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="
     min-height: 350px;
     max-height: 400px;
     overflow: hidden;
@@ -70,7 +88,6 @@ $start_from =  date("Y-m-01", $last_month) ;
 
 			<?
 
-				$playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=$start_from&primary_release_date.lte=$today");
 
 				
 				$i=1;
@@ -81,10 +98,22 @@ $start_from =  date("Y-m-01", $last_month) ;
 					{
 						
 						
-				$trailer = api_connect("https://api.themoviedb.org/3/movie/$movie->id/videos?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+				$trailers = api_connect("https://api.themoviedb.org/3/movie/$movie->id/videos?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
 
+					foreach($trailers->results as $trailer )
+				{
+						if ($trailer->type == 'Trailer' )
+						{
+
+							$name = $trailer->name;
+							$key  = $trailer->key;
+							
+							break;
+						}
+				}
+					
+					$background  = $movie->backdrop_path;
 						
-					$name = $trailer->results[0]->name;
 
 					$date =  $movie->release_date;
 					$newdate = date('j M, Y', strtotime($date));
@@ -92,11 +121,13 @@ $start_from =  date("Y-m-01", $last_month) ;
 					$rate = $movie->vote_average * 10 ;
 						
 					$counter = $i++;
+						
+					if ($counter == 1){$active = 'active';}else{$active = '';}
 
 			?>
 
 			  <!-- Start New Card -->
-				<div class=" p-1 trailer-card">  
+				<div class=" p-1 trailer-card <?=$active?>" data-key="https://www.youtube.com/embed/<?=$key?>" data-background="url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$background?>')">  
 
 						<span style="
 						color: #fff;
@@ -106,14 +137,16 @@ $start_from =  date("Y-m-01", $last_month) ;
 					"><?=$counter;?></span>
 					
 						<div class=""> 
-							<img width="60" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/>
+							<img width="60" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>
 						</div>
 					
-					
-					<h6 class="ml-3 text-white" style="
-						font-size: 10pt;
-						font-weight: bold;
-					"><?= $name?></h6>
+					<div class="ml-3 text-white">
+						<h6><?= $movie->title?></h6>
+						<h6 style="
+							font-size: 9pt;
+							font-weight: bold;
+						"><?= $name?></h6>
+					</div>
 
 
 
@@ -141,6 +174,11 @@ $start_from =  date("Y-m-01", $last_month) ;
 		</div>	
 		
 		</div>
+		  
+		</div>
 	</div>
 		
+
+
+
 				

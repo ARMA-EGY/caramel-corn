@@ -1,5 +1,13 @@
+<?
 
-	  <div class="my-4 trends" style="background: url('layout/img/bg_trend.png');background-size: cover;">
+$playing_now = api_connect("https://api.themoviedb.org/3/trending/movie/week?api_key=df264f8d059253c7e87471ab4809cbbf");
+
+?>
+	
+
+
+
+	<div class="my-4 trends" style="background: url('layout/img/bg_trend.png');background-size: cover;">
 		
 	 	<div class="container-fluid p-5">	
 		
@@ -26,7 +34,6 @@
 
 			<?
 
-				$playing_now = api_connect("https://api.themoviedb.org/3/trending/movie/week?api_key=df264f8d059253c7e87471ab4809cbbf");
 
 
 				foreach(array_slice($playing_now->results, 0, 20) as $movie )

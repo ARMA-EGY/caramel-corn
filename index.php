@@ -101,7 +101,7 @@ include('ini.php');
 <!-- Movies starts -->
 
 <section id="about" class="section-spacing">
-	<div style="background: rgba(0, 0, 0, 0.75);padding: 75px 0;">
+	<div style="background: rgba(0, 0, 0, 0.7);padding-top: 75px;">
 	
  
 			 
@@ -118,17 +118,18 @@ include('ini.php');
 		<? include('include/home/on_trend.php'); ?>
 		
 		
+	<!-- =====================  Upcoming  =====================  -->
+		
+	
+		
+		<?  include('include/home/upcoming.php'); ?>
+		
 	<!-- =====================  In-Theaters  =====================  -->
 		
 		
 		<? include('include/home/in_theater.php'); ?>
 		  
 		
-	<!-- =====================  Upcoming  =====================  -->
-		
-	
-		
-		<? // include('include/home/upcoming.php'); ?>
 		
 		
 		
