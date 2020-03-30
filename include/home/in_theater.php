@@ -78,11 +78,13 @@ $f_key = $trailer->results[0]->key;
 			</div>
 			
 			
-			<div class="col-md-4" style="padding: 20px 5px;
+			<div class="col-md-4 p-0" style="border-radius: 10px; overflow: hidden;">
+				
+				<div style="padding: 20px 5px;
     max-height: 400px;
     overflow: auto;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
     box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.5);">
 
@@ -165,9 +167,9 @@ $f_key = $trailer->results[0]->key;
 			?>	
 
 
-			</div>	
+			  </div>	
 			
-			
+		</div>
 			
 						
 
