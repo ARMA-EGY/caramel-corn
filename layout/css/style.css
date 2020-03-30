@@ -1026,14 +1026,14 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     line-height: 2;
     margin: 0;
     opacity: .6; 
-    padding: 5px 5px 5px 10px;
+    padding: 5px;
     position: fixed;
     -webkit-transition: opacity 250ms;
     transition: opacity 250ms;
-    height: 40px;
-    min-width: auto;
+    height: 50px;
+    width: 50px;
 	
-	border-radius: 5px;
+	border-radius: 50%;
     right: 30px;
     background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
                 radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);

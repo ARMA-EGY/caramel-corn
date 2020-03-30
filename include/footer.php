@@ -12,7 +12,6 @@
 
 
 	<div class="back-to-top">
-		<span>Back To Top</span>
 		<i class="fas fa-rocket"></i>
 	</div>
 
