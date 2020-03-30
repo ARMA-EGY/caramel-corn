@@ -145,7 +145,28 @@ include('ini.php');
 
 <!-- Tv Shows Starts -->
 
+
+<section id="services" class="section-spacing">
+	<div style="background: rgba(255, 255, 255, 0.5);padding: 50px 0;">
+		
+
+	<!-- =====================  On Air TV Show  =====================  -->
+		
 		<? include('include/home/tv_show.php'); ?>
+		
+
+	<!-- =====================  Trending TV Show  =====================  -->
+		
+		<? include('include/home/trend_tv.php'); ?>
+		
+
+	<!-- =====================  What's Popular =====================  -->
+		
+		<? include('include/home/popular.php'); ?>
+		
+		
+	</div>
+</section>
 
 <!-- Tv Shows Ends -->
 

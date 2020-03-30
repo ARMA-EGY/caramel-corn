@@ -103,6 +103,25 @@
 		
 	});
 		
+		
+			
+	$('.trends .slick-arrow').click(function(){
+		
+		var background = $('.trends .slick-center .variable_card').attr('data-background');
+		
+    	$(".trends").css({"background": background});
+		
+	});
+		
+			
+	$('.tv_trends .slick-arrow').click(function(){
+		
+		var background = $('.tv_trends .slick-center .variable_card').attr('data-background');
+		
+    	$(".tv_trends").css({"background": background});
+		
+	});
+		
 	
 		
     </script>

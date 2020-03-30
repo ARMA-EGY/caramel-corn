@@ -1,7 +1,5 @@
 
 
-<section id="services" class="section-spacing">
-	<div style="background: rgba(255, 255, 255, 0.5);padding: 50px 0;">
 	
   <div class="container">
  
@@ -51,7 +49,7 @@
 				<div class="col-sm-3 variable_card">  
 
 
-					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
+					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
 							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/>
 						</div>
@@ -128,7 +126,7 @@
 			<? 
 						$i++;
 
-						if($i==10) break;
+						if($i==5) break;
 					} 
 				}
 			?>	
@@ -159,7 +157,7 @@
 			  <!-- Start New Card -->
 				<div class="col-sm-6">  
 
-					<div class="poster-card">
+					<div class="poster-card" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)">
 						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/></div>
 						<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
 						  <div class="wrapper">
@@ -235,5 +233,3 @@
 		</div>	
 	  
 	  </div>
-	</div>
-</section>

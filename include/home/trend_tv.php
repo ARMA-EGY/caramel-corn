@@ -1,6 +1,6 @@
 <?
 
-$playing_now = api_connect("https://api.themoviedb.org/3/trending/movie/week?api_key=df264f8d059253c7e87471ab4809cbbf");
+$playing_now = api_connect("https://api.themoviedb.org/3/trending/tv/week?api_key=df264f8d059253c7e87471ab4809cbbf");
 
 
 $f_movie_background = $playing_now->results[0]->backdrop_path;
@@ -10,7 +10,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 
 
-	<div class="my-4 trends" style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$f_movie_background?>');background-size: cover;">
+	<div class="my-4 tv_trends" style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$f_movie_background?>');background-size: cover;">
 		
 	 	<div class="container-fluid p-5" style="background: rgba(0,0,0,0.5)">	
 		
@@ -18,7 +18,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 			  <div class="col-sm-12">
 				<div class="section-title text-center">
 
-				<h4 class="font-weight-bold title_btn"  >Trending <span class="text-white">Movies</span> </h4>
+				<h4 class="font-weight-bold title_btn_light"  >Trending <span style="color: #000;">Tv Show</span> </h4>
 					
 				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
 
@@ -37,15 +37,15 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 			<?
 
-					$i=0;
-				
+			$i=0;
+
 				foreach(array_slice($playing_now->results, 0, 20) as $movie )
 				{
 					if ($movie->original_language == 'en')
 					{
 
 
-					$date =  $movie->release_date;
+					$date =  $movie->first_air_date;
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
@@ -70,7 +70,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 						 <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>
