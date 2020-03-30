@@ -36,6 +36,8 @@ include('ini.php');
 
       </div>
 		
+<!--
+		
 		<ul class="social-mdedia">
           <li>
             <a href="#about" id="link" class="about">
@@ -47,6 +49,7 @@ include('ini.php');
             </a>
           </li>
         </ul>
+-->
 		
     </div>
   </div>
