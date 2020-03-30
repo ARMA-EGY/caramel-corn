@@ -206,6 +206,7 @@ $(window).scroll(function() {
         $('.back-to-top').fadeOut(500);   // Else fade out the arrow
     }
 });
+	
 $('.back-to-top').click(function() {      // When arrow is clicked
     $('body,html').animate({
         scrollTop : 0                       // Scroll to top of body
