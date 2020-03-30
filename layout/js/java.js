@@ -196,6 +196,23 @@ $('.select-search').change(function(){
 	
 	
 
+	// ========================== Scroll to Top ========================== 
+	
+	
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 100) {        // If page is scrolled more than 50px
+        $('.back-to-top').fadeIn(500);    // Fade in the arrow
+    } else {
+        $('.back-to-top').fadeOut(500);   // Else fade out the arrow
+    }
+});
+$('.back-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 800);
+});
+	
+	
 
 
 });

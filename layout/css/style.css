@@ -1019,4 +1019,56 @@ border: 1px solid #555;
 box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 		
+				/**==================== START BACK TO TOP ====================**/
+
+.back-to-top {
+    bottom: 100px;
+    line-height: 2;
+    margin: 0;
+    opacity: .6; 
+    padding: 5px 5px 5px 10px;
+    position: fixed;
+    -webkit-transition: opacity 250ms;
+    transition: opacity 250ms;
+    height: 40px;
+    min-width: auto;
+	
+	border-radius: 5px;
+    right: 30px;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    color: #fff;
+    text-align: center;
+    z-index: 99;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 5px rgba(255, 137, 57, 0);
+    box-shadow: 0 0 5px rgba(255, 137, 57, 0);
+	display: none;
+}
+
+
+.back-to-top i {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+	color: #fff;
+    margin: 0;
+    position: relative;
+    top: 5px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+}
+.back-to-top:hover i {
+    color: #fff;
+    top: -5px;
+}
+
+				/**==================== END BACK TO TOP ====================**/
 

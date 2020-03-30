@@ -1,6 +1,5 @@
 <?
 
-
 	$stmt = $conn->prepare("SELECT * FROM footer ORDER BY RAND() LIMIT 1");
 
 	$stmt->execute();
@@ -10,6 +9,12 @@
 
 ?>
 
+
+
+	<div class="back-to-top">
+		<span>Back To Top</span>
+		<i class="fas fa-rocket"></i>
+	</div>
 
 	
 	<section class="section-spacing1" style="background: url('layout/img/footer/<?= $background ?>');background-size: cover;    height: 400px;">
