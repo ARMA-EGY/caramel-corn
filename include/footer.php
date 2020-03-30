@@ -97,7 +97,7 @@
 		$(this).addClass('active');
 		
 		
-    	$(".trailer-background").css({"background": background});
+    	$(".trailer-background").css({"background": background, "background-size": "cover"});
 		
 		$(".trailer-video").attr("src", video);
 		
@@ -109,7 +109,7 @@
 		
 		var background = $('.trends .slick-center .variable_card').attr('data-background');
 		
-    	$(".trends").css({"background": background});
+    	$(".trends").css({"background": background, "background-size": "cover"});
 		
 	});
 		
@@ -118,7 +118,7 @@
 		
 		var background = $('.tv_trends .slick-center .variable_card').attr('data-background');
 		
-    	$(".tv_trends").css({"background": background});
+    	$(".tv_trends").css({"background": background, "background-size": "cover"});
 		
 	});
 		
