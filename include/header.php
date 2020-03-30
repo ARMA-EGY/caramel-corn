@@ -112,9 +112,9 @@ else
     $facebook_login_url = $facebook_helper->getLoginUrl('http://caramel-corn.com/', $facebook_permissions);
     
     // Render Facebook login button
-    $facebook_login_url = '<a class="btn btn-facebook" href="'.$facebook_login_url.'"><i class="fa fa-facebook-square mr-1"></i> Login With Facebook</a>';
+    $facebook_login_url = '<a class="btn btn-facebook" href="'.$facebook_login_url.'"><i class="fab fa-facebook-square mr-1"></i> Login With Facebook</a>';
 	
-	$login_google_button = '<a class="btn btn-google" href="'.$google_client->createAuthUrl().'"><i class="fa fa-google mr-1"></i> Sign In With Google</a>';
+	$login_google_button = '<a class="btn btn-google" href="'.$google_client->createAuthUrl().'"><i class="fab fa-google mr-1"></i> Sign In With Google</a>';
 }
 
 if(isset($_SESSION['access_token']))
@@ -245,7 +245,7 @@ if(isset($_SESSION['access_token']))
 			  
 			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <li><a class="dropdown-item" href="#"><i class="fa fa-user-circle"></i> Profile</a></li>
-			  <li><a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
+			  <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
 			</ul>
 			  
 		  </li>
@@ -253,7 +253,7 @@ if(isset($_SESSION['access_token']))
 <? }else{ ?>
 		  
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"></i> Login</a>
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
 			  
 			<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="right: 0; left: unset;">
 			  <li><?=$facebook_login_url?></li>
