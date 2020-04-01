@@ -24,23 +24,6 @@ $f_key = $trailer->results[0]->key;
 
 ?>
 
-<style>
-
-.trailer-card
-	{
-		display: flex;
-		align-items: center;
-		cursor: pointer;
-	}
-	
-	
-.trailer-card:hover, .trailer-card.active {
-    background: rgba(255,255,255,0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-</style>
 
 	<div class="mt-4 trailer-background" style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$f_movie_background?>');background-size: cover;">
 		<div style="background: rgba(0,0,0,0.5)">
@@ -65,28 +48,15 @@ $f_key = $trailer->results[0]->key;
 	<!-- =====================  In-Theaters  =====================  -->
 			
 			<div class="col-md-8 my-2">
-			<iframe class="trailer-video" width="100%" height="100%" src="https://www.youtube.com/embed/<?=$f_key?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="
-    min-height: 350px;
-    max-height: 400px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-"></iframe>
+				
+				<iframe class="trailer-video" width="100%" height="100%" src="https://www.youtube.com/embed/<?=$f_key?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 			
 			</div>
 			
 			
 			<div class="col-md-4 p-0" style="border-radius: 10px; overflow: hidden;">
 				
-				<div style="padding: 20px 5px;
-    max-height: 400px;
-    overflow: auto;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="trailer-list">
 
 			<?
 

@@ -7,7 +7,7 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h4 class="font-weight-bold title_btn_light" style="color:#fbd747;">On Air  <span style="color:#000;">Tv Show</span></h4>
+				<h4 class="font-weight-bold title_btn_light" style="color:#fbd747;">On Air  <span style="color:#000;">Tv Shows</span></h4>
 					
 
 				<a href="#" class="viewall_light">View all <i class="ti-angle-right"></i></a>
