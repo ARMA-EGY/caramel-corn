@@ -245,7 +245,7 @@ if(isset($_SESSION['access_token']))
 			  
 			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <li><a class="dropdown-item" href="#"><img src="layout/img/mycorn.png" width="26"> My Corn</a></li>
-			  <li><a class="dropdown-item" href="logout.php"><img src="layout/img/mycorn.png" width="23"> Logout</a></li>
+			  <li><a class="dropdown-item" href="logout.php"><img src="layout/img/logout.png" width="23"> Logout</a></li>
 			</ul>
 			  
 		  </li>
