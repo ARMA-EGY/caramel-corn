@@ -1,4 +1,9 @@
+<?
 
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/airing_today?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
+
+
+?>
 
 	
   <div class="container">
@@ -7,7 +12,7 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h4 class="font-weight-bold title_btn_light" style="color:#000;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h4>
+				<h5 class="font-weight-bold title_btn_light" style="color:#000;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h5>
 					
 
 				<a href="#" class="viewall_light">View all <i class="ti-angle-right"></i></a>
@@ -24,7 +29,6 @@
 
 			<?
 
-				$tv_shows = api_connect("https://api.themoviedb.org/3/tv/airing_today?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
 
 				$i=0;
 

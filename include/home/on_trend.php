@@ -18,7 +18,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 			  <div class="col-sm-12">
 				<div class="section-title text-center">
 
-				<h4 class="font-weight-bold title_btn"  >Trending <span class="text-white">Movies</span> </h4>
+				<h5 class="font-weight-bold title_btn"  >Trending <span class="text-white">Movies</span> </h5>
 					
 				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
 

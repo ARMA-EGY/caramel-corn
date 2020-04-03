@@ -168,7 +168,7 @@ if(isset($_SESSION['access_token']))
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="layout/img/logo2.png"/>
+	<link rel="icon" type="image/png" href="layout/img/logo.png"/>
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/bootstrap.min.css">
 <!--===============================================================================================-->	
@@ -197,11 +197,53 @@ if(isset($_SESSION['access_token']))
 
 <body>
 	
+<style>
+	
+	
+.navbar:hover {background: rgba(0,0,0,0.4)!important;}
 
+.navbar-brand {
+    padding: unset;
+}
+
+
+.navbar-toggler {
+	margin-right: 20px;
+}
+
+
+.nav-item {
+	margin-right: 15px;
+}
+
+
+.nav-item .dropdown-toggle-split {
+    padding: unset;
+	color: rgba(255,255,255,.5);
+    padding-top: 8px;
+}
+
+.nav-item .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
+	top: 75%;
+}
+
+.nav-item .dropdown-item {
+    color: #fff;
+}
+
+.nav-item .dropdown-item:focus, .nav-item .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+	
+</style>
 	
 	<nav class="navbar navbar-expand-md navbar-light customNav">
 
-		<a id="askFaran" class="navbar-brand" href="index.php"><img src="layout/img/logo2.png" width="40" alt=""/> Caramel <span style="color: #fff;font-family: Lobster, 'sans-serif';">Corn</span></a>
+		<a id="askFaran" class="navbar-brand" href="index.php"><img src="layout/img/logo.png" width="32" alt=""/> Caramel <span style="color: #fff;font-family: Lobster, 'sans-serif';">Corn</span></a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 			 <div class="container1" onclick="myFunction(this)">
@@ -214,26 +256,53 @@ if(isset($_SESSION['access_token']))
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 	  
     <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">
-      <li id="home" class="nav-item">
-        <a class="nav-link" href="movies.php" >Movies</a>
-      </li>
-      <li id="abt" class="nav-item">
-        <a class="nav-link" href="tv.php" >Tv Shows</a>
-      </li>
-       <li id="svc" class="nav-item">
+		
+		
+	<li class="nav-item">
+	    <div class="btn-group">
+        <a class="nav-link" >Movies</a>
+			<a href="#" class="dropdown-toggle dropdown-toggle-split" id="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"></a>
+
+			<div class="dropdown-menu" aria-labelledby="test">
+
+				<a class="dropdown-item" href="#">Newest</a>
+				<a class="dropdown-item" href="#">Trending</a>
+				<a class="dropdown-item" href="#">Upcoming</a>
+				<a class="dropdown-item" href="#">Box office</a>
+				<a class="dropdown-item" href="#">Popular</a>
+				<a class="dropdown-item" href="#">Top Rated</a>
+				<a class="dropdown-item" href="#">Top Revenue</a>
+				<a class="dropdown-item" href="#">Browse All</a>
+
+			</div>
+		</div>
+    </li>
+		
+	<li class="nav-item">
+	    <div class="btn-group">
+        <a class="nav-link" >Tv Shows</a>
+			<a href="#" class="dropdown-toggle dropdown-toggle-split" id="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"></a>
+
+			<div class="dropdown-menu" aria-labelledby="test">
+
+				<a class="dropdown-item" href="#">On Tv</a>
+				<a class="dropdown-item" href="#">Airing Today</a>
+				<a class="dropdown-item" href="#">Trending</a>
+				<a class="dropdown-item" href="#">Popular</a>
+				<a class="dropdown-item" href="#">Top Rated</a>
+				<a class="dropdown-item" href="#">Browse All</a>
+
+			</div>
+		</div>
+    </li>
+		
+		
+       <li class="nav-item">
         <a class="nav-link" href="actors.php">Actors</a>
       </li>
     </ul>
 	  
-<!--
-	  
-	  <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 search_bar" type="search" placeholder="Search" aria-label="Search">
-		  <div style="position: absolute;width: 193px;background: rgba(0, 0, 0, 0.5);height: 300px;top: 60px;overflow: auto; display: none;" id="search_result"></div>
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Go</button>
-    </form>
-	  
--->
+
 	  <ul class="nav navbar-nav navbar-right">
 <?
    if(isset($_SESSION['user_name']))

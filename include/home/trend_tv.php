@@ -18,7 +18,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 			  <div class="col-sm-12">
 				<div class="section-title text-center">
 
-				<h4 class="font-weight-bold title_btn_light"  >Trending <span style="color: #000;">Tv Shows</span> </h4>
+				<h5 class="font-weight-bold title_btn_light"  >Trending <span style="color: #000;">Tv Shows</span> </h5>
 					
 				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
 
@@ -41,8 +41,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 				foreach(array_slice($playing_now->results, 0, 20) as $movie )
 				{
-					if ($movie->original_language == 'en')
-					{
+					
 
 
 					$date =  $movie->first_air_date;
@@ -134,7 +133,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 						$i++;
 
 						if($i==10) break;
-					} 
+					
 				}
 			?>	
 

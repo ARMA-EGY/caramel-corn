@@ -1,4 +1,8 @@
+<?
 
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/on_the_air?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
+
+?>
 
 	
   <div class="container">
@@ -7,28 +11,27 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h4 class="font-weight-bold title_btn_light" style="color:#fbd747;">On Air  <span style="color:#000;">Tv Shows</span></h4>
+				<h5 class="font-weight-bold title_btn_light" style="color:#fbd747;">On Air  <span style="color:#000;">Tv Shows</span></h5>
 					
 
 				<a href="#" class="viewall_light">View all <i class="ti-angle-right"></i></a>
 
-				<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details"></i>
+				<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details" data-target="#on_tv"></i>
 
-				<i class="ti-layout-grid2 show_grid active" data-show=".show_cards" ></i>
+				<i class="ti-layout-grid2 show_grid active" data-show=".show_cards" data-target="#on_tv" ></i>
 
 				</div>
 			  </div>
 			</div>
 	  
 	  
-	  	<div class="p-4">
+	  	<div class="p-4" id="on_tv">
 
 
 			<div class="show_cards row justify-content-center fade show">
 
 			<?
 
-				$tv_shows = api_connect("https://api.themoviedb.org/3/tv/on_the_air?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
 
 				$i=0;
 

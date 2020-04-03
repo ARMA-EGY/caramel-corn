@@ -184,13 +184,17 @@ $('.select-search').change(function(){
 		$('.show_grid').click(function(){
 			
 			var selected = $(this).attr('data-show');
+			var target   = $(this).attr('data-target');
+			
+			var active 	 = target + " " + selected ;
+			var unactive = target + " " + '.fade' ;
+			
 			
 			$(this).siblings('.show_grid').removeClass('active');
 			$(this).addClass('active');
 			
-			$('.playing .fade').removeClass('show');
-			
-			$(selected).addClass('show');
+			$(unactive).removeClass('show');
+			$(active).addClass('show');
 			
 		});
 	
@@ -302,6 +306,15 @@ $('.back-to-top').click(function() {      // When arrow is clicked
 		
 	});
 		
+	
+	
+	// ========================== HOVER DROPDOWN MENU   ==========================
+	
+
+$('.btn-group').hover(function()
+{
+	$(this).find('.dropdown-menu').stop(true,false,true).slideToggle("slow");
+});
 	
 
 
