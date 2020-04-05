@@ -132,7 +132,7 @@
 
 
 
-	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
 	<script src="layout/js/bootstrap.min.js"></script>
 	<script src="layout/js/java.js"></script>
 	<script src="layout/js/wow.min.js"></script>
