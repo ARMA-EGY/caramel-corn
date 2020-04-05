@@ -172,8 +172,6 @@ if(isset($_SESSION['access_token']))
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/bootstrap.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="layout/css/style.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/animate.css">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/hover-min.css">
@@ -191,6 +189,8 @@ if(isset($_SESSION['access_token']))
 <!--===============================================================================================-->	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="layout/css/style.css">
 <!--===============================================================================================-->	
 <title>Caramel Corn</title>
 </head>
@@ -265,13 +265,13 @@ if(isset($_SESSION['access_token']))
 
 			<div class="dropdown-menu" aria-labelledby="test">
 
-				<a class="dropdown-item" href="#">Newest</a>
-				<a class="dropdown-item" href="#">Trending</a>
-				<a class="dropdown-item" href="#">Upcoming</a>
-				<a class="dropdown-item" href="#">Box office</a>
-				<a class="dropdown-item" href="#">Popular</a>
-				<a class="dropdown-item" href="#">Top Rated</a>
-				<a class="dropdown-item" href="#">Top Revenue</a>
+				<a class="dropdown-item" href="movies.php?type=Newest">Newest</a>
+				<a class="dropdown-item" href="movies.php?type=Trending">Trending</a>
+				<a class="dropdown-item" href="movies.php?type=Upcoming">Upcoming</a>
+				<a class="dropdown-item" href="movies.php?type=Box office">Box office</a>
+				<a class="dropdown-item" href="movies.php?type=Popular">Popular</a>
+				<a class="dropdown-item" href="movies.php?type=Top Rated">Top Rated</a>
+				<a class="dropdown-item" href="movies.php?type=Top Revenue">Top Revenue</a>
 				<a class="dropdown-item" href="#">Browse All</a>
 
 			</div>
@@ -285,11 +285,11 @@ if(isset($_SESSION['access_token']))
 
 			<div class="dropdown-menu" aria-labelledby="test">
 
-				<a class="dropdown-item" href="#">On Tv</a>
-				<a class="dropdown-item" href="#">Airing Today</a>
-				<a class="dropdown-item" href="#">Trending</a>
-				<a class="dropdown-item" href="#">Popular</a>
-				<a class="dropdown-item" href="#">Top Rated</a>
+				<a class="dropdown-item" href="tv.php?type=On Air">On Air</a>
+				<a class="dropdown-item" href="tv.php?type=Airing Today">Airing Today</a>
+				<a class="dropdown-item" href="tv.php?type=Trending">Trending</a>
+				<a class="dropdown-item" href="tv.php?type=Popular">Popular</a>
+				<a class="dropdown-item" href="tv.php?type=Top Rated">Top Rated</a>
 				<a class="dropdown-item" href="#">Browse All</a>
 
 			</div>
@@ -298,7 +298,7 @@ if(isset($_SESSION['access_token']))
 		
 		
        <li class="nav-item">
-        <a class="nav-link" href="actors.php">Actors</a>
+        <a class="nav-link" href="actors.php">People</a>
       </li>
     </ul>
 	  

@@ -114,9 +114,9 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 						<div class="details mt-3" >
 
-							<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
 						</div>
 
 

@@ -108,9 +108,10 @@
 
 						<div class="details mt-3" >
 
-							<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							
 						</div>
 
 
@@ -208,9 +209,10 @@
 
 						<div class="details mt-3" style="position: absolute;bottom: 0;">
 
-							<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							
 						</div>
 
 						</div>

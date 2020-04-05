@@ -6,6 +6,44 @@ include('ini.php');
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 
+if (isset($_GET["type"])) { $type  = $_GET["type"]; } else { $type='On Air'; };
+
+
+
+if($type == 'On Air')
+{
+	
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/on_the_air?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+
+}
+elseif($type == 'Airing Today')
+{
+	
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/airing_today?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	
+}
+elseif($type == 'Trending')
+{
+	
+	$$tv_shows = api_connect("https://api.themoviedb.org/3/trending/tv/week?api_key=df264f8d059253c7e87471ab4809cbbf&page=$page");
+	
+}
+elseif($type == 'Popular')
+{
+	
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/popular?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	
+}
+elseif($type == 'Top Rated')
+{
+	
+	$tv_shows = api_connect("https://api.themoviedb.org/3/tv/top_rated?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	
+}
+
+
+$total_pages = $tv_shows->total_pages;  
+
 ?>
 	
 
@@ -13,96 +51,274 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
+  <div style="background: rgba(0, 0, 0,0.5);padding-top: 80px;padding-bottom: 10px;">
+	
   <div class="container">
-    <div class="row pad">
-      <div class="col-xs-12">
-        <div class="section-title text-center">
-          <h2>Tv Shows</h2>
+	  
+    <div class="row pb-4">
+		
+      <div class="col-md-9 p-1">
+		  
+        <div class="section-title ">
+			<h4 class="font-weight-bold title_btn" style="color:#fbd747;"><?= $type ?> <span style="color:#fff;">Tv Shows</span></h4>
+					  
+			<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details" data-target="#tv"></i>
+
+			<i class="ti-layout-grid2 show_grid active" data-show=".show_cards" data-target="#tv" ></i>
+			
         </div>
+		  
+		  
       </div>
+		
+	<div class="col-md-3 p-1">
+    	<div class="top-search">
+			
+			
+			<input type="hidden" class="select-search" value="tv" >
+
+				<div style="width: 100%; position: relative;">
+					<input class="search_bar" type="text" placeholder="Search for TV Show" style="border-left: none;">
+					<div id="search_result"></div>
+				</div>
+			
+				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
+
+		</div>
+	</div>
+		
     </div>
 	  
 
-	      <div class="row p-4">
+	<div class="row p-4" id="tv">
 		
-	<?
+		
+		
+			<div class="show_cards row justify-content-center fade show">
 
-		$tv_show = api_connect("https://api.themoviedb.org/3/tv/on_the_air?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
-		
-		foreach($tv_show->results as $tv )
-		{
-	    	$date =  $tv->first_air_date;
-			$newdate = date('j M, Y', strtotime($date));
+			<?
 
-	?>
-		
-	  <!-- Start New Card -->
-			<div class="col-sm-6">               
-			<div class="poster-card" style="box-shadow: 0 0 5px 1px #000;">
-				<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/></div>
-				<div class="c-body">
-					<div class="wrapper">
-					<div class="rate">
-						 <h5><?= $tv->vote_average?> <p><small class="text-muted">&nbsp;&nbsp;<i class="fa fa-star"></i> </small></p></h5>
-				  </div>
-				<div class="c-title">
-					<a href="single.php?movie=<?= $tv->id?>"><?= $tv->name?> </a>  
-					<span class="mt-2"><?= $newdate ?></span>
-				</div>
+
+				foreach($tv_shows->results as $tv )
+				{
+
+
+					$date =  $tv->first_air_date;
+					$newdate = date('j M, Y', strtotime($date));
+
+					$rate = $tv->vote_average * 10 ;
+
+			?>
+
+			  <!-- Start New Card -->
+				<div class="col-sm-3 variable_card">  
+
+
+					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
+						<div class="poster"> 
+							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/>
+						</div>
+
 					</div>
 
-				<p class="c-text"><?= substr($tv->overview,0,170) . '...'?></p>
-					<div class="details">
-				<a class="btn btn-outline-light my-2 my-sm-0" type="submit">View Details</a>
-					</div>
-				</div>
-			</div>
+					<div class="d-none">
 
-		</div>
-		
-	  <!-- End New Card -->
-		
-		
-	<? } ?>	
+						<div class="c-body" id="tooltip_content_<?= $tv->id?>">
+
+						 <div class="wrapper">
+
+							<div class="c-title">
+								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><?= $tv->name?> </a>  
+								<div class="ratings">
+								  <div class="empty-stars"></div>
+								  <div class="full-stars" style="width:<?= $rate?>%"></div>
+								</div>
+								<span class="votes">(<?= number_format($tv->vote_count)?> Votes)</span>
+							</div>
+
+							<div class="rate">
+								 <h5 class="text-white font-weight-bold"><?= $tv->vote_average?> </h5>
+							</div>
+
+
+
+						  </div>
+
+						<p class="c-text mb-2"><?= substr($tv->overview,0,90) . '...'?></p>
+
+						<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+						<div class="cate mt-3" >
+
+							<?
+
+								foreach(array_slice($tv->genre_ids, 0, 4) as $genre )
+								{
+									$genre_cate = '_'.$genre;
+									?>
+
+							<div class="mb-1 cate_color_<?= $genre;?>">
+								<a href="#"><?= $cate->$genre_cate;?></a>
+							</div>
+
+									<?
+								}
+
+							?>
+
+						</div>
+
+
+						<div class="details mt-3" >
+
+							<span class="get_trailer" data-type="tv" data-id="<?= $tv->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+						</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			  <!-- End New Card -->
+
+
+
+			<? 
+				}
+			?>	
+
+
+			</div>	
+
+			<!-- ==========================================  -->
+
+			<div class="show_cards_details row justify-content-center fade">
+
+			<?
+
+
+				foreach($tv_shows->results as $tv )
+				{
+
+					$date =  $tv->first_air_date;
+					$newdate = date('j M, Y', strtotime($date));
+
+					$rate = $tv->vote_average * 10 ;
+
+			?>
+
+			  <!-- Start New Card -->
+				<div class="col-sm-6">  
+
+					<div class="poster-card" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)">
+						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/></div>
+						<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
+						  <div class="wrapper">
+
+							<div class="c-title">
+								<a href="single.php?movie=<?= $tv->id?>" class="caramel_color"><?= $tv->name?> </a>  
+								<div class="ratings">
+								  <div class="empty-stars"></div>
+								  <div class="full-stars" style="width:<?= $rate?>%"></div>
+								</div>
+								<span class="votes">(<?= number_format($tv->vote_count)?> Votes)</span>
+							</div>
+
+							<div class="rate">
+								 <h5 class="text-white font-weight-bold"><?= $tv->vote_average?> </h5>
+							</div>
+
+
+
+						  </div>
+
+						<p class="c-text mb-2"><?= substr($tv->overview,0,90) . '...'?></p>
+
+						<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+						<div class="cate mt-3" >
+
+							<?
+
+								foreach(array_slice($tv->genre_ids, 0, 4) as $genre )
+								{
+									$genre_cate = '_'.$genre;
+									?>
+
+							<div class="mb-1 cate_color_<?= $genre;?>">
+								<a href="#"><?= $cate->$genre_cate;?></a>
+							</div>
+
+									<?
+								}
+
+							?>
+
+						</div>
+
+
+						<div class="details mt-3" style="position: absolute;bottom: 0;">
+
+							<span class="get_trailer" data-type="tv" data-id="<?= $tv->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							
+						</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			  <!-- End New Card -->
+
+
+			<? 
+				}
+			?>	
+
+			</div>	
 		
 	</div>	
 	  
 	  
-<?
-	  $total_pages = $tv_show->total_pages;  
-?>
-	  
   <ul class="pagination my-4" style="justify-content: center;">
     <li class="page-item <? if($page == 1){echo 'disabled';} ?>">
-      <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?>" tabindex="-1">Prev</a>
+      <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?>&type=<?=$type?>" tabindex="-1">Prev</a>
     </li>
 	  
 	  
 	<?php if ($page > 3): ?>
-	<li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+	<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
 	<li class="page-item"><div class="page-link">...</div></li>
 	<?php endif; ?>
 
-	<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
-	<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
+	<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 ?>&type=<?=$type?>"><?php echo $page-2 ?></a></li><?php endif; ?>
+	<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 ?>&type=<?=$type?>"><?php echo $page-1 ?></a></li><?php endif; ?>
 
 <!--	
 <li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
 -->
 	  
-	  <select class="page-item select_page" style="background: #007bff; color: #fff">
+	  <select class="page-item select_page" >
 		 <?
 		for ($i=1; $i<=$total_pages; $i++) 
 		  {  
 			  if ($page == $i){$selected = 'selected';}else{$selected = '';}
-				 echo '<option '.$selected.'>'.$i.'</option>';
+				 echo '<option value="'.$i.'&type='.$type.'" '.$selected.'>'.$i.'</option>';
 		  }; 
 	
 		 ?>
 	  </select>
 
-	<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
-	<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+	<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 ?>&type=<?=$type?>"><?php echo $page+1 ?></a></li><?php endif; ?>
+	<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 ?>&type=<?=$type?>"><?php echo $page+2 ?></a></li><?php endif; ?>
 
 	<?php if ($page < ceil($total_pages)-2): ?>
 	  
@@ -111,12 +327,12 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	<li class="page-item"><div class="page-link">...</div></li>
 	  <?}?>
 	  
-	<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) ?>"><?php echo ceil($total_pages) ?></a></li>
+	<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) ?>&type=<?=$type?>"><?php echo ceil($total_pages) ?></a></li>
 	<?php endif; ?>
 
 	  
     <li class="page-item">
-      <a class="page-link" href="?page=<?=$page+1?>">Next</a>
+      <a class="page-link" href="?page=<?=$page+1?>&type=<?=$type?>">Next</a>
     </li>
   </ul>
 	  
@@ -124,6 +340,8 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	  
 	  
   </div>
+	
+	</div>
 </section>
 <!-- End Playing Now -->
 <!-- Movies ends -->

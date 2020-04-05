@@ -8,6 +8,8 @@
 /*  transition: all 0.3s linear;*/
   }
 
+.transition{transition: all 0.3s linear;}
+
 html,
 body {
   height: 100%;
@@ -338,6 +340,18 @@ b {
 	
 }
 
+.c-body a:hover 
+	{
+		color: #fff;
+		text-decoration: underline;
+	}
+
+.c-body .get_trailer:hover
+{
+	color: #fff;
+    text-decoration: underline;
+}
+
 .c-title {
 	display: inline-block;
     flex-wrap: wrap;
@@ -397,16 +411,17 @@ b {
     padding: 10px;
 }
 
-.details a{
+.details a, .details .get_trailer{
 	font-size: 0.9em;
     font-weight: 400;
 	display: inline-block;
 	color: #ccc;
 	margin-right: 30px;
 	line-height: 1;
+	cursor: pointer;
 }
 
-.details a i {
+.details a i, .details span i {
 	width: 20px;
     float: left;
     margin-top: -4px;
@@ -902,6 +917,7 @@ h2 {
 	max-height: 280px;
 	overflow: auto; 
 	display: none;
+	z-index: 999;
 }
 
 
@@ -1289,3 +1305,49 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     padding: 0 20px;
 }
 
+.page-link {
+    color: #000;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #fbd747;
+    text-decoration: none;
+    background-color: #555;
+    border-color: #555;
+}
+
+.select_page
+{
+	background: #000;
+	color: #fbd747;
+}
+
+
+.actor .card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(1rem - 1px);
+    border-top-right-radius: calc(1rem - 1px);
+}
+
+
+.person-card:hover
+{
+	transform: scale(1.1);
+}
+
+
+@media (min-width: 576px)
+{
+	.col-person {
+		max-width: 20%;
+	}
+}
+
+
+@media (max-width: 575px)
+{
+	.col-person {
+		max-width: 50%;
+	}
+}

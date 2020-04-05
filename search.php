@@ -104,9 +104,9 @@ echo "<ul class='mb-0'>";
 		?>
 
 		<li class="search-row" >
-			<a class="search-link" href="single.php?actor=<?= $actor->id?>" >
+			<a class="search-link" href="single.php?person=<?= $actor->id?>" style="line-height: 5;">
 
-				<img src="<?= $img?>" alt="" style="width: 70px;float: left;margin-right: 15px; border-radius: 10px;">
+				<img src="<?= $img?>" alt="" style="width: 70px;float: left;margin-right: 15px; border-radius: 50%;">
 				<span style="color: #fff;"> <?= $actor->name?></span>
 
 			</a>

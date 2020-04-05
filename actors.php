@@ -20,13 +20,33 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 
 <!-- Actors Starts -->
 <section id="act" class="section-spacing actor">
-  <div class="container">
-    <div class="row pad">
-      <div class="col-xs-12">
-        <div class="section-title text-center">
-          <h2>Actors</h2>
+	<div style="background: rgba(0, 0, 0,0.5);padding-top: 80px;padding-bottom: 10px;">
+		
+  <div class="container" >
+    <div class="row pb-4">
+		
+      <div class="col-md-8 p-1">
+        <div class="section-title ">
+			<h4 class="font-weight-bold title_btn" style="color:#fbd747;">Popular <span style="color:#fff;">People</span></h4>
         </div>
       </div>
+		
+	<div class="col-md-4 p-1">
+    	<div class="top-search">
+			
+			
+			<input type="hidden" class="select-search" value="person" >
+
+				<div style="width: 100%; position: relative;">
+					<input class="search_bar" type="text" placeholder="Search for Person" style="border-left: none;">
+					<div id="search_result"></div>
+				</div>
+			
+				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
+
+		</div>
+	</div>
+		
     </div>
 	  
   
@@ -43,13 +63,13 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	?>
 		
 		<!--  Actor Card Starts -->
-		<div class="col-sm-3 d-flex justify-content-center">
-  			<div class="card" style="border-radius: 10px;box-shadow: 0 0 5px 1px #555; width: 85%;">
-				<img class="card-img-top" src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $actor->profile_path?>" alt="<?= $actor->name?>" style="border-radius: 10px 10px 0 0;">
+		<div class="col-sm-3 d-flex justify-content-center px-2 col-person">
+  			<a href="single.php?person=<?= $actor->id?>" class="card person-card transition" style="box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);border: none;border-radius: 1rem;">
+				<img class="card-img-top" src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $actor->profile_path?>" alt="<?= $actor->name?>" style="">
 				<div class=" text-center">
-				  <h5 class="card-title"><?= $actor->name?></h5>
+				  <h5 class="card-title text-dark font-weight-bold"><?= $actor->name?></h5>
 				</div>
-			</div>
+			</a>
 		</div>
 	    <!--  Actor Card Ends -->
 	 
@@ -86,7 +106,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 <li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
 -->
 	  
-	  <select class="page-item select_page" style="background: #007bff; color: #fff">
+	  <select class="page-item select_page" >
 		 <?
 		for ($i=1; $i<=$total_pages; $i++) 
 		  {  
@@ -116,6 +136,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	  
 	  
 
+   </div>
   </div>
 </section>
 <!-- Actors Ends -->

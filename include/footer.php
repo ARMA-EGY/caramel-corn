@@ -117,6 +117,21 @@
 
 
 
+
+<!--==========================Start Modal Trailer ================================-->
+<div class="modal fade" id="trailer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	  
+    <div class="modal-content text-white text-center" style="background: #0000;">
+		
+      	<div id="trailer_body" class="modal-body"></div>
+      
+    </div>
+  </div>
+</div>
+
+
+
 	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 	<script src="layout/js/bootstrap.min.js"></script>
 	<script src="layout/js/java.js"></script>

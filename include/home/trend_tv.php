@@ -69,7 +69,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 						 <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
+								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>
@@ -113,9 +113,9 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 						<div class="details mt-3" >
 
-							<a class="" href="#"><i class="fa fa-play"></i>Trailer</a>
+							<span class="get_trailer" data-type="tv" data-id="<?= $tv->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="#" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
 						</div>
 
 

@@ -316,6 +316,33 @@ $('.btn-group').hover(function()
 	$(this).find('.dropdown-menu').stop(true,false,true).slideToggle("slow");
 });
 	
+	
+	// ==========================  SHOW TRAILER  ==========================
+	
+$('.get_trailer').click(function(){
+	
+	$('#trailer_body').html('<img src="layout/img/loader.gif" width="75">');
+	
+	$('#trailer_modal').modal('show');
+	
+	var type =	$(this).attr('data-type');
+	var id   =	$(this).attr('data-id');
+	
+	$.ajax({
+			url: 		'ajax.php',
+			method: 	'POST',
+			dataType: 	'text',
+			data:		{trailer_type: type, 
+						 trailer_id: id
+						}	,
+			success : function(response)
+				 {
+					$('#trailer_body').html(response);
+				 }
+		});
+	
+});
+
 
 
 });
