@@ -20,7 +20,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 				<h5 class="font-weight-bold title_btn"  >Trending <span class="text-white">Movies</span> </h5>
 					
-				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
+				<a href="movies.php?type=Trending" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
 
 				</div>
 			  </div>

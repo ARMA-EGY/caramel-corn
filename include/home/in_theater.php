@@ -36,7 +36,7 @@ $f_key = $trailer->results[0]->key;
 
 				<h5 class="font-weight-bold title_btn"  >Box office <span class="text-white">Movies</span> </h5>
 					
-				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>
+<!--				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>-->
 
 				</div>
 			  </div>

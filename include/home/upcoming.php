@@ -25,7 +25,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 				<h5 class="font-weight-bold title_btn" style="color:#fbd747;">Upcoming <span style="color:#fff;">Movies</span></h5>
 					
 
-				<a href="#" class="viewall" style="">View all <i class="ti-angle-right"></i></a>
+				<a href="movies.php?type=Upcoming" class="viewall" >View all <i class="ti-angle-right"></i></a>
 
 
 				</div>

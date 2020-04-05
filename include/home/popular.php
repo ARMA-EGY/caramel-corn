@@ -12,10 +12,10 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h5 class="font-weight-bold title_btn_light" style="color:#000;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h5>
+				<h5 class="font-weight-bold title_btn" style="color:#fff;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h5>
 					
 
-				<a href="#" class="viewall_light">View all <i class="ti-angle-right"></i></a>
+				<a href="tv.php?type=Airing Today" class="viewall_light">View all <i class="ti-angle-right"></i></a>
 
 				</div>
 			  </div>

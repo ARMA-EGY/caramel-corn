@@ -11,10 +11,10 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h5 class="font-weight-bold title_btn_light" style="color:#fbd747;">On Air  <span style="color:#000;">Tv Shows</span></h5>
+				<h5 class="font-weight-bold title_btn" style="color:#fbd747;">On Air  <span style="color:#fff;">Tv Shows</span></h5>
 					
 
-				<a href="#" class="viewall_light">View all <i class="ti-angle-right"></i></a>
+				<a href="tv.php?type=On Air" class="viewall_light">View all <i class="ti-angle-right"></i></a>
 
 				<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details" data-target="#on_tv"></i>
 

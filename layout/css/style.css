@@ -17,6 +17,12 @@ width: 100%;
 
 }
 
+.top-search ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255,255,255,0.6);
+  opacity: 1; /* Firefox */
+}
+
+
 /*
 
 html {
@@ -999,6 +1005,7 @@ h2 {
     font-weight: bold;
     text-transform: uppercase;
     margin: 5px 10px;
+	transition: all 0.3s linear;
 }
 
 .viewall_light {
@@ -1009,6 +1016,7 @@ h2 {
     font-weight: bold;
     text-transform: uppercase;
     margin: 5px 10px;
+	transition: all 0.3s linear;
 }
 
 .viewall:hover, .viewall_light:hover {

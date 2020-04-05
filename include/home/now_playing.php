@@ -13,7 +13,7 @@
 				<h5 class="font-weight-bold title_btn" style="color:#fbd747;">Newest <span style="color:#fff;">Movies</span></h5>
 					
 
-				<a href="#" class="viewall" style="">View all <i class="ti-angle-right"></i></a>
+				<a href="movies.php?type=Newest" class="viewall" >View all <i class="ti-angle-right"></i></a>
 
 				<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details" data-target="#playing"></i>
 
