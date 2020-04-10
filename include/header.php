@@ -267,11 +267,11 @@ if(isset($_SESSION['access_token']))
 
 				<a class="dropdown-item" href="movies.php?type=Newest">Newest</a>
 				<a class="dropdown-item" href="movies.php?type=Trending">Trending</a>
-				<a class="dropdown-item" href="movies.php?type=Upcoming">Upcoming</a>
-				<a class="dropdown-item" href="movies.php?type=Box office">Box office</a>
+				<a class="dropdown-item" href="movies.php?type=In Theatres">In Theatres</a>
 				<a class="dropdown-item" href="movies.php?type=Popular">Popular</a>
 				<a class="dropdown-item" href="movies.php?type=Top Rated">Top Rated</a>
 				<a class="dropdown-item" href="movies.php?type=Top Revenue">Top Revenue</a>
+				<a class="dropdown-item" href="movies.php?type=Upcoming">Upcoming</a>
 				<a class="dropdown-item" href="#">Browse All</a>
 
 			</div>

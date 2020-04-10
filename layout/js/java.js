@@ -244,6 +244,59 @@ $('.back-to-top').click(function() {      // When arrow is clicked
 			}
 		  ]
 		});
+	
+	
+	
+		
+		$('.trailers_videos').slick({
+  		  infinite: true,
+		  slidesToShow: 3,
+		  responsive: [
+			{
+			  breakpoint: 768,
+			  settings: {
+				arrows: false,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 2
+			  }
+			},
+			{
+			  breakpoint: 480,
+			  settings: {
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 1
+			  }
+			}
+		  ]
+		});
+	
+	
+		
+		$('.cridets').slick({
+  		  infinite: true,
+		  slidesToShow: 5,
+		  responsive: [
+			{
+			  breakpoint: 768,
+			  settings: {
+				arrows: false,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 3
+			  }
+			},
+			{
+			  breakpoint: 480,
+			  settings: {
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 2
+			  }
+			}
+		  ]
+		});
 		
 		
 				
