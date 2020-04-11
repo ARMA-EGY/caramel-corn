@@ -62,7 +62,7 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 
 						<img class="poster_img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<?= $movie->poster_path?>"  alt=""/> 
 
-						<button class="btn my-3 down-btn" data-toggle="modal" data-target="#download_modal"><i class="fas fa-download"></i> Download</button>
+						<button class="btn my-3 text-white down-btn" data-toggle="modal" data-target="#download_modal"><i class="fas fa-download"></i> Download</button>
 
 					</div>
 
@@ -97,10 +97,21 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 
 						   <ul class="action_list">
 
-								<li class="action-btn"><i class="fa fa-bookmark"></i></li>
-								<li class="action-btn"><i class="fa fa-heart"></i></li>
-								<li class="action-btn"><i class="fa fa-star"></i></li>
-								<li class="action-btn"><i class="fa fa-list"></i></li>
+								<li class="action-btn use_tooltips watchlist_icon" data-toggle="tooltip" data-placement="bottom" title="Add To Watchlist">
+									<i class="fa fa-bookmark"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips like_icon" data-toggle="tooltip" data-placement="bottom" title="Like This Movie">
+									<i class="fa fa-heart"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips favorite_icon" data-toggle="tooltip" data-placement="bottom" title="Add To Favorites">
+									<i class="fa fa-star"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips" data-toggle="tooltip" data-placement="bottom" title="Add To My List">
+									<i class="fa fa-list"></i>
+							    </li>
 
 							</ul>
 

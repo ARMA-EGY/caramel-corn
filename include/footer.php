@@ -145,7 +145,9 @@
 	<script src="layout/js/java.js"></script>
 
 	
-
+<script>
+$('.use_tooltips').tooltip({ boundary: 'window' })
+</script>
 	
 </body>
 	
