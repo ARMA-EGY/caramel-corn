@@ -101,12 +101,7 @@ $f_key = $trailer->results[0]->key;
 			  <!-- Start New Card -->
 				<div class=" p-1 trailer-card <?=$active?>" data-key="https://www.youtube.com/embed/<?=$key?>" data-background="url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?=$background?>')">  
 
-						<span style="
-						color: #fff;
-						padding-right: 10px;
-						font-weight: bolder;
-						font-size: 12pt;
-					"><?=$counter;?></span>
+						<span class="video_counter"><?=$counter;?></span>
 					
 						<div class=""> 
 							<img width="60" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>

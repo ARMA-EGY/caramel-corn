@@ -170,11 +170,7 @@ if(isset($_SESSION['access_token']))
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="layout/img/logo.png"/>
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="layout/css/bootstrap.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="layout/css/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="layout/css/hover-min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/tooltipster.main.min.css">
 <!--===============================================================================================-->	
@@ -197,49 +193,6 @@ if(isset($_SESSION['access_token']))
 
 <body>
 	
-<style>
-	
-	
-.navbar:hover {background: rgba(0,0,0,0.4)!important;}
-
-.navbar-brand {
-    padding: unset;
-}
-
-
-.navbar-toggler {
-	margin-right: 20px;
-}
-
-
-.nav-item {
-	margin-right: 15px;
-}
-
-
-.nav-item .dropdown-toggle-split {
-    padding: unset;
-	color: rgba(255,255,255,.5);
-    padding-top: 8px;
-}
-
-.nav-item .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.4);
-	border-radius: 10px;
-	top: 75%;
-}
-
-.nav-item .dropdown-item {
-    color: #fff;
-}
-
-.nav-item .dropdown-item:focus, .nav-item .dropdown-item:hover {
-    color: #16181b;
-    text-decoration: none;
-    background-color: #f8f9fa;
-}
-	
-</style>
 	
 	<nav class="navbar navbar-expand-md navbar-light customNav">
 
