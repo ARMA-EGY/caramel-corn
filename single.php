@@ -11,6 +11,8 @@ if(isset($_GET['movie']))
 
 $movie = api_connect("https://api.themoviedb.org/3/movie/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
 
+$title = $movie->title;
+
 $date =  $movie->release_date;
 $newdate = date('j M, Y', strtotime($date));
 $year = date('Y', strtotime($date));
@@ -22,6 +24,8 @@ $imdb     = api_connect("http://www.omdbapi.com/?i=$movie->imdb_id&plot=full&api
 /*================================= YTS API   ==========================================	*/
 
 $yts 	  = api_connect("https://yts.mx/api/v2/list_movies.json?query_term=$movie->imdb_id");
+
+$download_exist = $yts->data->movie_count;
 
 /*================================= VIDEOS API ==========================================	*/
 
@@ -37,10 +41,13 @@ $casts    = api_connect("https://api.themoviedb.org/3/movie/$movie_id/credits?ap
 
 $similar  = api_connect("https://api.themoviedb.org/3/movie/$movie_id/similar?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
 
+$similar_exist = $similar->total_results;
+
 /*================================= Recommend API ==========================================	*/
 
 $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/recommendations?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=1");
 
+$recomm_exist = $recommendations->total_results;
 
 ?>
 	
@@ -62,8 +69,16 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 
 						<img class="poster_img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<?= $movie->poster_path?>"  alt=""/> 
 
+					<?
+						if($download_exist == 1)
+						{
+					?>
 						<button class="btn my-3 text-white down-btn" data-toggle="modal" data-target="#download_modal"><i class="fas fa-download"></i> Download</button>
 
+					<?
+						}
+			 		?>
+						
 					</div>
 
 
@@ -227,6 +242,11 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 
 						</div>
 						
+				
+				<?
+					if($similar_exist > 1)
+					{
+				?>
 						
 				<!-- =========  Similar Movies =========  -->
 
@@ -235,6 +255,7 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 						<div class="row justify-content-center m-auto text-center similar_box" >
 
 					<?
+						
 						foreach(array_slice($similar->results, 0, 4) as $movie )
 						{
 							$date =  $movie->release_date;
@@ -321,6 +342,9 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 					<? } ?>
 
 						</div>
+
+				<? } ?>
+						
 
 					</div>
 
@@ -465,6 +489,12 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 		  
 		  
 	    <div class="py-4 px-5">
+				
+				<?
+					if($recomm_exist > 0)
+					{
+				?>
+			
 			
 			<div class="row justify-content-center cridets">
 
@@ -562,6 +592,14 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 
 
 			</div>	
+			
+			<?
+					}
+					else
+					{
+						echo '<p class="text-center text-white">We don\'t have enough data to suggest any movies based on '.$title.' .</p>';
+					}
+			?>
 
 		</div>	
 	  
@@ -604,10 +642,13 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 			  <tbody>
 				  
 			<?
-			
+			if($download_exist == 1)
+			{
+					
 				$downloads = json_encode($yts->data->movies);
 
 				$downs = json_decode($downloads, true); 
+				  
 
 				 foreach ($downs as $download)
 				 {
@@ -624,6 +665,8 @@ $recommendations   	= api_connect("https://api.themoviedb.org/3/movie/$movie_id/
 				  		<?
 					}
 				 }
+				
+			}
 			
 			?>
 

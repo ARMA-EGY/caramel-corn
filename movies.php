@@ -126,6 +126,15 @@ elseif($type == 'Top Revenue')
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
+						
+					if ($movie->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+					}
 
 			?>
 
@@ -135,7 +144,7 @@ elseif($type == 'Top Revenue')
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/>
+							<img src="<?= $img?>" alt=""/>
 						</div>
 
 					</div>
@@ -229,6 +238,15 @@ elseif($type == 'Top Revenue')
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
+						
+					if ($movie->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+					}
 
 			?>
 
@@ -236,7 +254,7 @@ elseif($type == 'Top Revenue')
 				<div class="col-sm-6">  
 
 					<div class="poster-card">
-						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/></div>
+						<div class="poster"> <img src="<?= $img?>" alt=""/></div>
 						<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
 						  <div class="wrapper">
 

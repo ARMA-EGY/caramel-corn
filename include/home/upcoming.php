@@ -54,6 +54,15 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
+						
+					if ($movie->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+					}
 
 			?>
 
@@ -63,7 +72,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/>
+							<img src="<?= $img?>" alt=""/>
 						</div>
 
 					</div>

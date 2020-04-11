@@ -60,12 +60,29 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 		
 		foreach($actors->results as $actor )
 		{
+			if ($actor->profile_path == '')
+			{
+				if($actor->gender == 1)
+				{
+					$img = 'layout/img/unknown_female.jpg';
+				}
+				else
+				{
+					$img = 'layout/img/unknown_male.jpg';
+				}
+				
+				
+			}
+			else
+			{
+				$img = 'https://image.tmdb.org/t/p/w235_and_h235_face' . $actor->profile_path ;
+			}
 	?>
 		
 		<!--  Actor Card Starts -->
 		<div class="col-sm-3 d-flex justify-content-center px-2 col-person">
   			<a href="single.php?person=<?= $actor->id?>" class="card person-card transition" style="box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);border: none;border-radius: 1rem;">
-				<img class="card-img-top" src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $actor->profile_path?>" alt="<?= $actor->name?>" style="">
+				<img class="card-img-top" src="<?= $img?>" alt="<?= $actor->name?>" style="">
 				<div class=" text-center">
 				  <h5 class="card-title text-dark font-weight-bold"><?= $actor->name?></h5>
 				</div>
