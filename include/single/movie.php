@@ -490,7 +490,7 @@ else
 
 		<?
 
-			foreach(array_slice($casts->cast, 0, 5) as $actor )
+			foreach(array_slice($casts->cast, 0, 6) as $actor )
 			{
 				if ($actor->profile_path == '')
 				{
@@ -512,12 +512,12 @@ else
 		?>
 
 				<!--  Actor Card Starts -->
-				<li class="px-3">
+				<li class="px-3" style="width: 75%;">
 					<a href="single.php?person=<?= $actor->id?>" class="card person-card transition cast_card">
 						<img class="card-img-top" src="<?= $img?>" alt="<?= $actor->name?>" style="">
 						<div class=" text-center mh-70">
 						  <h5 class="card-title text-dark font-weight-bold"><?= $actor->name?></h5>
-						  <h6 class="text-dark" style="font-size: 10pt;"><?= $actor->character?></h6>
+						  <h6 class="text-dark" style="font-size: 9pt;"><?= $actor->character?></h6>
 						</div>
 					</a>
 				</li>
@@ -588,7 +588,7 @@ else
 						
 						<div class="poster"> 
 							<a href="single.php?movie=<?= $movie->id?>">
-								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);"/>
+								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);" width="80%" />
 							</a>
 						</div>
 

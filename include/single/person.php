@@ -44,12 +44,40 @@ $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df2
 
 						<img class="poster_img" src="<?= $img?>"  alt=""/> 
 						
+
+				<!-- =========  Details Box  =========  -->
+						
+						<div class="text-left text-white mx-auto my-3 details_box" style="background: none;width: 300px;">
+
+						   <h6 class="details_row">
+							   <strong class="details_icon mb-1"> Name </strong>
+							   <p class="ml-2 mb-1"><?= $person->name ?></p> 
+						   </h6>
+
+						   <h6 class="details_row">
+							   <strong class="details_icon mb-1"> Known For </strong>
+							   <p class="ml-2 mb-1"><?= $person->known_for_department ?></p> 
+						   </h6>
+
+						   <h6 class="details_row">
+							  <strong class="details_icon mb-1"> Birthday </strong>
+							  <p class="ml-2 mb-1"><?= $person->birthday ?></p>
+						   </h6>
+
+						   <h6 class="">
+							   <strong class="details_icon mb-1">Place of Birth  </strong>
+							   <p class="ml-2 mb-1"><?= $person->place_of_birth?></p>
+							    
+						   </h6>
+
+						</div>
+						
 					</div>
 
 
-					<div class="col-md-8 pt-4 text-white">
+					<div class="col-md-8 pt-4 text-white m-auto">
 
-						 <h3 class="font-weight-bold text-white"><?= $person->name ?></h3> 
+<!--						 <h3 class="font-weight-bold text-white"><?= $person->name ?></h3> -->
 
 						 <h4 class="text-white font-weight-bold" style="font-size: 1.3em;">Biography</h4>
 
@@ -113,7 +141,7 @@ $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df2
 						
 						<div class="poster"> 
 							<a href="single.php?movie=<?= $movie->id?>">
-								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);"/>
+								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);" width="80%" />
 							</a>
 						</div>
 

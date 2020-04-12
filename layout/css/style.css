@@ -537,7 +537,7 @@ a {cursor: pointer}
     align-items: center;
 }
 
-.actor h5 {font-size: 1rem;}
+.actor h5 {font-size: 0.9rem;}
 
 .actor .card {margin: 10px 0}
 
@@ -1483,10 +1483,10 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	.details_box
 	{
 		background: rgba(255, 255, 255, 0.2);
-		padding: 5px;
+		padding: 10px;
 		width: fit-content;
 		border-radius: 5px;
-		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
 		border: 1px solid rgba(255, 255, 255, 0.5);
 	}
 	
@@ -1494,13 +1494,13 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	{
 		background: rgba(255, 255, 255, 0.25);
 		border-radius: 10px;
-		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
 		border: 1px solid rgba(255, 255, 255, 0.5);
 	}
 	
 	.details_row
 	{
-		border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 		padding-bottom: 3px;
 	}
 	

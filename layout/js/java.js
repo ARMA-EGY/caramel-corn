@@ -276,7 +276,7 @@ $('.back-to-top').click(function() {      // When arrow is clicked
 		
 		$('.cridets').slick({
   		  infinite: true,
-		  slidesToShow: 5,
+		  slidesToShow: 6,
 		  responsive: [
 			{
 			  breakpoint: 768,
