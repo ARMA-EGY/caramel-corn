@@ -58,7 +58,9 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 
 					<div class="slick-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/>
+							<a href="single.php?movie=<?= $movie->id?>">
+								<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>
+							</a>
 						</div>
 
 					</div>

@@ -72,7 +72,9 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<img src="<?= $img?>" alt=""/>
+							<a href="single.php?movie=<?= $movie->id?>">
+								<img src="<?= $img?>" alt=""/>
+							</a>
 						</div>
 
 					</div>

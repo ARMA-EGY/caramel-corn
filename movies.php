@@ -144,7 +144,9 @@ elseif($type == 'Top Revenue')
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<img src="<?= $img?>" alt=""/>
+							<a href="single.php?movie=<?= $movie->id?>">
+								<img src="<?= $img?>" alt=""/>
+							</a>
 						</div>
 
 					</div>

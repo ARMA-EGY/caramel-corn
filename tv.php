@@ -107,6 +107,15 @@ $total_pages = $tv_shows->total_pages;
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $tv->vote_average * 10 ;
+						
+					if ($tv->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $tv->poster_path ;
+					}
 
 			?>
 
@@ -116,7 +125,9 @@ $total_pages = $tv_shows->total_pages;
 
 					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
-							<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/>
+							<a href="single.php?tv=<?= $tv->id?>">
+								<img src="<?= $img?>" alt=""/>
+							</a>
 						</div>
 
 					</div>
