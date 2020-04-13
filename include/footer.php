@@ -146,8 +146,36 @@
 
 	
 <script>
-$('.use_tooltips').tooltip({ boundary: 'window' })
+$('.use_tooltips').tooltip({ boundary: 'window' });
+	
+	
+$(document).on('click', '.add_genre', function(){
+	
+	var id = $(this).attr('data-id');
+	
+	$(this).append('<i class="fa fa-check-circle text-white genre_checked"></i>');
+	$(this).removeClass('add_genre');
+	$(this).addClass('remove_genre');
+	
+	$('.filter-box').append('<input class="'+id+'" type="hidden" name="genre[]" value="'+id+'" >');
+});	
+	
+
+$(document).on('click', '.remove_genre', function(){
+	
+	var id ='.' + $(this).attr('data-id');
+	
+	$(this).removeClass('remove_genre');
+	$(this).addClass('add_genre');
+	$(this).find('.genre_checked').remove();
+	
+	$(id).remove();
+	
+});
+	
 </script>
+
+
 	
 </body>
 	

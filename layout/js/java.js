@@ -3,62 +3,6 @@ jQuery(document).ready(function($) {
 	
   
 
-  //wow js animation
-  // Animation section
-  if ($(".wow").length) {
-    var wow = new WOW({
-      boxClass: "wow", // animated element css class (default is wow)
-      animateClass: "animated", // animation css class (default is animated)
-      offset: 0, // distance to the element when triggering the animation (default is 0)
-      mobile: true, // trigger animations on mobile devices (default is true)
-      live: true // act on asynchronously loaded content (default is true)
-    });
-    wow.init();
-  }
-
-
-
-$(window).on("scroll", function() {
-	"use strict";
-  // Back to top
-  if ($(this).scrollTop() > 150) {
-    $(".back-top").fadeIn();
-  } else {
-    $(".back-top").fadeOut();
-  }
-
-  // Progress bar
-  $(".single-progressbar").each(function() {
-    var base = $(this);
-    var windowHeight = $(window).height();
-    var itemPos = base.offset().top;
-    var scrollpos = $(window).scrollTop() + windowHeight - 100;
-    if (itemPos <= scrollpos) {
-      var auptcoun = base.find(".progress-bar").attr("aria-valuenow");
-      base.find(".progress-bar").css({
-        width: auptcoun + "%"
-      });
-      var str = base.find(".skill_per").text();
-      var res = str.replace("%", "");
-      if (res === 0) {
-        $({
-          countNumber: 0
-        }).animate(
-          {
-            countNumber: auptcoun
-          },
-          {
-            duration: 1500,
-            easing: "linear",
-            step: function() {
-              base.find(".skill_per").text(Math.ceil(this.countNumber) + "%");
-            }
-          }
-        );
-      }
-    }
-  });
-});
 
 
 
@@ -74,19 +18,6 @@ $('.container1').click(function(){
 		$(this).toggleClass('change');
 		
 	});
-
-
-//$('.navbar li a').click(function(){
-//		"use strict";
-//		
-//		$('html,body').animate({
-//			
-//			scrollTop: $('#' + $(this).data('scroll')).offset().top - $('.navbar').innerHeight()  
-//			
-//		},1000);
-//		
-//	});
-
 
 	
 	$(".select_page").on("change",function() 
@@ -391,6 +322,30 @@ $('.get_trailer').click(function(){
 			success : function(response)
 				 {
 					$('#trailer_body').html(response);
+				 }
+		});
+	
+});
+	
+	
+	
+	// ==========================  Browse Filter  ==========================
+	
+$('.filter_form').submit(function(e){
+	
+	e.preventDefault();
+		
+	
+	$('#brows').html('<img src="layout/img/loader.gif" width="75">');
+	
+	$.ajax({
+			url: 		'ajax.php',
+			method: 	'POST',
+			dataType: 	'text',
+			data:		$(this).serialize()	,
+			success : function(response)
+				 {
+					$('#browse').html(response);
 				 }
 		});
 	

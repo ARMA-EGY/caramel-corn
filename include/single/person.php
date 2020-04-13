@@ -50,23 +50,23 @@ $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df2
 						<div class="text-left text-white mx-auto my-3 details_box" style="background: none;width: 300px;">
 
 						   <h6 class="details_row">
-							   <strong class="details_icon mb-1"> Name </strong>
-							   <p class="ml-2 mb-1"><?= $person->name ?></p> 
+							   <strong class="details_icon mb-1 text-light"> Name </strong>
+							   <p class="ml-2 mb-1 font-weight-bold"><?= $person->name ?></p> 
 						   </h6>
 
 						   <h6 class="details_row">
-							   <strong class="details_icon mb-1"> Known For </strong>
-							   <p class="ml-2 mb-1"><?= $person->known_for_department ?></p> 
+							   <strong class="details_icon mb-1 text-light"> Known For </strong>
+							   <p class="ml-2 mb-1 font-weight-bold"><?= $person->known_for_department ?></p> 
 						   </h6>
 
 						   <h6 class="details_row">
-							  <strong class="details_icon mb-1"> Birthday </strong>
-							  <p class="ml-2 mb-1"><?= $person->birthday ?></p>
+							  <strong class="details_icon mb-1 text-light"> Birthday </strong>
+							  <p class="ml-2 mb-1 font-weight-bold"><?= $person->birthday ?></p>
 						   </h6>
 
 						   <h6 class="">
-							   <strong class="details_icon mb-1">Place of Birth  </strong>
-							   <p class="ml-2 mb-1"><?= $person->place_of_birth?></p>
+							   <strong class="details_icon mb-1 text-light">Place of Birth  </strong>
+							   <p class="ml-2 mb-1 font-weight-bold"><?= $person->place_of_birth?></p>
 							    
 						   </h6>
 

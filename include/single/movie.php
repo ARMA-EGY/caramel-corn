@@ -584,7 +584,7 @@ else
 				
 				<div class="variable_card">  
 
-					<div class=" tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+					<div class="tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						
 						<div class="poster"> 
 							<a href="single.php?movie=<?= $movie->id?>">
