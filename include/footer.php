@@ -142,7 +142,12 @@
 <!--===============================================================================================-->	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <!--===============================================================================================-->	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!--===============================================================================================-->	
 	<script src="layout/js/java.js"></script>
+
+
+
 
 	
 <script>
@@ -151,13 +156,28 @@ $('.use_tooltips').tooltip({ boundary: 'window' });
 	
 $(document).on('click', '.add_genre', function(){
 	
-	var id = $(this).attr('data-id');
+	var genres = $('.genre_checked').length
 	
-	$(this).append('<i class="fa fa-check-circle text-white genre_checked"></i>');
-	$(this).removeClass('add_genre');
-	$(this).addClass('remove_genre');
-	
-	$('.filter-box').append('<input class="'+id+'" type="hidden" name="genre[]" value="'+id+'" >');
+	if(genres == 3 )
+		{
+			Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'You Can\'t Choose More Than 3 Genres '
+					})
+		}
+	else
+		{
+
+			var id = $(this).attr('data-id');
+
+			$(this).append('<i class="fa fa-check-circle text-white genre_checked"></i>');
+			$(this).removeClass('add_genre');
+			$(this).addClass('remove_genre');
+
+			$('.filter-box').append('<input class="'+id+'" type="hidden" name="genre[]" value="'+id+'" >');
+			
+		}
 });	
 	
 
@@ -172,6 +192,21 @@ $(document).on('click', '.remove_genre', function(){
 	$(id).remove();
 	
 });
+	
+	
+$('.slide_box').click(function(){
+	
+	$('.form-box').slideToggle();
+	
+});
+	
+var start = 1930;
+var end = new Date().getFullYear();
+var options = "";
+for(var year = end ; year >=start; year--){
+  options += "<option>"+ year +"</option>";
+}
+$("#year").append(options);
 	
 </script>
 

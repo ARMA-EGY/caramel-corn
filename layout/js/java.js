@@ -336,7 +336,7 @@ $('.filter_form').submit(function(e){
 	e.preventDefault();
 		
 	
-	$('#brows').html('<img src="layout/img/loader.gif" width="75">');
+	$('#browse').html('<img class="m-auto" src="layout/img/loader.gif" width="75">');
 	
 	$.ajax({
 			url: 		'ajax.php',

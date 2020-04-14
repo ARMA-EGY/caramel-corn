@@ -61,11 +61,69 @@ if(isset($_POST['trailer_id']))
 
 if(isset($_POST['browse']))
 {
+	$rate 	 		= $_POST['rating'];
+	$certification 	= $_POST['certification'];
+	$year 			= $_POST['year'];
+	$sort 			= $_POST['sort'];
 	
-	$genres =  implode(",",$_POST['genre']);
 	
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=$genres");
+	
+	
+	/*=======  Certification  =======*/
+	
+	if($certification != '')
+	{
+		$certifications = '&certification=' . $certification;
+	}
+	else{
+		$certifications = '';
+	}
+	
+	/*=======  Sorting  =======*/
+	
+	if($sort != '')
+	{
+		$sorting = '&sort_by=' . $sort;
+	}
+	else{
+		$sorting = '';
+	}
+	
+	/*=======  Years  =======*/
+	
+	if($year != '')
+	{
+		$years = '&primary_release_year=' . $year;
+	}
+	else{
+		$years = '';
+	}
+	
+	/*=======  Genres  =======*/
+	if(isset($_POST['genre']))
+	{
+		if($_POST['genre'] != '')
+		{
+			$genres = '&with_genres=' .   implode(",",$_POST['genre']);
+		}
+	}
+	else{
+			$genres = '';
+		}
+	/*=======  Rating  =======*/
+	
+	if($rate != '')
+	{
+		$rating = '&vote_average.gte=' .   $rate;
+	}
+	else{
+		$rating = '';
+	}
+	
+	
+	
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10".$genres.$sorting.$years.$rating.$certifications."");
 	
 ?>
 	

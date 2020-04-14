@@ -11,14 +11,14 @@ if(isset($_GET["year"]))
 {
 	$year = $_GET["year"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=$year&vote_count.gte=20");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&first_air_date_year=$year&page=1&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
 
 }
 elseif(isset($_GET["genre"]))
 {
 	$get_genre = $_GET["genre"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=20&with_genres=$get_genre");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&vote_count.gte=100&with_genres=$get_genre&include_null_first_air_dates=false");
 	
 }
 else
@@ -26,11 +26,11 @@ else
 	$get_genre = '';
 	$year  = '';
 	
-	$movies = api_connect("https://api.themoviedb.org/3/movie/now_playing?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
 }
 
 
-	$genres = api_connect("https://api.themoviedb.org/3/genre/movie/list?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+	$genres = api_connect("https://api.themoviedb.org/3/genre/tv/list?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
  
 
 	$total_pages = $movies->total_pages; 
@@ -51,7 +51,7 @@ else
       	<div class="col-md-9 p-1">
 		  
         <div class="section-title ">
-			<h4 class="font-weight-bold title_btn" style="color:#fbd747;">Browse <span style="color:#fff;">Movies</span></h4>
+			<h4 class="font-weight-bold title_btn" style="color:#fbd747;">Browse <span style="color:#fff;">TV Shows</span></h4>
 			
         </div>
 		  
@@ -90,21 +90,8 @@ else
 				
 					<div class="form-row mb-2 filter-box" style="border-bottom: 1px solid rgba(255,255,255,0.3)">
 
-						 <div class="form-group col-md-3">
-							<label for="" class="font-weight-bolder text-white fs-13-t">Certification</label>
-							  <select dir="ltr" class="form-control" name="certification" >
-								<option value="" selected=""> Select  </option>
-								<option>G</option>
-								<option>R</option>
-								<option>NR</option>
-								<option>PG</option>
-								<option>PG-13</option>
-								<option>NC-17</option>
-							  </select>
-						  </div>
 
-
-						 <div class="form-group col-md-3">
+						 <div class="form-group col-md-4">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Rating</label>
 							  <select dir="ltr" class="form-control" name="rating" >
 								<option value=""  selected=""> Select  </option>
@@ -119,7 +106,7 @@ else
 						  </div>
 
 
-						 <div class="form-group col-md-3">
+						 <div class="form-group col-md-4">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Year</label>
 							  <select id="year" dir="ltr" class="form-control" name="year" >
 								<option value=""  selected=""> Select  </option>
@@ -128,18 +115,16 @@ else
 						  </div>
 
 
-						 <div class="form-group col-md-3">
+						 <div class="form-group col-md-4">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Sort By</label>
 							  <select  dir="ltr" class="form-control" name="sort" >
 								<option value=""  selected=""> Select  </option>
-								<option value="release_date.desc"> Latest </option>
-								<option value="release_date.asc"> Oldest </option>
+								<option value="first_air_date.desc"> Latest </option>
+								<option value="first_air_date.asc"> Oldest </option>
 								<option value="popularity.desc"> Most Popularity </option>
 								<option value="popularity.asc"> Less Popularity </option>
-								<option value="revenue.desc"> Top Ravenue </option>
-								<option value="revenue.asc"> Less Ravenue </option>
-								<option value="vote_count.desc"> Top Vote Count </option>
-								<option value="vote_count.asc"> Less Vote Count </option>
+								<option value="vote_average.desc"> Top Voting </option>
+								<option value="vote_average.asc"> Less Voting </option>
 							  </select>
 						  </div>
 
@@ -222,7 +207,7 @@ else
 				{
 
 
-					$date =  $movie->release_date;
+					$date =  $movie->first_air_date;
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
@@ -244,7 +229,7 @@ else
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
-							<a href="single.php?movie=<?= $movie->id?>">
+							<a href="single.php?tv=<?= $movie->id?>">
 								<img src="<?= $img?>" alt=""/>
 							</a>
 						</div>
@@ -258,7 +243,7 @@ else
 						 <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>
@@ -302,9 +287,9 @@ else
 
 						<div class="details mt-3" >
 
-							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
+							<span class="get_trailer" data-type="tv" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
 							
 						</div>
 

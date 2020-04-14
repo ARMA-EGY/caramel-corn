@@ -3,7 +3,7 @@
 $today = date("Y-m-d");
 
 
-$last_month = strtotime("+3 Months");
+$last_month = strtotime("+6 Months");
 
 $end_date =  date("Y-m-27", $last_month) ;
 
@@ -117,7 +117,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

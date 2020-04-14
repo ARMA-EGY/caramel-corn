@@ -23,7 +23,7 @@ elseif($type == 'Trending')
 elseif($type == 'Upcoming')
 {
 	$today 		= date("Y-m-d");
-	$last_month = strtotime("+3 Months");
+	$last_month = strtotime("+6 Months");
 	$end_date 	=  date("Y-m-27", $last_month) ;
 
 	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=$today&primary_release_date.lte=$end_date&release_date.gte=$today&release_date.lte=$end_date&page=$page");
@@ -189,7 +189,7 @@ elseif($type == 'Top Revenue')
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?
@@ -292,7 +292,7 @@ elseif($type == 'Top Revenue')
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

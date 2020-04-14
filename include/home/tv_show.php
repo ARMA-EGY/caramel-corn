@@ -55,7 +55,7 @@
 					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $tv->id?>">
-								<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/>
+								<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $tv->poster_path?>" alt=""/>
 							</a>
 						</div>
 
@@ -99,7 +99,7 @@
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="t_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?
@@ -199,7 +199,7 @@
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="t_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?
