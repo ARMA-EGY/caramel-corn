@@ -4,29 +4,108 @@ include('ini.php');
 
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+if (isset($_GET["type"])) { $type  = $_GET["type"]; } else { $type=''; };
 
 
-
-if(isset($_GET["year"]))
+if(isset($_GET["year"]) && $type == 'year')
 {
-	$year = $_GET["year"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=$year&vote_count.gte=20");
+	$year 		= $_GET["year"];
+	$get_genres = array();
+	$url 		= '&type='.$type.'&year='.$year;
+	
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page&primary_release_year=$year&vote_count.gte=100");
 
 }
-elseif(isset($_GET["genre"]))
+elseif(isset($_GET["genre"]) && $type == 'genre')
 {
-	$get_genre = $_GET["genre"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=20&with_genres=$get_genre");
+	$get_genres =  explode(",",$_GET["genre"]);
+	$get_genre  =  $_GET["genre"];
+	$year  	    =  '';
+	$url 		= '&type='.$type.'&genre='.$get_genre;
+	
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page&vote_count.gte=100&with_genres=$get_genre");
+}
+elseif($type == 'all')
+{
+	
+	if (isset($_GET["certification"])) 
+	{ 
+		$certification  = $_GET["certification"]; 
+		$certifications = '&certification=' .   $certification;
+	} 
+	else 
+	{ 
+		$certification	= '' ; 
+		$certifications = '' ;
+	}
+	
+	if (isset($_GET["rate"])) 
+	{ 
+		$rate   = $_GET["rate"]; 
+		$rating = '&vote_average.gte=' .   $rate;
+	} 
+	else 
+	{ 
+		$rate	= '' ; 
+		$rating = '' ;
+	}
+	
+	if (isset($_GET["year"]))   
+	{ 
+		$year  = $_GET["year"]; 
+		$years = '&primary_release_year=' . $year;
+	} 
+	else 
+	{ 
+		$year=''; 
+		$years = '' ;
+		 }
+	
+	if (isset($_GET["sort"])) 	
+	{ 
+		$sort    = $_GET["sort"]; 
+		$sorting = '&sort_by=' . $sort;
+	} 
+	else 
+	{ 
+		$sort=''; 
+		$sorting = '' ;
+	}
+	
+	if (isset($_GET["genre"])) 	
+	{ 
+		$get_genre  = $_GET["genre"]; 
+		$get_genres =  explode(",", $_GET["genre"]);
+		$genres = '&with_genres=' . $get_genre;
+	} 
+	else 
+	{ 
+		$get_genre='';
+		$get_genres = array(); 
+		$genres = '' ;
+		$rate = '' ;
+		$sort = '' ;
+		$certification = '' ;
+	}
+	
+	
+	$url 	= '&type='.$type.'&rate='.$rate.'&year='.$year.'&sort='.$sort.'&genre='.$get_genre.'&certification='.$certification;
+	
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page&vote_count.gte=100".$genres.$sorting.$years.$rating.$certifications."");
 	
 }
 else
 {
-	$get_genre = '';
+	$get_genres = array();
 	$year  = '';
+	$rate = '' ;
+	$sort = '' ;
+	$certification = '' ;
+	$url = '';
 	
-	$movies = api_connect("https://api.themoviedb.org/3/movie/now_playing?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page&vote_count.gte=100");
 }
 
 
@@ -93,13 +172,13 @@ else
 						 <div class="form-group col-md-3">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Certification</label>
 							  <select dir="ltr" class="form-control" name="certification" >
-								<option value="" selected=""> Select  </option>
-								<option>G</option>
-								<option>R</option>
-								<option>NR</option>
-								<option>PG</option>
-								<option>PG-13</option>
-								<option>NC-17</option>
+								<option value=""> Select  </option>
+								<option <? if($certification == 'G'){echo 'selected';} ?> >G</option>
+								<option <? if($certification == 'R'){echo 'selected';} ?>>R</option>
+								<option <? if($certification == 'NR'){echo 'selected';} ?>>NR</option>
+								<option <? if($certification == 'PG'){echo 'selected';} ?>>PG</option>
+								<option <? if($certification == 'PG-13'){echo 'selected';} ?>>PG-13</option>
+								<option <? if($certification == 'NC-17'){echo 'selected';} ?>>NC-17</option>
 							  </select>
 						  </div>
 
@@ -107,39 +186,49 @@ else
 						 <div class="form-group col-md-3">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Rating</label>
 							  <select dir="ltr" class="form-control" name="rating" >
-								<option value=""  selected=""> Select  </option>
-								<option value="9"> 9+ </option>
-								<option value="8"> 8+ </option>
-								<option value="7"> 7+ </option>
-								<option value="6"> 6+ </option>
-								<option value="5"> 5+ </option>
-								<option value="4"> 4+ </option>
-								<option value="3"> 3+ </option>
+								<option value="" > Select  </option>
+								<option value="9" <? if($rate == 9){echo 'selected';} ?>> 9+ </option>
+								<option value="8" <? if($rate == 8){echo 'selected';} ?>> 8+ </option>
+								<option value="7" <? if($rate == 7){echo 'selected';} ?>> 7+ </option>
+								<option value="6" <? if($rate == 6){echo 'selected';} ?>> 6+ </option>
+								<option value="5" <? if($rate == 5){echo 'selected';} ?>> 5+ </option>
+								<option value="4" <? if($rate == 4){echo 'selected';} ?>> 4+ </option>
+								<option value="3" <? if($rate == 3){echo 'selected';} ?>> 3+ </option>
 							  </select>
 						  </div>
 
 
 						 <div class="form-group col-md-3">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Year</label>
-							  <select id="year" dir="ltr" class="form-control" name="year" >
-								<option value=""  selected=""> Select  </option>
+							  <select dir="ltr" class="form-control" name="year" >
+								<option value="" > Select  </option>
+								<?
+								    define('DOB_YEAR_START', 1900);
 
+									$current_year = date('Y');
+
+									for ($count = $current_year; $count >= DOB_YEAR_START; $count--)
+									{ 
+										if($count == $year){$select = 'selected';}else{$select = '';}
+										echo "<option value='$count' $select>{$count}</option>";
+									}
+								 ?>
 							  </select>
 						  </div>
 
-
+						
 						 <div class="form-group col-md-3">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Sort By</label>
 							  <select  dir="ltr" class="form-control" name="sort" >
 								<option value=""  selected=""> Select  </option>
-								<option value="release_date.desc"> Latest </option>
-								<option value="release_date.asc"> Oldest </option>
-								<option value="popularity.desc"> Most Popularity </option>
-								<option value="popularity.asc"> Less Popularity </option>
-								<option value="revenue.desc"> Top Ravenue </option>
-								<option value="revenue.asc"> Less Ravenue </option>
-								<option value="vote_count.desc"> Top Vote Count </option>
-								<option value="vote_count.asc"> Less Vote Count </option>
+								<option value="release_date.desc" <? if($sort == 'first_air_date.desc'){echo 'selected';} ?>> Latest </option>
+								<option value="release_date.asc" <? if($sort == 'first_air_date.asc'){echo 'selected';} ?>> Oldest </option>
+								<option value="popularity.desc" <? if($sort == 'popularity.desc'){echo 'selected';} ?>> Most Popularity </option>
+								<option value="popularity.asc" <? if($sort == 'popularity.asc'){echo 'selected';} ?>> Less Popularity </option>
+								<option value="revenue.desc" <? if($sort == 'revenue.desc'){echo 'selected';} ?>> Top Ravenue </option>
+								<option value="revenue.asc" <? if($sort == 'revenue.asc'){echo 'selected';} ?>> Less Ravenue </option>
+								<option value="vote_count.desc" <? if($sort == 'vote_average.desc'){echo 'selected';} ?>> Top Vote Count </option>
+								<option value="vote_count.asc" <? if($sort == 'vote_average.asc'){echo 'selected';} ?>> Less Vote Count </option>
 							  </select>
 						  </div>
 
@@ -154,7 +243,7 @@ else
 										{
 											$genre_cate = '_'.$genre->id;
 
-											 if($get_genre == $genre->id )
+											 if(in_array($genre->id, $get_genres ))
 											 {
 												$check = '<i class="fa fa-check-circle text-white genre_checked"></i>';
 												$class="remove_genre";
@@ -166,7 +255,7 @@ else
 											}
 											?>
 
-									<div class="m-2 p-1 pointer <?= $class?> cate_color_<?= $genre->id?>" data-id="<?= $genre->id?>">
+									<div class="m-2 py-1 px-2 pointer <?= $class?> cate_color_<?= $genre->id?>" data-id="<?= $genre->id?>">
 										<a class="text-white" ><?= $cate->$genre_cate;?></a>
 
 										<?= $check ?>
@@ -185,7 +274,15 @@ else
 
 					</div>
 
-					<? if(isset($_GET['genre'])){echo '<input class="'.$get_genre.'" type="hidden" name="genre[]" value="'.$get_genre.'" >';} ?>
+					<? 
+					if(isset($_GET['genre']))
+					{
+						foreach($get_genres as $genre1)
+						{
+							echo '<input class="'.$genre1.'" type="hidden" name="genre[]" value="'.$genre1.'" >';
+						}
+					} 
+					?>
 
 					<input type="hidden" name="browse" value="movie" >
 
@@ -428,59 +525,68 @@ else
 			</div>	
 		
 		
+				<!-- ================   Pagination   ================  -->
+
+<? if($total_pages > 1)
+	{
+?>
+  			<ul class="col-md-12 pagination my-4 mx-auto" style="justify-content: center;">
+				<li class="page-item <? if($page == 1){echo 'disabled';} ?>">
+				  <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?><?=$url?>" tabindex="-1">Prev</a>
+				</li>
+
+
+				<?php if ($page > 3): ?>
+				<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
+				<li class="page-item"><div class="page-link">...</div></li>
+				<?php endif; ?>
+
+				<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 . $url ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
+				<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 . $url ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
+
+			<!--	
+			<li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+			-->
+
+				  <select class="page-item select_page" >
+					 <?
+					for ($i=1; $i<=$total_pages; $i++) 
+					  {  
+						  if ($page == $i){$selected = 'selected';}else{$selected = '';}
+							 echo '<option value="'.$i.$url.'" '.$selected.'>'.$i.'</option>';
+					  }; 
+
+					 ?>
+				  </select>
+
+				<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 . $url ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
+				<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 . $url ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+
+				<?php if ($page < ceil($total_pages)-2): ?>
+
+				  <? if ($page < ceil($total_pages)-3)
+					{ ?>
+				<li class="page-item"><div class="page-link">...</div></li>
+				  <?}?>
+
+				<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) . $url ?>"><?php echo ceil($total_pages) ?></a></li>
+				<?php endif; ?>
+
+
+				<li class="page-item">
+				  <a class="page-link" href="?page=<?=$page+1 . $url?>">Next</a>
+				</li>
+			  </ul>
+<?
+	}
+?>
+		
 	</div>
 	  
 	  
 	  
 	  
  
-  <ul class="pagination my-4" style="justify-content: center;">
-    <li class="page-item <? if($page == 1){echo 'disabled';} ?>">
-      <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?>&type=<?=$type?>" tabindex="-1">Prev</a>
-    </li>
-	  
-	  
-	<?php if ($page > 3): ?>
-	<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
-	<li class="page-item"><div class="page-link">...</div></li>
-	<?php endif; ?>
-
-	<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 ?>&type=<?=$type?>"><?php echo $page-2 ?></a></li><?php endif; ?>
-	<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 ?>&type=<?=$type?>"><?php echo $page-1 ?></a></li><?php endif; ?>
-
-<!--	
-<li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
--->
-	  
-	  <select class="page-item select_page" >
-		 <?
-		for ($i=1; $i<=$total_pages; $i++) 
-		  {  
-			  if ($page == $i){$selected = 'selected';}else{$selected = '';}
-				 echo '<option value="'.$i.'&type='.$type.'" '.$selected.'>'.$i.'</option>';
-		  }; 
-	
-		 ?>
-	  </select>
-
-	<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 ?>&type=<?=$type?>"><?php echo $page+1 ?></a></li><?php endif; ?>
-	<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 ?>&type=<?=$type?>"><?php echo $page+2 ?></a></li><?php endif; ?>
-
-	<?php if ($page < ceil($total_pages)-2): ?>
-	  
-	  <? if ($page < ceil($total_pages)-3)
-		{ ?>
-	<li class="page-item"><div class="page-link">...</div></li>
-	  <?}?>
-	  
-	<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) ?>&type=<?=$type?>"><?php echo ceil($total_pages) ?></a></li>
-	<?php endif; ?>
-
-	  
-    <li class="page-item">
-      <a class="page-link" href="?page=<?=$page+1?>&type=<?=$type?>">Next</a>
-    </li>
-  </ul>
 	  
 	 
 	   

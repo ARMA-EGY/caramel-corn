@@ -170,7 +170,7 @@ $total_pages = $tv_shows->total_pages;
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="t_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?
@@ -263,7 +263,7 @@ $total_pages = $tv_shows->total_pages;
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
+								<a href="t_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

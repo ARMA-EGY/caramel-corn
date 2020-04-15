@@ -26,7 +26,7 @@ include('ini.php');
 				</select>
 			
 				<div style="width: 100%; position: relative;">
-					<input class="search_bar" type="text" placeholder="Search for a Movie, TV Show or Actor">
+					<input class="search_bar" type="text" placeholder="Search for a Movie, TV Show or Actor" style="height: 46px;">
 					<div id="search_result"></div>
 				</div>
 			

@@ -90,7 +90,7 @@ else
 					<div class="col-md-5 pt-4 text-white">
 
 						  <h3 class="font-weight-bold text-white"><?= $movie->title ?> 
-							  <a href="m_browse.php?year=<?= $year ?>" class="movie_year"> (<?= $year ?>)</a>
+							  <a href="m_browse.php?type=year&year=<?= $year ?>" class="movie_year"> (<?= $year ?>)</a>
 						  </h3> 
 
 
@@ -104,7 +104,7 @@ else
 											?>
 
 									<div class="mb-1 cate_color_<?= $genre->id;?>">
-										<a href="m_browse.php?genre=<?= $genre->id;?>"><?= $cate->$genre_cate;?></a>
+										<a href="m_browse.php?type=genre&genre=<?= $genre->id;?>"><?= $cate->$genre_cate;?></a>
 									</div>
 
 											<?
@@ -337,7 +337,7 @@ else
 											?>
 
 									<div class="mb-1 cate_color_<?= $genre;?>">
-										<a href="m_browse.php?genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
+										<a href="m_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
 									</div>
 
 											<?
@@ -630,7 +630,7 @@ else
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="m_browse.php?genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

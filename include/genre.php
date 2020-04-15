@@ -36,8 +36,8 @@ $cate = json_decode($marks2);
 	.cate_color_10763 		{background: #275bc2; } 
 	.cate_color_10764 		{background: #a650c5; } 
 	.cate_color_10765 		{background: #85093d; } 
-	.cate_color_10766 		{background: #ddcdd0; } 
-	.cate_color_10767 		{background: #cceb8a; } 
+	.cate_color_10766 		{background: #c77e8c; } 
+	.cate_color_10767 		{background: #73942e; } 
 	.cate_color_10768 		{background: #3e275e; } 
 	.cate_color_10762 		{background: #2980b9; } 
 </style>

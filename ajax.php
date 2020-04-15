@@ -61,69 +61,83 @@ if(isset($_POST['trailer_id']))
 
 if(isset($_POST['browse']))
 {
-	$rate 	 		= $_POST['rating'];
-	$certification 	= $_POST['certification'];
-	$year 			= $_POST['year'];
-	$sort 			= $_POST['sort'];
 	
+		$rate 	 		= $_POST['rating'];
+		$year 			= $_POST['year'];
+		$sort 			= $_POST['sort'];
 	
-	
-	
-	
-	/*=======  Certification  =======*/
-	
-	if($certification != '')
-	{
-		$certifications = '&certification=' . $certification;
-	}
-	else{
-		$certifications = '';
-	}
-	
-	/*=======  Sorting  =======*/
-	
-	if($sort != '')
-	{
-		$sorting = '&sort_by=' . $sort;
-	}
-	else{
-		$sorting = '';
-	}
-	
-	/*=======  Years  =======*/
-	
-	if($year != '')
-	{
-		$years = '&primary_release_year=' . $year;
-	}
-	else{
-		$years = '';
-	}
-	
-	/*=======  Genres  =======*/
-	if(isset($_POST['genre']))
-	{
-		if($_POST['genre'] != '')
+		/*=======  Genres  =======*/
+		if(isset($_POST['genre']))
 		{
-			$genres = '&with_genres=' .   implode(",",$_POST['genre']);
+			if($_POST['genre'] != '')
+			{
+				$get_genre 	= implode(",",$_POST['genre']);
+				$genres 	= '&with_genres=' .  $get_genre;
+			}
 		}
-	}
-	else{
-			$genres = '';
+		else{
+				$genres 	= '';
+				$get_genre 	= '';
+			}
+		/*=======  Rating  =======*/
+
+		if($rate != '')
+		{
+			$rating = '&vote_average.gte=' .   $rate;
 		}
-	/*=======  Rating  =======*/
+		else{
+			$rating = '';
+		}
+
+		/*=======  Sorting  =======*/
+
+		if($sort != '')
+		{
+			$sorting = '&sort_by=' . $sort;
+		}
+		else
+		{
+			$sorting = '';
+		}
+
 	
-	if($rate != '')
+	if($_POST['browse'] == 'movie')
 	{
-		$rating = '&vote_average.gte=' .   $rate;
+		
+		$certification 	= $_POST['certification'];
+
+		/*=======  Certification  =======*/
+
+		if($certification != '')
+		{
+			$certifications = '&certification=' . $certification;
 	}
-	else{
-		$rating = '';
+		else
+		{
+			$certifications = '';
+		}
+		
+		/*=======  Years  =======*/
+
+		if($year != '')
+		{
+			$years = '&primary_release_year=' . $year;
 	}
-	
-	
-	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10".$genres.$sorting.$years.$rating.$certifications."");
+		else
+		{
+			$years = '';
+		}
+
+		
+		/*=======  API  =======*/
+
+		$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=100".$genres.$sorting.$years.$rating.$certifications."");
+		
+		
+		$total_pages = $movies->total_pages; 
+		$page = 1;
+		
+		$url 	= '&type=all&rate='.$rate.'&year='.$year.'&sort='.$sort.'&genre='.$get_genre.'&certification='.$certification;
 	
 ?>
 	
@@ -343,6 +357,290 @@ if(isset($_POST['browse']))
 			</div>	
 
 
+<?
+
+	}		
+	
+	elseif($_POST['browse'] == 'tv')
+	{
+		
+		/*=======  Years  =======*/
+
+		if($year != '')
+		{
+			$years = '&first_air_date_year=' . $year;
+		}
+		else
+		{
+			$years = '';
+		}
+		
+		
+		/*=======  API  =======*/
+
+		$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false".$genres.$sorting.$years.$rating."");
+		
+		
+		$total_pages = $movies->total_pages; 
+		$page = 1;
+		
+		
+	    $url 	= '&type=all&rate='.$rate.'&year='.$year.'&sort='.$sort.'&genre='.$get_genre;
+		
+?>
+		
+			<div class="show_cards row justify-content-center fade show">
+
+			<?
+
+				foreach($movies->results as $movie )
+				{
+
+
+					$date =  $movie->first_air_date;
+					$newdate = date('j M, Y', strtotime($date));
+
+					$rate = $movie->vote_average * 10 ;
+						
+					if ($movie->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+					}
+
+			?>
+
+			  <!-- Start New Card -->
+				<div class="col-sm-3 variable_card">  
+
+
+					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+						<div class="poster"> 
+							<a href="single.php?tv=<?= $movie->id?>">
+								<img src="<?= $img?>" alt=""/>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="d-none">
+
+						<div class="c-body" id="tooltip_content_<?= $movie->id?>">
+
+						 <div class="wrapper">
+
+							<div class="c-title">
+								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
+								<div class="ratings">
+								  <div class="empty-stars"></div>
+								  <div class="full-stars" style="width:<?= $rate?>%"></div>
+								</div>
+								<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
+							</div>
+
+							<div class="rate">
+								 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+							</div>
+
+
+
+						  </div>
+
+						<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+
+						<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+						<div class="cate mt-3" >
+
+							<?
+
+								foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+								{
+									$genre_cate = '_'.$genre;
+									?>
+
+							<div class="mb-1 cate_color_<?= $genre;?>">
+								<a href="#"><?= $cate->$genre_cate;?></a>
+							</div>
+
+									<?
+								}
+
+							?>
+
+						</div>
+
+
+						<div class="details mt-3" >
+
+							<span class="get_trailer" data-type="tv" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							
+						</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			  <!-- End New Card -->
+
+
+
+			<? 
+				}
+			?>	
+
+
+			</div>	
+
+			<!-- ==========================================  -->
+
+			<div class="show_cards_details row justify-content-center fade ">
+
+			<?
+
+
+				foreach($movies->results as $movie )
+				{
+
+					$date =  $movie->first_air_date;
+					$newdate = date('j M, Y', strtotime($date));
+
+					$rate = $movie->vote_average * 10 ;
+						
+					if ($movie->poster_path == '')
+					{
+						$img = 'layout/img/no_poster.jpeg';
+					}
+					else
+					{
+						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+					}
+
+			?>
+
+			  <!-- Start New Card -->
+				<div class="col-sm-6">  
+
+					<div class="poster-card">
+						<div class="poster"> <img src="<?= $img?>" alt=""/></div>
+						<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
+						  <div class="wrapper">
+
+							<div class="c-title">
+								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
+								<div class="ratings">
+								  <div class="empty-stars"></div>
+								  <div class="full-stars" style="width:<?= $rate?>%"></div>
+								</div>
+								<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
+							</div>
+
+							<div class="rate">
+								 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+							</div>
+
+
+
+						  </div>
+
+						<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+
+						<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+						<div class="cate mt-3" >
+
+							<?
+
+								foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+								{
+									$genre_cate = '_'.$genre;
+									?>
+
+							<div class="mb-1 cate_color_<?= $genre;?>">
+								<a href="#"><?= $cate->$genre_cate;?></a>
+							</div>
+
+									<?
+								}
+
+							?>
+
+						</div>
+
+
+						<div class="details mt-3" style="position: absolute;bottom: 0;">
+
+							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							
+						</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			  <!-- End New Card -->
+
+
+			<? 
+						
+				}
+			?>	
+
+
+			</div>	
+<?
+		
+	}
+?>
+
+
+
+
+<? if($total_pages > 1)
+	{
+?>
+		 	<ul class="pagination my-4 mx-auto" style="justify-content: center;">
+				
+				<li class="page-item <? if($page == 1){echo 'disabled';} ?>">
+				  <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?><?=$url?>" tabindex="-1">Prev</a>
+				</li>
+
+				  <select class="page-item select_page" >
+					 <?
+					for ($i=1; $i<=$total_pages; $i++) 
+					  {  
+						  if ($page == $i){$selected = 'selected';}else{$selected = '';}
+							 echo '<option value="'.$i.$url.'" '.$selected.'>'.$i.'</option>';
+					  }; 
+
+					 ?>
+				  </select>
+
+				<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) . $url ?>"><?php echo ceil($total_pages) ?></a></li>
+
+				<li class="page-item">
+				  <a class="page-link" href="?page=<?=$page+1 . $url?>">Next</a>
+				</li>
+				
+			  </ul>
+<?
+	}
+
+?>	
+
 <script>
 
         $(document).ready(function() {
@@ -358,6 +656,7 @@ if(isset($_POST['browse']))
 		    theme: 'tooltipster-borderless'
 			});
         });
+	
 </script>
 
 <?

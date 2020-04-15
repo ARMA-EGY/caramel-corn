@@ -103,7 +103,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="m_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?type=genre&genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

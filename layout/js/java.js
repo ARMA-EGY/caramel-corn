@@ -20,7 +20,7 @@ $('.container1').click(function(){
 	});
 
 	
-	$(".select_page").on("change",function() 
+$(document).on('change', '.select_page', function()
         {
             var location = '?page=' + $(this).val();
             window.location.href=location ;

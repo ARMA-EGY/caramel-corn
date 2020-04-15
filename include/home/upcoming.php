@@ -117,7 +117,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 									?>
 
 							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="m_browse.php?genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
+								<a href="m_browse.php?type=genre&genre=<?= $genre;?>"><?= $cate->$genre_cate;?></a>
 							</div>
 
 									<?

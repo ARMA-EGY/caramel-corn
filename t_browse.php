@@ -4,29 +4,95 @@ include('ini.php');
 
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+if (isset($_GET["type"])) { $type  = $_GET["type"]; } else { $type=''; };
 
 
-
-if(isset($_GET["year"]))
+if(isset($_GET["year"]) && $type == 'year')
 {
-	$year = $_GET["year"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&first_air_date_year=$year&page=1&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
+	$year 		= $_GET["year"];
+	$get_genres = array();
+	$url 		= '&type='.$type.'&year='.$year;
+	
+	$movies     = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&first_air_date_year=$year&page=$page&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
 
 }
-elseif(isset($_GET["genre"]))
+elseif(isset($_GET["genre"]) && $type == 'genre')
 {
-	$get_genre = $_GET["genre"];
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&vote_count.gte=100&with_genres=$get_genre&include_null_first_air_dates=false");
+	$get_genres =  explode(",",$_GET["genre"]);
+	$get_genre  =  $_GET["genre"];
+	$year  	    =  '';
+	$url 		= '&type='.$type.'&genre='.$get_genre;
+	
+	$movies    = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=$page&timezone=America%2FNew_York&vote_count.gte=100&with_genres=$get_genre&include_null_first_air_dates=false");
+	
+}
+elseif($type == 'all')
+{
+	
+	if (isset($_GET["rate"])) 
+	{ 
+		$rate   = $_GET["rate"]; 
+		$rating = '&vote_average.gte=' .   $rate;
+	} 
+	else 
+	{ 
+		$rate	= '' ; 
+		$rating = '' ;
+	}
+	
+	if (isset($_GET["year"]))   
+	{ 
+		$year  = $_GET["year"]; 
+		$years = '&first_air_date_year=' . $year;
+	} 
+	else 
+	{ 
+		$year=''; 
+		$years = '' ;
+		 }
+	
+	if (isset($_GET["sort"])) 	
+	{ 
+		$sort    = $_GET["sort"]; 
+		$sorting = '&sort_by=' . $sort;
+	} 
+	else 
+	{ 
+		$sort=''; 
+		$sorting = '' ;
+	}
+	
+	if (isset($_GET["genre"])) 	
+	{ 
+		$get_genre  = $_GET["genre"]; 
+		$get_genres =  explode(",", $_GET["genre"]);
+		$genres = '&with_genres=' . $get_genre;
+	} 
+	else 
+	{ 
+		$get_genre='';
+		$get_genres = array(); 
+		$genres = '' ;
+	}
+	
+	
+	$url 	= '&type='.$type.'&rate='.$rate.'&year='.$year.'&sort='.$sort.'&genre='.$get_genre;
+	
+	
+	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=$page&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false".$genres.$sorting.$years.$rating."");
 	
 }
 else
 {
-	$get_genre = '';
+	$get_genres = array();
 	$year  = '';
+	$rate = '' ;
+	$sort = '' ;
+	$url = '';
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/tv?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&page=$page&timezone=America%2FNew_York&vote_count.gte=100&include_null_first_air_dates=false");
 }
 
 
@@ -94,23 +160,33 @@ else
 						 <div class="form-group col-md-4">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Rating</label>
 							  <select dir="ltr" class="form-control" name="rating" >
-								<option value=""  selected=""> Select  </option>
-								<option value="9"> 9+ </option>
-								<option value="8"> 8+ </option>
-								<option value="7"> 7+ </option>
-								<option value="6"> 6+ </option>
-								<option value="5"> 5+ </option>
-								<option value="4"> 4+ </option>
-								<option value="3"> 3+ </option>
+								<option value="" > Select  </option>
+								<option value="9" <? if($rate == 9){echo 'selected';} ?>> 9+ </option>
+								<option value="8" <? if($rate == 8){echo 'selected';} ?>> 8+ </option>
+								<option value="7" <? if($rate == 7){echo 'selected';} ?>> 7+ </option>
+								<option value="6" <? if($rate == 6){echo 'selected';} ?>> 6+ </option>
+								<option value="5" <? if($rate == 5){echo 'selected';} ?>> 5+ </option>
+								<option value="4" <? if($rate == 4){echo 'selected';} ?>> 4+ </option>
+								<option value="3" <? if($rate == 3){echo 'selected';} ?>> 3+ </option>
 							  </select>
 						  </div>
 
 
 						 <div class="form-group col-md-4">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Year</label>
-							  <select id="year" dir="ltr" class="form-control" name="year" >
-								<option value=""  selected=""> Select  </option>
+							  <select dir="ltr" class="form-control" name="year" >
+								<option value=""  > Select  </option>
+								<?
+								    define('DOB_YEAR_START', 1900);
 
+									$current_year = date('Y');
+
+									for ($count = $current_year; $count >= DOB_YEAR_START; $count--)
+									{ 
+										if($count == $year){$select = 'selected';}else{$select = '';}
+										echo "<option value='$count' $select>{$count}</option>";
+									}
+								 ?>
 							  </select>
 						  </div>
 
@@ -119,12 +195,12 @@ else
 							<label for="" class="font-weight-bolder text-white fs-13-t">Sort By</label>
 							  <select  dir="ltr" class="form-control" name="sort" >
 								<option value=""  selected=""> Select  </option>
-								<option value="first_air_date.desc"> Latest </option>
-								<option value="first_air_date.asc"> Oldest </option>
-								<option value="popularity.desc"> Most Popularity </option>
-								<option value="popularity.asc"> Less Popularity </option>
-								<option value="vote_average.desc"> Top Voting </option>
-								<option value="vote_average.asc"> Less Voting </option>
+								<option value="first_air_date.desc" <? if($sort == 'first_air_date.desc'){echo 'selected';} ?>> Latest </option>
+								<option value="first_air_date.asc" <? if($sort == 'first_air_date.asc'){echo 'selected';} ?>> Oldest </option>
+								<option value="popularity.desc" <? if($sort == 'popularity.desc'){echo 'selected';} ?>> Most Popularity </option>
+								<option value="popularity.asc" <? if($sort == 'popularity.asc'){echo 'selected';} ?>> Less Popularity </option>
+								<option value="vote_average.desc" <? if($sort == 'vote_average.desc'){echo 'selected';} ?>> Top Voting </option>
+								<option value="vote_average.asc" <? if($sort == 'vote_average.asc'){echo 'selected';} ?>> Less Voting </option>
 							  </select>
 						  </div>
 
@@ -139,7 +215,7 @@ else
 										{
 											$genre_cate = '_'.$genre->id;
 
-											 if($get_genre == $genre->id )
+											 if (in_array($genre->id, $get_genres ))
 											 {
 												$check = '<i class="fa fa-check-circle text-white genre_checked"></i>';
 												$class="remove_genre";
@@ -151,7 +227,7 @@ else
 											}
 											?>
 
-									<div class="m-2 p-1 pointer <?= $class?> cate_color_<?= $genre->id?>" data-id="<?= $genre->id?>">
+									<div class="m-2 py-1 px-2 pointer <?= $class?> cate_color_<?= $genre->id?>" data-id="<?= $genre->id?>">
 										<a class="text-white" ><?= $cate->$genre_cate;?></a>
 
 										<?= $check ?>
@@ -170,9 +246,18 @@ else
 
 					</div>
 
-					<? if(isset($_GET['genre'])){echo '<input class="'.$get_genre.'" type="hidden" name="genre[]" value="'.$get_genre.'" >';} ?>
+					<? 
+					if(isset($_GET['genre']))
+					{
+						
+						foreach($get_genres as $genre1)
+						{
+							echo '<input class="'.$genre1.'" type="hidden" name="genre[]" value="'.$genre1.'" >';
+						}
+					} 
+					?>
 
-					<input type="hidden" name="browse" value="movie" >
+					<input type="hidden" name="browse" value="tv" >
 
 					<div class="text-right">
 						<button class="btn-filter">Filter</button>
@@ -195,8 +280,6 @@ else
 	</div>
 	  
 	<div class="row p-4" id="browse">
-		
-		
 		
 		
 			<div class="show_cards row justify-content-center fade show">
@@ -321,7 +404,7 @@ else
 				foreach($movies->results as $movie )
 				{
 
-					$date =  $movie->release_date;
+					$date =  $movie->first_air_date;
 					$newdate = date('j M, Y', strtotime($date));
 
 					$rate = $movie->vote_average * 10 ;
@@ -346,7 +429,7 @@ else
 						  <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>
@@ -413,59 +496,68 @@ else
 			</div>	
 		
 		
+			<!-- ================   Pagination   ================  -->
+
+<? if($total_pages > 1)
+	{
+?>
+  			<ul class="col-md-12 pagination my-4 mx-auto" style="justify-content: center;">
+				<li class="page-item <? if($page == 1){echo 'disabled';} ?>">
+				  <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?><?=$url?>" tabindex="-1">Prev</a>
+				</li>
+
+
+				<?php if ($page > 3): ?>
+				<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
+				<li class="page-item"><div class="page-link">...</div></li>
+				<?php endif; ?>
+
+				<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 . $url ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
+				<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 . $url ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
+
+			<!--	
+			<li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+			-->
+
+				  <select class="page-item select_page" >
+					 <?
+					for ($i=1; $i<=$total_pages; $i++) 
+					  {  
+						  if ($page == $i){$selected = 'selected';}else{$selected = '';}
+							 echo '<option value="'.$i.$url.'" '.$selected.'>'.$i.'</option>';
+					  }; 
+
+					 ?>
+				  </select>
+
+				<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 . $url ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
+				<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 . $url ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+
+				<?php if ($page < ceil($total_pages)-2): ?>
+
+				  <? if ($page < ceil($total_pages)-3)
+					{ ?>
+				<li class="page-item"><div class="page-link">...</div></li>
+				  <?}?>
+
+				<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) . $url ?>"><?php echo ceil($total_pages) ?></a></li>
+				<?php endif; ?>
+
+
+				<li class="page-item">
+				  <a class="page-link" href="?page=<?=$page+1 . $url?>">Next</a>
+				</li>
+			  </ul>
+<?
+	}
+?>
+		
 	</div>
 	  
 	  
 	  
 	  
  
-  <ul class="pagination my-4" style="justify-content: center;">
-    <li class="page-item <? if($page == 1){echo 'disabled';} ?>">
-      <a class="page-link" href="?page=<? if($page == 1){echo $page;}else{echo $page-1;} ?>&type=<?=$type?>" tabindex="-1">Prev</a>
-    </li>
-	  
-	  
-	<?php if ($page > 3): ?>
-	<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
-	<li class="page-item"><div class="page-link">...</div></li>
-	<?php endif; ?>
-
-	<?php if ($page-2 > 2): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-2 ?>&type=<?=$type?>"><?php echo $page-2 ?></a></li><?php endif; ?>
-	<?php if ($page-1 > 3): ?><li class="page"><a class="page-link" href="?page=<?php echo $page-1 ?>&type=<?=$type?>"><?php echo $page-1 ?></a></li><?php endif; ?>
-
-<!--	
-<li class="page-item active"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a></li>
--->
-	  
-	  <select class="page-item select_page" >
-		 <?
-		for ($i=1; $i<=$total_pages; $i++) 
-		  {  
-			  if ($page == $i){$selected = 'selected';}else{$selected = '';}
-				 echo '<option value="'.$i.'&type='.$type.'" '.$selected.'>'.$i.'</option>';
-		  }; 
-	
-		 ?>
-	  </select>
-
-	<?php if ($page+1 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+1 ?>&type=<?=$type?>"><?php echo $page+1 ?></a></li><?php endif; ?>
-	<?php if ($page+2 < ceil($total_pages)+1): ?><li class="page-item"><a class="page-link" href="?page=<?php echo $page+2 ?>&type=<?=$type?>"><?php echo $page+2 ?></a></li><?php endif; ?>
-
-	<?php if ($page < ceil($total_pages)-2): ?>
-	  
-	  <? if ($page < ceil($total_pages)-3)
-		{ ?>
-	<li class="page-item"><div class="page-link">...</div></li>
-	  <?}?>
-	  
-	<li class="page-item"><a class="page-link" href="?page=<?php echo ceil($total_pages) ?>&type=<?=$type?>"><?php echo ceil($total_pages) ?></a></li>
-	<?php endif; ?>
-
-	  
-    <li class="page-item">
-      <a class="page-link" href="?page=<?=$page+1?>&type=<?=$type?>">Next</a>
-    </li>
-  </ul>
 	  
 	 
 	   

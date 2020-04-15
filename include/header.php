@@ -225,7 +225,7 @@ if(isset($_SESSION['access_token']))
 				<a class="dropdown-item" href="movies.php?type=Top Rated">Top Rated</a>
 				<a class="dropdown-item" href="movies.php?type=Top Revenue">Top Revenue</a>
 				<a class="dropdown-item" href="movies.php?type=Upcoming">Upcoming</a>
-				<a class="dropdown-item" href="#">Browse All</a>
+				<a class="dropdown-item" href="m_browse.php">Browse All</a>
 
 			</div>
 		</div>
@@ -243,7 +243,7 @@ if(isset($_SESSION['access_token']))
 				<a class="dropdown-item" href="tv.php?type=Trending">Trending</a>
 				<a class="dropdown-item" href="tv.php?type=Popular">Popular</a>
 				<a class="dropdown-item" href="tv.php?type=Top Rated">Top Rated</a>
-				<a class="dropdown-item" href="#">Browse All</a>
+				<a class="dropdown-item" href="t_browse.php">Browse All</a>
 
 			</div>
 		</div>
