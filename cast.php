@@ -3,16 +3,35 @@
 include('ini.php'); 
 
 
-$movie_id = $_GET['movie'];
+if(isset($_GET['movie']))
+{
+	
+	$movie_id = $_GET['movie'];
 
-$movie = api_connect("https://api.themoviedb.org/3/movie/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+	$movie = api_connect("https://api.themoviedb.org/3/movie/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
 
 
-$casts = api_connect("https://api.themoviedb.org/3/movie/$movie_id/credits?api_key=df264f8d059253c7e87471ab4809cbbf");
+	$casts = api_connect("https://api.themoviedb.org/3/movie/$movie_id/credits?api_key=df264f8d059253c7e87471ab4809cbbf");
+
+	$name = $movie->title;
+	
+	$date =  $movie->release_date;
+}
+elseif(isset($_GET['tv']))
+{
+	$movie_id = $_GET['tv'];
+
+	$movie = api_connect("https://api.themoviedb.org/3/tv/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+	$casts = api_connect("https://api.themoviedb.org/3/tv/$movie_id/credits?api_key=df264f8d059253c7e87471ab4809cbbf");
+
+	$name = $movie->name;
+	
+	$date =  $movie->first_air_date;
+}
 
 
 
-$date =  $movie->release_date;
 $newdate = date('j M, Y', strtotime($date));
 $year = date('Y', strtotime($date));
 
@@ -68,7 +87,7 @@ else
 
 					<div class="col-md-5 pt-4 text-white text-center">
 
-						  <h3 class="font-weight-bold text-white"><?= $movie->title ?> 
+						  <h3 class="font-weight-bold text-white"><?= $name ?> 
 							  <a href="m_browse.php?type=year&year=<?= $year ?>" class="movie_year"> (<?= $year ?>)</a>
 						  </h3> 
 

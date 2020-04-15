@@ -405,7 +405,7 @@ else
 					<span class="text-white">CAST</span> 
 				</h5>
 				
-				<a href="movies.php?type=Trending" class="viewall" style="position: absolute; right: 10px;">Full Cast & Crew <i class="ti-angle-right"></i></a>
+				<a href="cast.php?tv=<?= $tv_id ?>" class="viewall" style="position: absolute; right: 10px;">Full Cast & Crew <i class="ti-angle-right"></i></a>
 			</div>
 			
 

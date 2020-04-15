@@ -25,7 +25,7 @@ elseif($type == 'Airing Today')
 elseif($type == 'Trending')
 {
 	
-	$$tv_shows = api_connect("https://api.themoviedb.org/3/trending/tv/week?api_key=df264f8d059253c7e87471ab4809cbbf&page=$page");
+	$tv_shows = api_connect("https://api.themoviedb.org/3/trending/tv/week?api_key=df264f8d059253c7e87471ab4809cbbf&page=$page");
 	
 }
 elseif($type == 'Popular')
@@ -51,7 +51,7 @@ $total_pages = $tv_shows->total_pages;
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
-  <div style="background: rgba(0, 0, 0,0.5);padding-top: 80px;padding-bottom: 10px;">
+  <div style="background: rgba(0, 0, 0,0.7);padding-top: 80px;padding-bottom: 10px;">
 	
   <div class="container">
 	  
