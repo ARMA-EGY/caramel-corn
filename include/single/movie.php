@@ -151,6 +151,11 @@ else
 									<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
 
 								</div>
+							   
+					<? 
+						if ($movie->imdb_id != '')
+						{
+					?>
 
 							   <div class="rating-row mb-2">
 
@@ -165,13 +170,13 @@ else
 									<span class="votes">(<?= $imdb->imdbVotes?> Votes)</span>
 
 								</div>
-							   <?
+						<?
 
-										foreach($imdb->Ratings as $rating )
-										{
-											if ($rating->Source == 'Rotten Tomatoes')
-											{
-											?>
+							foreach($imdb->Ratings as $rating )
+							{
+								if ($rating->Source == 'Rotten Tomatoes')
+								{
+						?>
 
 								<div class="rating-row ">
 
@@ -183,11 +188,13 @@ else
 
 								</div>
 
-											<?
-											}
-										}
+						<?
+								}
+							}
 
-									?>
+						 }
+										
+						?>
 
 
 						   </div>
@@ -482,7 +489,7 @@ else
 					<span class="text-white">CAST</span> 
 				</h5>
 				
-				<a href="movies.php?type=Trending" class="viewall" style="position: absolute; right: 10px;">Full Cast & Crew <i class="ti-angle-right"></i></a>
+				<a href="cast.php?movie=<?= $movie_id ?>" class="viewall" style="position: absolute; right: 10px;">Full Cast & Crew <i class="ti-angle-right"></i></a>
 			</div>
 			
 

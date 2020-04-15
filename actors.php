@@ -20,7 +20,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 
 <!-- Actors Starts -->
 <section id="act" class="section-spacing actor">
-	<div style="background: rgba(0, 0, 0,0.5);padding-top: 80px;padding-bottom: 10px;">
+	<div class="back_layer">
 		
   <div class="container" >
     <div class="row pb-4">

@@ -308,7 +308,18 @@ else
 	  
 	<div class="row p-4" id="browse">
 		
-		
+			<div class="col-md-12 text-center text-white mb-2">
+				<h5><?
+						if($movies->total_results > 0)  
+						{
+							echo  number_format($movies->total_results) . ' Movies Found ' ;
+						}
+						else
+						{
+							echo 'No Movies Found';
+						}
+					?></h5>
+			</div>
 		
 		
 			<div class="show_cards row justify-content-center fade show">

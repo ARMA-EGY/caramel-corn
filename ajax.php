@@ -111,7 +111,7 @@ if(isset($_POST['browse']))
 		if($certification != '')
 		{
 			$certifications = '&certification=' . $certification;
-	}
+		}
 		else
 		{
 			$certifications = '';
@@ -122,7 +122,7 @@ if(isset($_POST['browse']))
 		if($year != '')
 		{
 			$years = '&primary_release_year=' . $year;
-	}
+		}
 		else
 		{
 			$years = '';
@@ -141,7 +141,18 @@ if(isset($_POST['browse']))
 	
 ?>
 	
-
+			<div class="col-md-12 text-center text-white mb-2">
+				<h5><?
+						if($movies->total_results > 0)  
+						{
+							echo  number_format($movies->total_results) . ' Movies Found ' ;
+						}
+						else
+						{
+							echo 'No Movies Found';
+						}
+					?></h5>
+			</div>
 		
 			<div class="show_cards row justify-content-center fade show">
 
@@ -388,6 +399,18 @@ if(isset($_POST['browse']))
 	    $url 	= '&type=all&rate='.$rate.'&year='.$year.'&sort='.$sort.'&genre='.$get_genre;
 		
 ?>
+			<div class="col-md-12 text-center text-white mb-2">
+				<h5><?
+						if($movies->total_results > 0)  
+						{
+							echo  number_format($movies->total_results) . ' TV Shows Found ' ;
+						}
+						else
+						{
+							echo 'No TV Shows Found';
+						}
+					?></h5>
+			</div>
 		
 			<div class="show_cards row justify-content-center fade show">
 

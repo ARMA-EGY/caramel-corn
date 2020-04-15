@@ -53,7 +53,7 @@ elseif($type == 'Top Rated')
 elseif($type == 'Top Revenue')
 {
 	
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&sort_by=revenue.desc&certification_country=US&page=$page");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&sort_by=revenue.desc&certification_country=US&vote_count.gte=100&page=$page");
 	
 }
 
