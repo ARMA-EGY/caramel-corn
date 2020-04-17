@@ -50,7 +50,7 @@ include('ini.php');
 <!-- Movies starts -->
 
 <section id="about" class="section-spacing">
-	<div style="background: rgba(0, 0, 0, 0.7);padding-top: 75px;">
+	<div style="background: rgba(0, 0, 0, 0.8);padding-top: 75px;">
 	
  
 			 
@@ -96,7 +96,7 @@ include('ini.php');
 
 
 <section id="services" class="section-spacing">
-	<div style="background: rgba(255, 255, 255, 0.5);padding: 50px 0;">
+	<div style="background: rgba(0, 0, 0, 0.8);padding: 50px 0;">
 		
 
 	<!-- =====================  On Air TV Show  =====================  -->

@@ -33,7 +33,7 @@
 
 				$i=0;
 
-				foreach(array_slice($playing_now->results, 0, 15) as $movie )
+				foreach(array_slice($playing_now->results, 0, 10) as $movie )
 				{
 					if ($movie->original_language == 'en')
 					{
@@ -53,7 +53,7 @@
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster">
 							<a href="single.php?movie=<?= $movie->id?>">
-								<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>
+								<img width="100%" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>
 							</a>
 						</div>
 
@@ -130,7 +130,7 @@
 			<? 
 						$i++;
 
-						if($i==5) break;
+						if($i==6) break;
 					} 
 				}
 			?>	
@@ -146,7 +146,7 @@
 
 					$i=0;
 
-				foreach(array_slice($playing_now->results, 0, 15) as $movie )
+				foreach(array_slice($playing_now->results, 0, 10) as $movie )
 				{
 					if ($movie->original_language == 'en')
 					{
@@ -228,7 +228,7 @@
 			<? 
 						$i++;
 
-						if($i==5) break;
+						if($i==6) break;
 					} 
 				}
 			?>	

@@ -15,7 +15,7 @@
 				<h5 class="font-weight-bold title_btn" style="color:#fff;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h5>
 					
 
-				<a href="tv.php?type=Airing Today" class="viewall_light">View all <i class="ti-angle-right"></i></a>
+				<a href="tv.php?type=Airing Today" class="viewall">View all <i class="ti-angle-right"></i></a>
 
 				</div>
 			  </div>
@@ -49,10 +49,10 @@
 				<div class="col-sm-3 variable_card">  
 
 
-					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
+					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $tv->id?>">
-								<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $tv->poster_path?>" alt=""/>
+								<img width="100%" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $tv->poster_path?>" alt=""/>
 							</a>
 						</div>
 
@@ -128,7 +128,7 @@
 			<? 
 						$i++;
 
-						if($i==5) break;
+						if($i==6) break;
 					} 
 				}
 			?>	

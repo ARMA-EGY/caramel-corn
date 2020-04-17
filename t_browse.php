@@ -108,13 +108,13 @@ else
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
-  <div style="background: rgba(0, 0, 0,0.7);padding-top: 80px;padding-bottom: 10px;">
+  <div style="background: rgba(0, 0, 0,0.8);padding-top: 80px;padding-bottom: 10px;">
 		
   	<div class="container">
 	  
     <div class="row pb-4">
 		
-      	<div class="col-md-9 p-1">
+      	<div class="col-md-9 py-2">
 		  
         <div class="section-title ">
 			<h4 class="font-weight-bold title_btn" style="color:#fbd747;">Browse <span style="color:#fff;">TV Shows</span></h4>
@@ -125,7 +125,7 @@ else
       </div>
 		
 		
-		<div class="col-md-3 p-1">
+		<div class="col-md-3 py-2 px-3">
     	<div class="top-search">
 			
 			
@@ -147,8 +147,8 @@ else
 			<form class="filter_form">
 				
 				<div class="col-md-12 mb-3" style="border-bottom: 2px solid #fff;">
-					<h4 class="text-white font-weight-bold"><i class="fas fa-filter fs-13-t"></i> Filter 
-						<i class="fa fa-arrow-circle-down float-right pointer transition slide_box"></i> 
+					<h4 class="text-white font-weight-bold slide_box pointer"><i class="fas fa-filter fs-13-t"></i> Filter 
+						<i class="fa fa-chevron-down fs-13-t float-right pointer transition rotate"></i> 
 					</h4>
 				</div>
 				
@@ -157,7 +157,7 @@ else
 					<div class="form-row mb-2 filter-box" style="border-bottom: 1px solid rgba(255,255,255,0.3)">
 
 
-						 <div class="form-group col-md-4">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Rating</label>
 							  <select dir="ltr" class="form-control" name="rating" >
 								<option value="" > Select  </option>
@@ -172,7 +172,7 @@ else
 						  </div>
 
 
-						 <div class="form-group col-md-4">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Year</label>
 							  <select dir="ltr" class="form-control" name="year" >
 								<option value=""  > Select  </option>
@@ -191,7 +191,7 @@ else
 						  </div>
 
 
-						 <div class="form-group col-md-4">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Sort By</label>
 							  <select  dir="ltr" class="form-control" name="sort" >
 								<option value=""  selected=""> Select  </option>
@@ -279,7 +279,7 @@ else
 		</div>	
 	</div>
 	  
-	<div class="row p-4" id="browse">
+	<div class="row" id="browse">
 		
 			<div class="col-md-12 text-center text-white mb-2">
 				<h5><?
@@ -326,7 +326,7 @@ else
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $movie->id?>">
-								<img src="<?= $img?>" alt=""/>
+								<img width="100%" src="<?= $img?>" alt=""/>
 							</a>
 						</div>
 

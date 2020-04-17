@@ -18,6 +18,14 @@ $('.container1').click(function(){
 		$(this).toggleClass('change');
 		
 	});
+	
+	
+$('.slide_box').click(function(){
+		
+	
+		$(this).find('.rotate').toggleClass('rotate-180');
+		
+	});
 
 	
 $(document).on('change', '.select_page', function()
