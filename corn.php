@@ -42,6 +42,26 @@ include('ini.php');
 .watchlist-color{color: #e46932;}
 	
 .list-color{color: #caa552;}
+	
+.follow-color{color: #9c9887;}
+	
+	
+.btn-warning {
+    color: #ffffff;
+    background-color: #b9974b;
+    border-color: #caa551;
+    font-weight: bold;
+}
+	
+.btn-list {
+    background: linear-gradient(to right, #b9974b, #8a794b);
+}
+	
+.member_date {
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.6)!important;
+    font-size: 12pt;
+}
 
 </style>
 
@@ -62,7 +82,7 @@ include('ini.php');
 						<img class="m-2" src="http://graph.facebook.com/3946930631991425/picture"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
 
 						  <h4 class="font-weight-bold text-white" style="display: inline-block;">Mohamed Khaled 
-							  <span  class="movie_year"> Member since March 2020</span>
+							  <span  class="member_date"> Member since March 2020</span>
 						  </h4> 
 
 				    </div>
@@ -126,7 +146,7 @@ include('ini.php');
 					<h5 class="text-center text-white"><strong> Following </strong></h5>
 					  <div class="counter">
 						<div class="icon">
-						  <i class="fa fa-users fs-15-t "></i>
+						  <i class="fa fa-users fs-15-t follow-color"></i>
 						</div>
 						<span> 34 </span>
 					  </div>
@@ -150,7 +170,7 @@ include('ini.php');
 
 							</h3> 
 							
-							<button class="btn btn-warning float-right mt-4"><i class="fa fa-plus"></i> Create List</button>
+							<button class="btn-filter btn-list float-right px-2 py-1 mt-4"><i class="fa fa-plus"></i> Create List</button>
 
 						</div>
 
@@ -158,10 +178,36 @@ include('ini.php');
 					
 				</div>
 				
+				
+				
 
 			</div>
-			
 	  
+	  
+			<div class="container-fluid">
+				
+				<div class="row py-1" style="color: #fff;text-align: center;background: rgba(255, 255, 255, 0.25);">
+					
+					<i class="fa fa-star col p-2 pointer transition section" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-heart col p-2 pointer transition section" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-bookmark col p-2 pointer transition section" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-list col p-2 pointer transition section" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-users col p-2 pointer transition section" data-color="#9c9887"></i>
+					
+				</div>
+
+			</div>
+	  
+
+			<div class="container py-4" style="min-height: 500px;">
+	  
+	  
+	  
+	  		</div>
 	  
 	  
 	  

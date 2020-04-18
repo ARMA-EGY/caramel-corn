@@ -51,7 +51,7 @@ $total_pages = $tv_shows->total_pages;
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
-  <div style="background: rgba(0, 0, 0,0.7);padding-top: 80px;padding-bottom: 10px;">
+  <div style="background: rgba(0, 0, 0,0.8);padding-top: 80px;padding-bottom: 10px;">
 	
   <div class="container">
 	  
@@ -126,7 +126,7 @@ $total_pages = $tv_shows->total_pages;
 					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $tv->id?>">
-								<img src="<?= $img?>" alt=""/>
+								<img width="100%" src="<?= $img?>" alt=""/>
 							</a>
 						</div>
 

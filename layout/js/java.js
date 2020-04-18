@@ -360,6 +360,18 @@ $('.filter_form').submit(function(e){
 });
 
 
+	
+	// ==========================  Section Color  ==========================
+	
+	$('.section').click(function(){
+		
+		var color = $(this).attr('data-color');
+		
+		$('.section').css({"color": '#fff'});
+		
+    	$(this).css({"color": color});
+		
+	});
 
 });
 

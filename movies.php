@@ -47,7 +47,7 @@ elseif($type == 'Popular')
 elseif($type == 'Top Rated')
 {
 	
-	$movies = api_connect("https://api.themoviedb.org/3/movie/top_rated?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&page=$page");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=$page&vote_count.gte=900");
 	
 }
 elseif($type == 'Top Revenue')
@@ -69,7 +69,7 @@ elseif($type == 'Top Revenue')
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
-  <div style="background: rgba(0, 0, 0,0.7);padding-top: 80px;padding-bottom: 10px;">
+  <div style="background: rgba(0, 0, 0,0.8);padding-top: 80px;padding-bottom: 10px;">
 		
   	<div class="container">
 	  
@@ -145,7 +145,7 @@ elseif($type == 'Top Revenue')
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
 							<a href="single.php?movie=<?= $movie->id?>">
-								<img src="<?= $img?>" alt=""/>
+								<img width="100%" src="<?= $img?>" alt=""/>
 							</a>
 						</div>
 
