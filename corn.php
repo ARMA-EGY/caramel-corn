@@ -8,7 +8,7 @@ if(isset($_SESSION['access_token']))
 }
 else
 {
-	header('Location: index.php');
+	header('location:index.php');
 }
 
 
