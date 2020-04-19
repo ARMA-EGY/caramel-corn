@@ -1,6 +1,5 @@
 <?
 
-include('ini.php'); 
 
 if(isset($_SESSION['access_token']))
 {
@@ -12,6 +11,7 @@ else
 }
 
 
+include('ini.php'); 
 
 $join_date = date(' F, Y', strtotime($date));
 

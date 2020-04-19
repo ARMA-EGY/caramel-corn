@@ -269,7 +269,7 @@ if(isset($_SESSION['access_token']))
 				<img class="avatar" src="<?=$_SESSION["user_image"]?>"><?=$_SESSION['user_name']?></a>
 			  
 			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <li><a class="dropdown-item" href="#"><img class="mr-2" src="layout/img/popcorn/corn3.png" width="35"> My Corn</a></li>
+			  <li><a class="dropdown-item" href="corn.php"><img class="mr-2" src="layout/img/popcorn/corn3.png" width="35"> My Corn</a></li>
 			  <li><a class="dropdown-item" href="logout.php"><img class="mr-3" src="layout/img/logout.png" width="28"> Logout</a></li>
 			</ul>
 			  
