@@ -39,7 +39,7 @@ $join_date = date(' F, Y', strtotime($date));
 
 					<div class="col-md-12 pt-4 text-white text-center">
 						
-						<img class="m-2" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
+						<img class="m-2" width="50" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
 
 						  <h4 class="font-weight-bold text-white" style="display: inline-block;"><?= $name ?> 
 							  <span  class="member_date"> Member since <?=$join_date ?></span>
