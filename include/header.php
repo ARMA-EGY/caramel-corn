@@ -56,7 +56,6 @@ if(isset($_GET["code"]))
 		  }
 		 
 		   	$_SESSION['login_type'] = 'Google';
-		   	$_SESSION['login'] = 'Yes';
 		 
 		  header('location:index.php');
 	 }

@@ -5,11 +5,7 @@
 include('include/config.php');
 
 
-if(isset($_SESSION['user_name']))
-{
-	
-}
-else
+if(!isset($_SESSION['access_token']))
 {
 	header('location:index.php');
 }
