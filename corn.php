@@ -1,6 +1,10 @@
 <?
 
 
+//Include Configuration File
+include('include/config.php');
+
+
 if(isset($_SESSION['user_name']))
 {
 	
@@ -11,7 +15,12 @@ else
 }
 
 
-include('ini.php'); 
+
+include('include/header.php'); 
+
+include('include/function.php'); 
+
+include('include/genre.php'); 
 
 $join_date = date(' F, Y', strtotime($date));
 
