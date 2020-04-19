@@ -796,7 +796,8 @@ h2 {
   background-color: #0000;
   margin-top: 0px !important;
   position: fixed !important;
-  z-index: 9999;transition: all 0.5s linear;
+  z-index: 99;
+  transition: all 0.5s linear;
 }
 
 .dropdown-menu {
@@ -1571,6 +1572,13 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	  color: #ffc107;
 	}
 
+
+	.added .fa-bookmark{color: #e46932;}
+
+	.added .fa-heart{color: #ff3447;}
+
+	.added .fa-star{color: #ffc107;}
+
 				/**==================== End Single Page  ====================**/
 
 
@@ -1622,6 +1630,71 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 
 
 				/**==================== End Browse Page  ====================**/
+
+
+				/**==================== Start Corn Page  ====================**/
+
+.fs-15-t{font-size: 15pt;}
+	
+.like-color{color: #ff3447;}
+	
+.watchlist-color{color: #e46932;}
+	
+.list-color{color: #caa552;}
+	
+.follow-color{color: #9c9887;}
+	
+
+.count-card {
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    transition: all 0.3s linear;
+}
+	
+.counter {
+    text-align: center;
+    margin-top: 10px;
+}
+	
+.counter span {
+    font-size: 18pt;
+    font-weight: bold;
+	color: #fff;
+}
+	
+.icon {
+    float: left;
+    padding: 15px;
+    color: #fff;
+}	
+	
+	
+	
+.btn-warning {
+    color: #ffffff;
+    background-color: #b9974b;
+    border-color: #caa551;
+    font-weight: bold;
+}
+	
+.btn-list {
+    background: linear-gradient(to right, #b9974b, #8a794b);
+}
+	
+.member_date {
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.6)!important;
+    font-size: 12pt;
+}
+
+
+
+				/**==================== End Corn Page  ====================**/
+
+
 
 @media (min-width: 576px)
 {

@@ -1,7 +1,5 @@
 <?php
 
-//Include Configuration File
-include('config.php');
 
 $login_google_button = '';
 
@@ -109,7 +107,7 @@ else
  // Get login url
     $facebook_permissions = ['email']; // Optional permissions
 
-    $facebook_login_url = $facebook_helper->getLoginUrl('https://caramel-corn.com/', $facebook_permissions);
+    $facebook_login_url = $facebook_helper->getLoginUrl('http://localhost:8080/corn/caramel-corn/', $facebook_permissions);
     
     // Render Facebook login button
     $facebook_login_url = '<a class="btn btn-facebook" href="'.$facebook_login_url.'"><i class="fab fa-facebook-square mr-1"></i> Login With Facebook</a>';
@@ -143,10 +141,13 @@ if(isset($_SESSION['access_token']))
 	
 	if ($count > 0 )
 	{
+		$user_id  = $row['id'];
+		$date     = $row['Add_Date'];
+		
 		if ($name != $row['name'])
 		{
-			$stmt = $conn->prepare("UPDATE members SET name = ? WHERE email = ?");
-    		$stmt->execute(array($name, $email));
+			$stmt = $conn->prepare("UPDATE members SET name = ?, image = ? WHERE email = ?");
+    		$stmt->execute(array($name, $image, $email));
 		}
 	}
 	else
@@ -155,6 +156,8 @@ if(isset($_SESSION['access_token']))
 						VALUES('$name', '$email', '$image', '$login_type', now() )";
 
 		$conn->exec($stmt);
+		
+		$user_id = $conn->lastInsertId();
 	}
 
 
@@ -266,8 +269,8 @@ if(isset($_SESSION['access_token']))
 				<img class="avatar" src="<?=$_SESSION["user_image"]?>"><?=$_SESSION['user_name']?></a>
 			  
 			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <li><a class="dropdown-item" href="#"><img src="layout/img/mycorn.png" width="26"> My Corn</a></li>
-			  <li><a class="dropdown-item" href="logout.php"><img src="layout/img/logout.png" width="23"> Logout</a></li>
+			  <li><a class="dropdown-item" href="#"><img class="mr-2" src="layout/img/popcorn/corn3.png" width="35"> My Corn</a></li>
+			  <li><a class="dropdown-item" href="logout.php"><img class="mr-3" src="layout/img/logout.png" width="28"> Logout</a></li>
 			</ul>
 			  
 		  </li>

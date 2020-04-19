@@ -373,5 +373,95 @@ $('.filter_form').submit(function(e){
 		
 	});
 
+	
+	
+	
+	// ==========================  Add To / Remove From (Favorites, Likes, Watchlist)  ==========================
+	
+ const Toast = Swal.mixin({
+	  toast: true,
+	  position: 'top-end',
+	  showConfirmButton: false,
+	  timer: 3000,
+	  timerProgressBar: true,
+	  onOpen: (toast) => {
+		toast.addEventListener('mouseenter', Swal.stopTimer)
+		toast.addEventListener('mouseleave', Swal.resumeTimer)
+	  }
+	})
+	
+ 
+ 
+	$('.add_to').click(function()
+	 {
+		
+		var user_id = $(this).attr('data-userid');
+		var name 	= $(this).attr('data-name');
+		var tmdb 	= $(this).attr('data-tmdb');
+		var imdb 	= $(this).attr('data-imdb');
+		var type    = $(this).attr('data-type');
+		var kind    = $(this).attr('data-kind');
+		var icon    = $(this).attr('data-icon');
+		
+		var dis 	= $(this) ;
+		
+		if ($(this).hasClass('added') )
+			{
+				var title = name + ' Removed from ' + kind + ' ' + icon + ' Successfully .';
+				
+				$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{remove_from : kind, 
+								 name 		 : name, 
+								 tmdb 		 : tmdb, 
+								 imdb 	 	 : imdb, 
+								 type 	 	 : type, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								Toast.fire({
+								  icon: 'success',
+								  title: title
+								})
+								 
+								dis.removeClass('added')
+							 }
+				});
+			}
+			else
+			{
+				var title = name + ' Added to ' + kind + ' ' + icon + ' Successfully .';
+					
+				$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{add_to      : kind,
+								 name 		 : name, 
+								 tmdb 		 : tmdb, 
+								 imdb 	 	 : imdb, 
+								 type 	 	 : type, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								Toast.fire({
+								  icon: 'success',
+								  title: title
+								})
+								 
+								dis.addClass('added')
+							 }
+				});
+			}
+		
+		
+	});
+	
+	
+
 });
 

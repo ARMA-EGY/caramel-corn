@@ -1,5 +1,7 @@
 <?
 
+//Include Configuration File
+include('include/config.php');
 include('include/function.php'); 
 include('include/genre.php'); 
 
@@ -686,4 +688,94 @@ if(isset($_POST['browse']))
 }
 
 
+
+
+
+/*====================  Add To (Favorites, Likes, Watchlist)  ====================*/
+
+if(isset($_POST['add_to']))
+{
+	
+	$kind 	 	 	= $_POST['add_to'];
+	$name 	 		= $_POST['name'];
+	$tmdb 	 		= $_POST['tmdb'];
+	$imdb 	 		= $_POST['imdb'];
+	$type 	 		= $_POST['type'];
+	$user_id 	 	= $_POST['user_id'];
+	
+	
+	if ($kind == 'Favorites')
+	{
+		
+		$stmt = "INSERT INTO favorites ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+
+		$conn->exec($stmt);
+		
+	}
+	elseif ($kind == 'Likes')
+	{
+		
+		$stmt = "INSERT INTO likes ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+
+		$conn->exec($stmt);
+		
+	}
+	elseif ($kind == 'Watchlist')
+	{
+		
+		$stmt = "INSERT INTO watchlist ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+
+		$conn->exec($stmt);
+		
+	}
+	
+}
+	
+
+
+
+/*====================  Remove From (Favorites, Likes, Watchlist)  ====================*/
+
+if(isset($_POST['remove_from']))
+{
+	
+	$kind 	 	 	= $_POST['remove_from'];
+	$name 	 		= $_POST['name'];
+	$tmdb 	 		= $_POST['tmdb'];
+	$imdb 	 		= $_POST['imdb'];
+	$type 	 		= $_POST['type'];
+	$user_id 	 	= $_POST['user_id'];
+	
+	
+	if ($kind == 'Favorites')
+	{
+		  $stmt = $conn->prepare("DELETE FROM favorites WHERE tmdb_id = ? AND user_id = ? ");
+
+		  $stmt->execute(array($tmdb, $user_id));
+		
+	}
+	elseif ($kind == 'Likes')
+	{
+		  $stmt = $conn->prepare("DELETE FROM likes WHERE tmdb_id = ? AND user_id = ? ");
+
+		  $stmt->execute(array($tmdb, $user_id));
+		
+	}
+	elseif ($kind == 'Watchlist')
+	{
+		  $stmt = $conn->prepare("DELETE FROM watchlist WHERE tmdb_id = ? AND user_id = ? ");
+
+		  $stmt->execute(array($tmdb, $user_id));
+		
+	}
+	
+}
+
+	
 ?>

@@ -2,66 +2,22 @@
 
 include('ini.php'); 
 
+if(isset($_SESSION['access_token']))
+{
+	
+}
+else
+{
+	header('Location: index.php');
+}
 
+
+
+$join_date = date(' F, Y', strtotime($date));
 
 ?>
 
 <style>
-
-.count-card {
-    margin: 10px;
-    padding: 15px;
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-    border: 1px solid #dadce0;
-    border-radius: 20px;
-    transition: all 0.3s linear;
-}
-	
-.counter {
-    text-align: center;
-    margin-top: 10px;
-}
-	
-.counter span {
-    font-size: 18pt;
-    font-weight: bold;
-	color: #fff;
-}
-	
-.icon {
-    float: left;
-    padding: 15px;
-    color: #fff;
-}	
-	
-	
-.fs-15-t{font-size: 15pt;}
-	
-.like-color{color: #ff3447;}
-	
-.watchlist-color{color: #e46932;}
-	
-.list-color{color: #caa552;}
-	
-.follow-color{color: #9c9887;}
-	
-	
-.btn-warning {
-    color: #ffffff;
-    background-color: #b9974b;
-    border-color: #caa551;
-    font-weight: bold;
-}
-	
-.btn-list {
-    background: linear-gradient(to right, #b9974b, #8a794b);
-}
-	
-.member_date {
-    font-weight: 100;
-    color: rgba(255, 255, 255, 0.6)!important;
-    font-size: 12pt;
-}
 
 </style>
 
@@ -71,7 +27,6 @@ include('ini.php');
 	  
 	<!-- =====================  About User  =====================  -->
 	  
-	  
 
 			<div class="container-fluid p-3 layer_background">
 				
@@ -79,10 +34,10 @@ include('ini.php');
 
 					<div class="col-md-12 pt-4 text-white text-center">
 						
-						<img class="m-2" src="http://graph.facebook.com/3946930631991425/picture"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
+						<img class="m-2" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
 
-						  <h4 class="font-weight-bold text-white" style="display: inline-block;">Mohamed Khaled 
-							  <span  class="member_date"> Member since March 2020</span>
+						  <h4 class="font-weight-bold text-white" style="display: inline-block;"><?= $name ?> 
+							  <span  class="member_date"> Member since <?=$join_date ?></span>
 						  </h4> 
 
 				    </div>
@@ -100,7 +55,7 @@ include('ini.php');
 						<div class="icon">
 						  <i class="fa fa-star fs-15-t text-warning"></i>
 						</div>
-						<span> 4 </span>
+						<span> <?= countItems2 ('user_id', 'favorites', $user_id) ?> </span>
 					  </div>
 				  </div>
 				</div>
@@ -112,7 +67,7 @@ include('ini.php');
 						<div class="icon">
 						  <i class="fa fa-heart fs-15-t like-color"></i>
 						</div>
-						<span> 10 </span>
+						<span>  <?= countItems2 ('user_id', 'likes', $user_id) ?>  </span>
 					  </div>
 				  </div>
 				</div>
@@ -124,7 +79,7 @@ include('ini.php');
 						<div class="icon">
 						  <i class="fa fa-bookmark fs-15-t watchlist-color"></i>
 						</div>
-						<span> 17 </span>
+						<span>  <?= countItems2 ('user_id', 'watchlist', $user_id) ?>  </span>
 					  </div>
 				  </div>
 				</div>
