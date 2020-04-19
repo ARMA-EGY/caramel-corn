@@ -1,7 +1,7 @@
 <?
 
 
-if(isset($_SESSION['access_token']))
+if(isset($_SESSION['user_name']))
 {
 	
 }
