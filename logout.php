@@ -3,7 +3,7 @@
 
 //logout.php
 
-include('config.php');
+include('include/config.php');
 
 //Reset OAuth access token
 $google_client->revokeToken();
