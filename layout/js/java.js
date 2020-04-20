@@ -120,7 +120,8 @@ $('.select-search').change(function(){
         });
 	
 	
-		$('.show_grid').click(function(){
+		$(document).on('click', '.show_grid', function()
+        {
 			
 			var selected = $(this).attr('data-show');
 			var target   = $(this).attr('data-target');
@@ -138,7 +139,8 @@ $('.select-search').change(function(){
 		});
 	
 	
-		$('.show_grid2').click(function(){
+		$(document).on('click', '.show_grid2', function()
+        {
 			
 			var selected = $(this).attr('data-show');
 			var target   = $(this).attr('data-target');
@@ -379,15 +381,34 @@ $('.filter_form').submit(function(e){
 
 
 	
-	// ==========================  Section Color  ==========================
+	// ==========================  Section Color and Data  ==========================
 	
 	$('.section').click(function(){
 		
-		var color = $(this).attr('data-color');
+		var color 		= $(this).attr('data-color');
+		var user_id 	= $(this).attr('data-user');
+		var section 	= 'include/sections/' + $(this).attr('data-section') + '.php';
 		
 		$('.section').css({"color": '#fff'});
 		
     	$(this).css({"color": color});
+		
+		
+	    $('#show_section').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+		
+		$.ajax({
+					url: 		section,
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#show_section").html(response);
+							 }
+				});
+		
 		
 	});
 

@@ -1,8 +1,37 @@
 <?
 
-$stmt = $conn->prepare("SELECT * FROM likes WHERE user_id = ? ORDER BY id DESC");
-$stmt->execute(array($user_id));
-$rows = $stmt->fetchAll();
+//Include Configuration File
+
+$dbn    = 'mysql:host=185.201.11.187;dbname=u919964947_corn';
+$user   = 'u919964947_corn';
+$pass   = '123456';
+$option =  array( PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',);
+
+try 
+{
+	$conn = new PDO($dbn, $user, $pass, $option);
+	
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+
+
+catch(PDOException $e) 
+{
+	echo 'Failed To Connect' . $e->getMessage();
+}
+
+
+include('../function.php'); 
+include('../genre.php'); 
+
+if(isset($_POST['user_id']))
+{
+	$user_id 	 	= $_POST['user_id'];
+	
+	
+	$stmt = $conn->prepare("SELECT * FROM likes WHERE user_id = ? AND type = 'Movie' ORDER BY id DESC");
+	$stmt->execute(array($user_id));
+	$rows = $stmt->fetchAll();
 
 ?>
 	  
@@ -12,12 +41,12 @@ $rows = $stmt->fetchAll();
 			
     		<button class="font-weight-bold title_btn" style="color:#fbd747;">Movies
 				<span style="color:#fff;"> </span>
-				<span class="badge badge-warning">20</span>
+				<span class="badge badge-warning"><?= countItems3 ('type', 'likes', 'Movie', 'user_id', $user_id) ?></span>
 			</button>
 			
 			<button class="font-weight-bold title_btn" style="color:#fbd747;">
 				<span style="color:#fff;">Tv Shows </span>
-			    <span class="badge badge-light">4</span>
+			    <span class="badge badge-light"><?= countItems3 ('type', 'likes', 'TV', 'user_id', $user_id) ?></span>
 			</button>
 			
 			<i class="ti-layout-list-thumb show_grid2" data-show=".show_cards_details" data-target="#movies"></i>
@@ -217,3 +246,24 @@ $rows = $stmt->fetchAll();
 			<div class="col-md-12 my-3" style="border-top: 1px solid rgba(255, 255, 255, 0.5);"></div>
 
 	</div>	
+
+
+<script>
+
+        $(document).ready(function() {
+            $('.tooltip2').tooltipster({
+			contentCloning: true, 
+			contentAsHTML: true, 
+			interactive: true, 
+			animation: 'fade',
+			side: [ 'left', 'top', 'bottom', 'right'],
+		    delay: 200,
+			maxWidth: 360,
+			minWidth: 200,
+		    theme: 'tooltipster-borderless'
+			});
+        });
+	
+</script>
+
+<? } ?>

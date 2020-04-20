@@ -47,7 +47,6 @@ $join_date = date(' F, Y', strtotime($date));
 						
 				    </div>
 					
-					
 				</div>
 				
 					
@@ -149,24 +148,22 @@ $join_date = date(' F, Y', strtotime($date));
 				
 				<div class="row py-1" style="color: #fff;text-align: center;background: rgba(255, 255, 255, 0.25);">
 					
-					<i class="fa fa-bookmark col p-2 pointer transition section" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
+					<i class="fa fa-bookmark col p-2 pointer transition section" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-heart col p-2 pointer transition section" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
+					<i class="fa fa-heart col p-2 pointer transition section" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-star col p-2 pointer transition section" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
+					<i class="fa fa-star col p-2 pointer transition section" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-list col p-2 pointer transition section" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					<i class="fa fa-list col p-2 pointer transition section" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-users col p-2 pointer transition section" data-color="#9c9887"></i>
+					<i class="fa fa-users col p-2 pointer transition section" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
 					
 				</div>
 
 			</div>
 	  
 
-			<div class="container py-4" style="min-height: 500px;">
-
-			<? include('include/sections/likes.php'); ?>
+			<div class="container py-4" id="show_section" style="min-height: 500px;">
 
 
 			</div>

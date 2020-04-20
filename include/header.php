@@ -79,7 +79,7 @@ if(isset($_GET["code"]))
 
 		 if(!empty($facebook_user_info['id']))
 		 {
-			 $_SESSION['user_image'] = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
+			 $_SESSION['user_image'] = 'https://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
 		 }
 
 		 if(!empty($facebook_user_info['name']))

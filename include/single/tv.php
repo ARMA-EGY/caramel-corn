@@ -44,6 +44,53 @@ else
 	$img = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' . $tv->poster_path ;
 }
 
+
+if(isset($_SESSION['access_token']))
+{
+
+	 $favorites  =  checkExist('tmdb_id', 'favorites', $tv_id, 'user_id', $user_id );
+
+	 $likes 	 =  checkExist('tmdb_id', 'likes', $tv_id, 'user_id', $user_id );
+
+	 $watchlists =  checkExist('tmdb_id', 'watchlist', $tv_id, 'user_id', $user_id );
+
+
+	 if ($favorites > 0)
+	 {
+		 $favorite = 'added';
+	 }
+	 else
+	 {
+		 $favorite = '';
+	 }
+
+	 if ($likes > 0)
+	 {
+		 $like = 'added';
+	 }
+	 else
+	 {
+		 $like = '';
+	 }
+
+	 if ($watchlists > 0)
+	 {
+		 $watchlist = 'added';
+	 }
+	 else
+	 {
+		 $watchlist = '';
+	 }
+
+}
+else
+{
+		 $favorite 	= '';
+		 $like 		= '';
+		 $watchlist = '';
+}
+
+
 ?>
 	
 
@@ -97,21 +144,55 @@ else
 
 						   <ul class="action_list">
 
-								<li class="action-btn use_tooltips watchlist_icon" data-toggle="tooltip" data-placement="bottom" title="Add To Watchlist">
+							   
+							   <? if(isset($_SESSION['access_token']))
+									{
+							   ?>
+							   
+								<li class="action-btn use_tooltips watchlist_icon add_to <?= $watchlist ?>" data-name="<?= $tv->name ?>" data-tmdb="<?= $tv_id ?>" data-imdb="0" data-type="TV" data-kind="Watchlist" data-userid="<?= $user_id ?>" data-icon="<i class='fa fa-bookmark watchlist-color mx-2'></i>"
+									 data-toggle="tooltip" data-placement="bottom" title="Add To Watchlist">
 									<i class="fa fa-bookmark"></i>
 							    </li>
 							   
-								<li class="action-btn use_tooltips like_icon" data-toggle="tooltip" data-placement="bottom" title="Like This Tv Show">
+								<li class="action-btn use_tooltips like_icon add_to <?= $like ?>" data-name="<?= $tv->name ?>" data-tmdb="<?= $tv_id ?>" data-imdb="0" data-type="TV" data-kind="Likes" data-userid="<?= $user_id ?>" data-icon="<i class='fa fa-heart like-color mx-2'></i>" data-toggle="tooltip" data-placement="bottom" title="Like This Movie">
 									<i class="fa fa-heart"></i>
 							    </li>
 							   
-								<li class="action-btn use_tooltips favorite_icon" data-toggle="tooltip" data-placement="bottom" title="Mark as Favorite">
+								<li class="action-btn use_tooltips favorite_icon add_to <?= $favorite ?>" data-name="<?= $tv->name ?>" data-tmdb="<?= $tv_id ?>" data-imdb="0"  data-type="TV" data-kind="Favorites" data-userid="<?= $user_id ?>" data-icon="<i class='fa fa-star text-warning mx-2'></i>" data-toggle="tooltip" data-placement="bottom" title="Mark as Favorite">
 									<i class="fa fa-star"></i>
 							    </li>
 							   
 								<li class="action-btn use_tooltips" data-toggle="tooltip" data-placement="bottom" title="Add To List">
 									<i class="fa fa-list"></i>
 							    </li>
+							   
+							   <?
+								   }
+							   else
+								   {
+							   ?>
+							   
+								<li class="action-btn use_tooltips watchlist_icon"
+									 data-toggle="tooltip" data-placement="bottom" title="Login to Add To Watchlist">
+									<i class="fa fa-bookmark"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips like_icon" data-toggle="tooltip" data-placement="bottom" title="Login to Like This Movie">
+									<i class="fa fa-heart"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips favorite_icon" data-toggle="tooltip" data-placement="bottom" title="Login to Mark as Favorite">
+									<i class="fa fa-star"></i>
+							    </li>
+							   
+								<li class="action-btn use_tooltips" data-toggle="tooltip" data-placement="bottom" title="Login to Add To List">
+									<i class="fa fa-list"></i>
+							    </li>
+							   
+							   <?
+								   }
+							   ?>
+
 
 							</ul>
 
