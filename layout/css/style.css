@@ -1024,7 +1024,7 @@ h2 {
 	margin-left: 10px;
 }	
 		
-.show_grid
+.show_grid, .show_grid2
 {
 	float: right;
     margin: 5px;
@@ -1039,7 +1039,7 @@ h2 {
 	transition: all 0.3s linear;
 }
 		
-.show_grid.active  {color: #fbd747; }
+.show_grid.active, .show_grid2.active  {color: #fbd747; }
 		
 .fade:not(.show) {
     opacity: 0;
@@ -1647,11 +1647,15 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 
 .count-card {
     margin: 10px;
-    padding: 15px;
+    padding: 15px 10px;
     box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-    border: 1px solid #dadce0;
-    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
     transition: all 0.3s linear;
+}
+
+.count-card h5 {
+    font-size: 0.9rem;
 }
 	
 .counter {
@@ -1660,14 +1664,14 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 	
 .counter span {
-    font-size: 18pt;
+    font-size: 12pt;
     font-weight: bold;
 	color: #fff;
 }
 	
 .icon {
     float: left;
-    padding: 15px;
+    padding: 5px;
     color: #fff;
 }	
 	

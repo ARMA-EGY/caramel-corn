@@ -138,6 +138,24 @@ $('.select-search').change(function(){
 		});
 	
 	
+		$('.show_grid2').click(function(){
+			
+			var selected = $(this).attr('data-show');
+			var target   = $(this).attr('data-target');
+			
+			var active 	 = target + " " + selected ;
+			var unactive = target + " " + '.fade' ;
+			
+			
+			$(this).siblings('.show_grid2').removeClass('active');
+			$(this).addClass('active');
+			
+			$(unactive).removeClass('show');
+			$(active).addClass('show');
+			
+		});
+	
+	
 
 	// ========================== Scroll to Top ========================== 
 	
@@ -407,7 +425,7 @@ $('.filter_form').submit(function(e){
 		
 		if ($(this).hasClass('added') )
 			{
-				var title = name + ' Removed from ' + kind + ' ' + icon + ' Successfully .';
+				var title = '( ' + name + ' ) Removed from ' + kind + ' ' + icon + ' Successfully .';
 				
 				$.ajax({
 					url: 		'ajax.php',
@@ -433,7 +451,7 @@ $('.filter_form').submit(function(e){
 			}
 			else
 			{
-				var title = name + ' Added to ' + kind + ' ' + icon + ' Successfully .';
+				var title = '( ' + name + ' ) Added to ' + kind + ' ' + icon + ' Successfully .';
 					
 				$.ajax({
 					url: 		'ajax.php',
