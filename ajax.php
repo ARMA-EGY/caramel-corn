@@ -701,15 +701,17 @@ if(isset($_POST['add_to']))
 	$tmdb 	 		= $_POST['tmdb'];
 	$imdb 	 		= $_POST['imdb'];
 	$type 	 		= $_POST['type'];
+	$date 	 		= $_POST['date'];
+	$rate 	 		= $_POST['rate'];
 	$user_id 	 	= $_POST['user_id'];
 	
 	
 	if ($kind == 'Favorites')
 	{
 		
-		$stmt = "INSERT INTO favorites ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+		$stmt = "INSERT INTO favorites ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
 
 		$conn->exec($stmt);
 		
@@ -717,9 +719,9 @@ if(isset($_POST['add_to']))
 	elseif ($kind == 'Likes')
 	{
 		
-		$stmt = "INSERT INTO likes ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+		$stmt = "INSERT INTO likes ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
 
 		$conn->exec($stmt);
 		
@@ -727,13 +729,14 @@ if(isset($_POST['add_to']))
 	elseif ($kind == 'Watchlist')
 	{
 		
-		$stmt = "INSERT INTO watchlist ( `name`, `tmdb_id`, `imdb_id`, `type`, `user_id`, `Add_Date`)
+		$stmt = "INSERT INTO watchlist ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$user_id', now() )";
+					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
 
 		$conn->exec($stmt);
 		
 	}
+	
 	
 }
 	

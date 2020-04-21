@@ -459,6 +459,8 @@ $('.filter_form').submit(function(e){
 		var type    = $(this).attr('data-type');
 		var kind    = $(this).attr('data-kind');
 		var icon    = $(this).attr('data-icon');
+		var date    = $(this).attr('data-date');
+		var rate    = $(this).attr('data-rate');
 		
 		var dis 	= $(this) ;
 		
@@ -475,6 +477,8 @@ $('.filter_form').submit(function(e){
 								 tmdb 		 : tmdb, 
 								 imdb 	 	 : imdb, 
 								 type 	 	 : type, 
+								 date 	 	 : date, 
+								 rate 	 	 : rate, 
 								 user_id 	 : user_id
 								}	,
 					success : function(response)
@@ -501,6 +505,8 @@ $('.filter_form').submit(function(e){
 								 tmdb 		 : tmdb, 
 								 imdb 	 	 : imdb, 
 								 type 	 	 : type, 
+								 date 	 	 : date, 
+								 rate 	 	 : rate, 
 								 user_id 	 : user_id
 								}	,
 					success : function(response)
@@ -517,7 +523,25 @@ $('.filter_form').submit(function(e){
 		
 	});
 	
-	
+		
+	// ==========================  Login Modal  ==========================
+ 
+ 
+	$('.login_modal').click(function()
+	 {
+		var login = $('#login_form').html();
+		var text  = $(this).attr('data-login');
+		
+		Swal.fire({
+			  html: login,
+			  title : text,
+			  showCancelButton: true,
+			  showConfirmButton: false
+			  
+			})
+		
+		
+	 });
 
 });
 

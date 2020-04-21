@@ -109,9 +109,9 @@ else
     $facebook_login_url = $facebook_helper->getLoginUrl('https://caramel-corn.com/', $facebook_permissions);
     
     // Render Facebook login button
-    $facebook_login_url = '<a class="btn btn-facebook" href="'.$facebook_login_url.'"><i class="fab fa-facebook-square mr-1"></i> Login With Facebook</a>';
+    $facebook_login_url = '<a class="btn btn-facebook m-1" href="'.$facebook_login_url.'"><i class="fab fa-facebook-square mr-1"></i> Login With Facebook</a>';
 	
-	$login_google_button = '<a class="btn btn-google" href="'.$google_client->createAuthUrl().'"><i class="fab fa-google mr-1"></i> Sign In With Google</a>';
+	$login_google_button = '<a class="btn btn-google m-1" href="'.$google_client->createAuthUrl().'"><i class="fab fa-google mr-1"></i> Sign In With Google</a>';
 }
 
 if(isset($_SESSION['access_token']))
@@ -286,6 +286,13 @@ if(isset($_SESSION['access_token']))
 			  
 		  </li>
 		  
+		  <div id="login_form" class="d-none">
+			  
+				<?
+					echo $facebook_login_url . $login_google_button ;
+				?>
+			  
+		  </div>
 		  
 	 <? } ?>
 	  
