@@ -387,32 +387,50 @@ $('.filter_form').submit(function(e){
 		
 		var color 		= $(this).attr('data-color');
 		var user_id 	= $(this).attr('data-user');
-		var section 	= 'include/sections/' + $(this).attr('data-section') + '.php';
+	//	var section 	= 'include/sections/' + $(this).attr('data-section') + '.php';
 		
 		$('.section').css({"color": '#fff'});
 		
     	$(this).css({"color": color});
 		
 		
-	    $('#show_section').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+	});
+
+	
+	
+	// ==========================  Get Section Data  ==========================
+	
+	$(document).on('click', '.toggle_type', function()
+        {
+		
+		var kind 		= $(this).attr('data-kind');
+		var type 		= $(this).attr('data-type');
+		var target 		= $(this).attr('data-target');
+		var user_id 	= $(this).attr('data-user');
+		
+		$(this).siblings('.toggle_type').removeClass('active');
+		$(this).addClass('active');
+		
+	    $(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
 		
 		$.ajax({
-					url: 		section,
+					url: 		'ajax.php',
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
-								 user_id 	 : user_id
+								 toggle_type 	 : type,
+								 kind 	 	 	 : kind,
+								 user_id 	 	 : user_id
+								 
 								}	,
 					success : function(response)
 							 {
-								$("#show_section").html(response);
+								$(target).html(response);
 							 }
 				});
 		
 		
 	});
-
-	
 	
 	
 	// ==========================  Add To / Remove From (Favorites, Likes, Watchlist)  ==========================
@@ -496,7 +514,6 @@ $('.filter_form').submit(function(e){
 							 }
 				});
 			}
-		
 		
 	});
 	

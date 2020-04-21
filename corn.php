@@ -24,8 +24,57 @@ $join_date = date(' F, Y', strtotime($date));
 
 <style>
 
+	.toggle_type 
+	{
+		margin: 0 5px;
+		background: #000;
+		border-radius: 15px;
+		border: 1px solid rgba(255, 255, 255, 0.7);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+		transition: all 0.3s linear;
+		display: inline-block;
+		color: #fff;
+		padding: 5px 15px;
+		cursor: pointer;
+	}
+	
+	.toggle_type.active{color: #fbd747;}
+	
+	
+	.badge-toggle 
+	{
+		color: #212529;
+		background-color: #f8f9fa;
+	}
+	
+	
+	.toggle_type.active .badge-toggle
+	{
+		color: #212529;
+		background-color: #ffc107;
+	}
+	
+	.select-control
+	{
+		width: fit-content;
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+		background: rgb(0, 0, 0);
+   		color: #fff;
+		height: calc(1.5em + .75rem + 2px);
+		padding: .375rem .75rem;
+		font-size: 0.8rem;
+		font-weight: 400;
+		line-height: 1.5;
+		border: 1px solid #ced4da;
+		border-radius: 15px;
+		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+	
+	
+	
 </style>
 
+<input type="hidden" id="user_id" value="<?=$user_id?>">
 	
 <section id="act" class="section-spacing single">
   <div class="back_layer">
@@ -148,25 +197,59 @@ $join_date = date(' F, Y', strtotime($date));
 				
 				<div class="row py-1" style="color: #fff;text-align: center;background: rgba(255, 255, 255, 0.25);">
 					
-					<i class="fa fa-bookmark col p-2 pointer transition section" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
+					<ul class="nav col-12" id="myTab" role="tablist">
+						
+					  <li class="col">
+						  <i class="fa fa-bookmark pointer col p-2 transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff; color: rgb(228, 105, 50);"></i>
+					  </li>
+						
+					  <li class="col">
+						  <i class="fa fa-heart pointer col p-2 transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
+					  </li>
+						
+					  <li class="col">
+						  <i class="fa fa-star pointer col p-2 transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
+					  </li>
+						
+					  <li class="col">
+						  <i class="fa fa-list pointer col p-2 transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					  </li>
+						
+					  <li class="col">
+						  <i class="fa fa-users pointer col p-2 transition section" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
+					  </li>
+						
+					</ul>
 					
-					<i class="fa fa-heart col p-2 pointer transition section" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
+<!--
+					<i class="fa fa-bookmark col p-2 pointer transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-star col p-2 pointer transition section" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-list col p-2 pointer transition section" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					<i class="fa fa-heart col p-2 pointer transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
 					
-					<i class="fa fa-users col p-2 pointer transition section" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
+					<i class="fa fa-star col p-2 pointer transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-list col p-2 pointer transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					
+					<i class="fa fa-users col p-2 pointer transition section" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
+-->
 					
 				</div>
 
 			</div>
 	  
 
-			<div class="container py-4" id="show_section" style="min-height: 500px;">
+	<div class="container py-4" id="show_section" style="min-height: 500px;">		
+				
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade show active" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab"> watchlist </div>
+		  <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab"> likes </div>
+		  <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab"> favorites </div>
+		  <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab"> lists </div>
+		  <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab"> following </div>
+		</div>
 
-
-			</div>
+	</div>
 	  
 	  
 	  
@@ -183,6 +266,82 @@ $join_date = date(' F, Y', strtotime($date));
 
 	
 
-<?
- include('include/footer.php'); ?>
+<? include('include/footer.php'); ?>
+
+<script>
+
+	
+		
+	    $('#watchlist, #likes, #favorites, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+	
+		var user_id = $('#user_id').val()
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#likes").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#favorites").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/following.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#following").html(response);
+							 }
+				});
+	
+
+
+</script>
 
