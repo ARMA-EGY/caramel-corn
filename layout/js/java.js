@@ -381,7 +381,7 @@ $('.filter_form').submit(function(e){
 
 
 	
-	// ==========================  Section Color and Data  ==========================
+	// ==========================  Section Color  ==========================
 	
 	$('.section').click(function(){
 		
@@ -403,32 +403,30 @@ $('.filter_form').submit(function(e){
 	$(document).on('click', '.toggle_type', function()
         {
 		
-		var kind 		= $(this).attr('data-kind');
-		var type 		= $(this).attr('data-type');
-		var target 		= $(this).attr('data-target');
-		var user_id 	= $(this).attr('data-user');
-		
-		$(this).siblings('.toggle_type').removeClass('active');
-		$(this).addClass('active');
-		
-	    $(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
-		
-		$.ajax({
-					url: 		'ajax.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 toggle_type 	 : type,
-								 kind 	 	 	 : kind,
-								 user_id 	 	 : user_id
-								 
-								}	,
-					success : function(response)
-							 {
-								$(target).html(response);
-							 }
-				});
-		
+			var kind 		= $(this).attr('data-kind');
+			var type 		= $(this).attr('data-type');
+			var target 		= $(this).attr('data-target');
+			var user_id 	= $(this).attr('data-user');
+
+			$(this).siblings('.toggle_type').removeClass('active');
+			$(this).addClass('active');
+
+			$(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+
+			$.ajax({
+						url: 		'ajax.php',
+						method: 	'POST',
+						dataType: 	'text',
+						data:		{ 
+									 toggle_type 	 : type,
+									 kind 	 	 	 : kind,
+									 user_id 	 	 : user_id
+									}	,
+						success : function(response)
+								 {
+									$(target).html(response);
+								 }
+					});
 		
 	});
 	
@@ -542,6 +540,86 @@ $('.filter_form').submit(function(e){
 		
 		
 	 });
+	
+	
+		
+	// ==========================  Select Change  ==========================
+	
+	$(document).on('change', '.select_sort', function()
+	{
+
+		var kind 		= $(this).attr('data-kind');
+		var type 		= $(this).attr('data-type');
+		var target 		= $(this).attr('data-target');
+		var user_id 	= $(this).attr('data-user');
+		var sort 		= $(this).val();
+		var show 		= $(this).siblings('.select_show').val();
+
+		$(this).siblings('.toggle_type').removeClass('active');
+		$(this).addClass('active');
+
+		$(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+
+		$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+									 type 	 : type,
+									 kind 	 	 	 : kind,
+									 select_sort 	 : sort,
+									 select_show 	 : show,
+									 user_id 	 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$(target).html(response);
+							 }
+				});
+
+	});
+	
+	
+	
+	$(document).on('change', '.select_show', function()
+	{
+
+		var kind 		= $(this).attr('data-kind');
+		var type 		= $(this).attr('data-type');
+		var target 		= $(this).attr('data-target');
+		var user_id 	= $(this).attr('data-user');
+		var show 		= $(this).val();
+		var sort 		= $(this).siblings('.select_sort').val();
+
+		$(this).siblings('.toggle_type').removeClass('active');
+		$(this).addClass('active');
+
+		$(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+
+		$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+									 type 	 : type,
+									 kind 	 	 	 : kind,
+									 select_sort 	 : sort,
+									 select_show 	 : show,
+									 user_id 	 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$(target).html(response);
+							 }
+				});
+
+	});
+	
+	
+	
+	
+	
+	
 
 });
 

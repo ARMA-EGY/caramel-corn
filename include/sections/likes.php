@@ -31,7 +31,6 @@ if(isset($_POST['user_id']))
 	include('../genre.php'); 
 	
 	
-	
 	$user_id 	 	= $_POST['user_id'];
 	
 	
@@ -71,35 +70,38 @@ if(isset($_POST['user_id']))
 	
 	<div id="likes_section">
 		
-
-			<div class="row my-2">
+<?
+		if($result > 0) 
+		{
+?>
+	<div class="row my-2">
 		<div class="col-md-12 pb-1">
 			
-			<select dir="ltr" class="select-control float-right m-1" name="sort">
-				<option value="" selected="">Latest</option>
-				<option value=""> Oldest </option>
-				<option value=""> Top Rated </option>
-				<option value=""> Release Date </option>
-				<option value=""> From A to Z </option>
-				<option value=""> From Z to A </option>
+			<select dir="ltr" class="select-control float-right m-1 select_sort" data-kind="<?=$kind?>" data-type="movie" data-target="#likes_movies" data-user="<?=$user_id?>">
+				<option value="id DESC"> Latest </option>
+				<option value="id ASC"> Oldest </option>
+				<option value="rate DESC"> Top Rated </option>
+				<option value="release_date DESC"> Release Date </option>
+				<option value="name ASC"> From A to Z </option>
+				<option value="name DESC"> From Z to A </option>
 			</select>
 			
-			<select dir="ltr" class="select-control float-right m-1" name="show">
-				<option value="" selected="">Show 20</option>
-				<option value=""> Show 30 </option>
-				<option value=""> Show 40 </option>
-				<option value=""> Show 50 </option>
+			<select dir="ltr" class="select-control float-right m-1 select_show" data-kind="<?=$kind?>" data-type="movie" data-target="#likes_movies" data-user="<?=$user_id?>">
+				<option value="20"> Show 20 </option>
+				<option value="30"> Show 30 </option>
+				<option value="40"> Show 40 </option>
+				<option value="50"> Show 50 </option>
 			</select>
 			
-			<i class="ti-layout-list-thumb show_grid2" data-show=".show_cards_details" data-target="#movies"></i>
-
-			<i class="ti-layout-grid2 show_grid2 active" data-show=".show_cards" data-target="#movies" ></i>
+			<i class="ti-layout-list-thumb show_grid2" data-show=".show_cards_details" data-target="#likes_movies"></i>
+			
+			<i class="ti-layout-grid2 show_grid2 active" data-show=".show_cards" data-target="#likes_movies" ></i>
 			
 		</div>	
 	</div>
 
 		
-			<div class="row justify-content-center" id="movies">
+			<div class="row justify-content-center" id="likes_movies">
 
 			<?
 
@@ -283,7 +285,14 @@ if(isset($_POST['user_id']))
 
 			</div>	
 		
+<?
+		}
+		else
+		{
+			echo '<h3 class="text-white text-center my-4">No Result Found</h3>';
+		}
 			
+?>
 					
 				<!-- ================   Pagination   ================  -->
 

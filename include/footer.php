@@ -83,8 +83,9 @@
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Corn</a></li>
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Watchlist</a></li>
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Likes</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Lists</a></li>
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Favorites</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Lists</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Following</a></li>
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Collections</a></li>
                                 </ul>
                             </nav>
