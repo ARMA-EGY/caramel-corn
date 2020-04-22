@@ -146,13 +146,13 @@ else
 										foreach($movie->genres as $genre )
 										{
 											$genre_cate = '_'.$genre->id;
-											?>
+									?>
 
 									<div class="mb-1 cate_color_<?= $genre->id;?>">
 										<a href="m_browse.php?type=genre&genre=<?= $genre->id;?>"><?= $cate->$genre_cate;?></a>
 									</div>
 
-											<?
+									<?
 										}
 
 									?>

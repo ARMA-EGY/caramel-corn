@@ -31,7 +31,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
         </div>
       </div>
 		
-	<div class="col-md-4 p-1">
+	  <div class="col-md-4 p-1">
     	<div class="top-search">
 			
 			
@@ -51,7 +51,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	  
   
 	  
-    <div class="row">
+    <div class="row justify-content-center">
 		
 		
 	<?

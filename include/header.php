@@ -106,7 +106,7 @@ else
  // Get login url
     $facebook_permissions = ['email']; // Optional permissions
 
-    $facebook_login_url = $facebook_helper->getLoginUrl('https://caramel-corn.com/', $facebook_permissions);
+    $facebook_login_url = $facebook_helper->getLoginUrl('http://localhost:8080/corn/caramel-corn/', $facebook_permissions);
     
     // Render Facebook login button
     $facebook_login_url = '<a class="btn btn-facebook m-1" href="'.$facebook_login_url.'"><i class="fab fa-facebook-square mr-1"></i> Login With Facebook</a>';
@@ -200,13 +200,13 @@ if(isset($_SESSION['access_token']))
 
 		<a id="askFaran" class="navbar-brand" href="index.php"><img src="layout/img/logo.png" width="32" alt=""/> Caramel <span style="color: #fff;font-family: Lobster, 'sans-serif';">Corn</span></a>
 		
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-			 <div class="container1" onclick="myFunction(this)">
+		<div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			 <div class="container1" >
 			  <div class="bar1"></div>
 			  <div class="bar2"></div>
 			  <div class="bar3"></div>
 			 </div>
-	   </button>
+	   </div>
 		
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 	  

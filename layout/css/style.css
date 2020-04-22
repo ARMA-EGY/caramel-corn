@@ -43,10 +43,7 @@ html {
 
 h1 {
   font-family: Consolas, sans-serif;
-  color: #fff;
-  font-size: 60px;
   font-weight: 700;
-  margin: 0 0 40px;
   text-transform: uppercase;
 }
 
@@ -702,9 +699,6 @@ a {cursor: pointer}
   }
   .single-img {
     margin: 40px 0 0;
-  }
-  h1 {
-    font-size: 40px;
   }
   h2 {
     font-size: 36px;
@@ -1705,7 +1699,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 @media (min-width: 576px)
 {
 	.col-person {
-		max-width: 20%;
+		max-width: 16%;
 	}
 }
 
