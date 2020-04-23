@@ -99,7 +99,7 @@ $join_date = date(' F, Y', strtotime($date));
 				</div>
 				
 					
-				<div class="row justify-content-center mt-4">
+			<div class="row justify-content-center mt-4">
 
 			   <div class="col-lg-2 col-md-3 col-4 p-0">
 				  <div class="count-card" >
@@ -144,7 +144,7 @@ $join_date = date(' F, Y', strtotime($date));
 						<div class="icon">
 						  <i class="fa fa-list fs-15-t list-color"></i>
 						</div>
-						<span> 9 </span>
+						<span>   <?= countItems2 ('user_id', 'lists', $user_id) ?> </span>
 					  </div>
 				  </div>
 				</div>
@@ -156,7 +156,7 @@ $join_date = date(' F, Y', strtotime($date));
 						<div class="icon">
 						  <i class="fa fa-users fs-15-t follow-color"></i>
 						</div>
-						<span> 34 </span>
+						<span>   <?= countItems2 ('user_id', 'following', $user_id) ?> </span>
 					  </div>
 				  </div>
 				</div>

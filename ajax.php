@@ -689,8 +689,6 @@ if(isset($_POST['browse']))
 
 
 
-
-
 /*====================  Add To (Favorites, Likes, Watchlist)  ====================*/
 
 if(isset($_POST['add_to']))
@@ -742,7 +740,6 @@ if(isset($_POST['add_to']))
 	
 
 
-
 /*====================  Remove From (Favorites, Likes, Watchlist)  ====================*/
 
 if(isset($_POST['remove_from']))
@@ -781,6 +778,42 @@ if(isset($_POST['remove_from']))
 }
 
 	
+
+/*====================  Following Person  ====================*/
+
+if(isset($_POST['follow_person']))
+{
+	
+	$name 	 			= $_POST['name'];
+	$person_id 	 		= $_POST['follow_person'];
+	$user_id 	 		= $_POST['user_id'];
+	
+	
+	$stmt = "INSERT INTO following ( `name`, `person_id`, `user_id`, `Add_Date`)
+
+				VALUES('$name', '$person_id' , '$user_id', now() )";
+
+	$conn->exec($stmt);
+		
+}
+
+
+
+/*====================  UnFollowing Person  ====================*/
+
+if(isset($_POST['unfollow_person']))
+{
+	
+	$name 	 			= $_POST['name'];
+	$person_id 	 		= $_POST['unfollow_person'];
+	$user_id 	 		= $_POST['user_id'];
+	
+	
+  	$stmt = $conn->prepare("DELETE FROM following WHERE person_id = ? AND user_id = ? ");
+
+  	$stmt->execute(array($person_id, $user_id));
+		
+}
 
 
 
@@ -1407,8 +1440,6 @@ if(isset($_POST['toggle_type']))
 <?
 		
 }
-
-
 
 
 

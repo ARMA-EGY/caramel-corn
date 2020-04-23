@@ -256,30 +256,7 @@ $('.back-to-top').click(function() {      // When arrow is clicked
 			}
 		  ]
 		});
-		
-		
-				
-		$('.vertical').slick({
-  		  infinite: true,
-		  slidesToShow: 6,
-			vertical: true,
-			verticalSwiping: true,
-		  responsive: [
-			{
-			  breakpoint: 768,
-			  settings: {
-				arrows: false,
-				slidesToShow: 4
-			  }
-			},
-			{
-			  breakpoint: 480,
-			  settings: {
-				slidesToShow: 2
-			  }
-			}
-		  ]
-		});
+	
 		
 		
 		
@@ -431,7 +408,7 @@ $('.filter_form').submit(function(e){
 	});
 	
 	
-	// ==========================  Add To / Remove From (Favorites, Likes, Watchlist)  ==========================
+	// ==============  Add To / Remove From (Favorites, Likes, Watchlist, Following)  ==============
 	
  const Toast = Swal.mixin({
 	  toast: true,
@@ -521,6 +498,71 @@ $('.filter_form').submit(function(e){
 		
 	});
 	
+	
+ 
+	$('.follow_person').click(function()
+	 {
+		
+		var user_id 	= $(this).attr('data-user');
+		var person_id 	= $(this).attr('data-person');
+		var name 		= $(this).attr('data-name');
+		var icon 		= $(this).attr('data-icon');
+		
+		var dis 		= $(this) ;
+		
+		if ($(this).hasClass('added') )
+			{
+				var title = '( ' + name + ' ) Removed From Following' + icon + ' Successfully .';
+				
+				$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{
+								 unfollow_person  : person_id, 
+								 name 		 	: name, 
+								 user_id 	 	: user_id
+								}	,
+					success : function(response)
+							 {
+								Toast.fire({
+								  icon: 'success',
+								  title: title
+								})
+								 
+								dis.removeClass('added');
+								dis.text('Follow');
+								 
+							 }
+				});
+			}
+			else
+			{
+				var title = '( ' + name + ' ) Added to Following' + icon + ' Successfully .';
+					
+				$.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{
+								 follow_person  : person_id, 
+								 name 		 	: name, 
+								 user_id 	 	: user_id
+								}	,
+					success : function(response)
+							 {
+								Toast.fire({
+								  icon: 'success',
+								  title: title
+								})
+								 
+								dis.addClass('added');
+								dis.text('Unfollow');
+							 }
+				});
+			}
+		
+	});
 		
 	// ==========================  Login Modal  ==========================
  

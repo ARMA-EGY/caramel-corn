@@ -26,6 +26,29 @@ else
 $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10&with_people=$person_id");
 
 
+if(isset($_SESSION['access_token']))
+{
+
+	 $following  =  checkExist('person_id', 'following', $person_id, 'user_id', $user_id );
+
+
+	 if ($following > 0)
+	 {
+		 $follow 		= 'added';
+		 $follow_text 	= 'Unfollow';
+	 }
+	 else
+	 {
+		 $follow 		= '';
+		 $follow_text 	= 'Follow';
+	 }
+
+}
+else
+{
+		 $follow 		= '';
+		 $follow_text 	= 'Follow';
+}
 
 ?>
 	
@@ -76,13 +99,27 @@ $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df2
 
 
 					<div class="col-md-8 pt-4 text-white m-auto">
+						
+					   <? if(isset($_SESSION['access_token']))
+							{
+					   ?>
+						
+						<button class="btn btn-light my-4 px-3 follow_person <?=$follow?>" style="border-radius: 20px;" data-person="<?=$person_id?>" data-name="<?=$person->name?>" data-user="<?=$user_id?>" data-icon="<i class='fa fa-users follow-color mx-2'></i>" > <?=$follow_text?> </button>
+						
+						<?
+							 }
+							 else
+							 {
+								?>
+									<button class="btn btn-light my-4 px-3 login_modal" style="border-radius: 20px;" data-login="Login to Follow <?=$person->name?>" > Follow </button>
+						
+								<?
+							 }
+						?>
 
-<!--						 <h3 class="font-weight-bold text-white"><?= $person->name ?></h3> -->
+						<h4 class="text-white font-weight-bold" style="font-size: 1.3em;">Biography</h4>
 
-						 <h4 class="text-white font-weight-bold" style="font-size: 1.3em;">Biography</h4>
-
-						 <p style="max-width: 700px;font-size: 0.9em;"><?= nl2br($person->biography) ?></p>
-
+						<p style="max-width: 700px;font-size: 0.9em;"><?= nl2br($person->biography) ?></p>
 
 					</div>
 
