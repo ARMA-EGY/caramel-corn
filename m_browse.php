@@ -347,7 +347,7 @@ else
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">

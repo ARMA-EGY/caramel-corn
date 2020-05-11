@@ -54,20 +54,32 @@ $join_date = date(' F, Y', strtotime($date));
 		background-color: #ffc107;
 	}
 	
+	.select-wrapper
+	{
+		border-radius: 30px;
+		display: inline-block;
+		overflow: hidden;
+		background: #000;
+		border: 1px solid #ccc;
+		float: right;
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+		margin: 2px;
+	}
+	
 	.select-control
 	{
 		width: fit-content;
-		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
 		background: rgb(0, 0, 0);
    		color: #fff;
 		height: calc(1.5em + .75rem + 2px);
-		padding: .375rem .75rem;
 		font-size: 0.8rem;
 		font-weight: 400;
 		line-height: 1.5;
-		border: 1px solid #ced4da;
-		border-radius: 15px;
 		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		border: 0px;
+		outline: none;
+		padding: 0;
+		margin: 0!important;
 	}
 	
 	
@@ -199,20 +211,20 @@ $join_date = date(' F, Y', strtotime($date));
 					
 					<ul class="nav col-12" id="myTab" role="tablist">
 						
-					  <li class="col">
-						  <i class="fa fa-bookmark pointer col p-2 transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff; color: rgb(228, 105, 50);"></i>
+					  <li class="col" style="border-right: 1px solid #fff;">
+						  <i class="fa fa-bookmark pointer col p-2 transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="color: rgb(228, 105, 50);"></i>
 					  </li>
 						
-					  <li class="col">
-						  <i class="fa fa-heart pointer col p-2 transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
+					  <li class="col" style="border-right: 1px solid #fff;">
+						  <i class="fa fa-heart pointer col p-2 transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447"></i>
 					  </li>
 						
-					  <li class="col">
-						  <i class="fa fa-star pointer col p-2 transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
+					  <li class="col" style="border-right: 1px solid #fff;">
+						  <i class="fa fa-star pointer col p-2 transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107"></i>
 					  </li>
 						
-					  <li class="col">
-						  <i class="fa fa-list pointer col p-2 transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
+					  <li class="col" style="border-right: 1px solid #fff;">
+						  <i class="fa fa-list pointer col p-2 transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552"></i>
 					  </li>
 						
 					  <li class="col">
@@ -260,7 +272,7 @@ $join_date = date(' F, Y', strtotime($date));
 
 
 
-
+<div class="loader hidden" style="position: fixed;bottom: 10px;width: 150px;left: 50%;z-index: 999;transform: translateX(-50%);"></div>
 
 
 
@@ -269,8 +281,6 @@ $join_date = date(' F, Y', strtotime($date));
 <? include('include/footer.php'); ?>
 
 <script>
-
-	
 		
 	    $('#watchlist, #likes, #favorites, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
 	
@@ -341,6 +351,69 @@ $join_date = date(' F, Y', strtotime($date));
 							 }
 				});
 	
+
+	
+	
+	///////////////////////////////////////////////
+	
+	var start = 20;
+	var limit = 20;
+	var reachedMax = false;
+
+
+	$(document).on('click', '.loadmore', function()
+	   {
+		  var section = $(this).attr('data-section');
+		  var type 	  = $(this).attr('data-type');
+		  var target  = $(this).attr('data-target');
+		  var btn     = $(this).attr('data-btn');
+		//  $(this).prop('disabled', true);
+		  getData(section,type,target,btn);
+
+	   });
+
+	
+	function getData(section,type,target,btn) 
+{
+    if (reachedMax)
+        return;
+	
+	//$('.loader').html('<img src="layout/img/loader.gif" width="75">');
+	
+	$(btn).fadeOut();
+	$(btn).parent().append('<img class="img_loader" src="layout/img/loader.gif" width="75">');
+
+    $.ajax({
+       url: 'ajax.php',
+       method: 'POST',
+        dataType: 'text',
+       data: 
+       {
+           getData: 1,
+           start: start,
+           limit: limit,
+           section: section,
+           type: type
+       },
+       success: function(response) 
+       {
+            if (response.trim() == '')
+            {
+                reachedMax = true;
+                $(btn).fadeOut();
+            }
+            else 
+            {
+                start += limit;
+                $(target).append(response);
+				
+		  		$(btn).fadeIn();
+            }
+
+		   $(btn).parent().find('.img_loader').remove();
+        }
+    });
+}
 
 
 </script>

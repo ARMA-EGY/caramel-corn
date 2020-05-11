@@ -10,35 +10,3 @@ $cate = json_decode($marks2);
 
 
 ?>
-
-<style>
-	.cate_color_28 			{background: #dc3545; } 
-	.cate_color_12 			{background: #ec5a1a; } 
-	.cate_color_16 			{background: #3498db; } 
-	.cate_color_35 			{background: #27ae60; } 
-	.cate_color_80 			{background: #9b59b6; } 
-	.cate_color_99 			{background: #f1c40f; } 
-	.cate_color_18 			{background: #95a5a6; } 
-	.cate_color_10751 		{background: #e74c3c; } 
-	.cate_color_14 			{background: #1434dc; } 
-	.cate_color_36 			{background: #c79836; } 
-	.cate_color_27 			{background: #2c3e50; } 
-	.cate_color_10402 		{background: #d35400; } 
-	.cate_color_9648 		{background: #474787; } 
-	.cate_color_10749 		{background: #f10e74; } 
-	.cate_color_878 		{background: #2980b9; } 
-	.cate_color_10770 		{background: #D6A2E8; } 
-	.cate_color_53 			{background: #25949a; } 
-	.cate_color_10752 		{background: #B33771; } 
-	.cate_color_37 			{background: #F97F51; } 
-	
-	.cate_color_10759 		{background: #5e1be4; } 
-	.cate_color_10763 		{background: #275bc2; } 
-	.cate_color_10764 		{background: #a650c5; } 
-	.cate_color_10765 		{background: #85093d; } 
-	.cate_color_10766 		{background: #c77e8c; } 
-	.cate_color_10767 		{background: #73942e; } 
-	.cate_color_10768 		{background: #3e275e; } 
-	.cate_color_10762 		{background: #2980b9; } 
-</style>
-	

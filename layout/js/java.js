@@ -1,10 +1,6 @@
 jQuery(document).ready(function($) {
 	"use strict";
 	
-  
-
-
-
 
 $('.reflect').click(function(){
 		"use strict";
@@ -659,8 +655,78 @@ $('.filter_form').submit(function(e){
 	
 	
 	
+	// ========================== Subscribe Form  ==========================	
+
+
+$('.subscribe_form').submit(function(e){
+
+	e.preventDefault();
+	$('.submit').prop('disabled', true);
+
+	//$('#subscribe_modal').modal('show');
+
+	$.ajax({
+		url: 		'ajax.php',
+		method: 	'POST',
+		dataType: 	'json',
+		data:		$(this).serialize()	,
+		success : function(data)
+			 {
+				//$('#result').html(response);
+				$('.submit').prop('disabled', false);
+				 
+				 if (data['state'] == 'success')
+                {
+					 Swal.fire(
+							  'Thank You',
+							  'You Have Subscribed Successfully',
+							  'success'
+							)
+				}
+				 else if (data['state'] == 'error')
+                {
+					 Swal.fire(
+							  'Oops...',
+							  'This Email Is Already Exist.',
+							  'error'
+							)
+				}
+			 }
+	});
+
+});
+
+
+
 	
 	
+	// ========================== Contact Us Form  ==========================	
+	
+	$('.msg_form').submit(function(e){
+		
+		e.preventDefault();
+		
+		$.ajax({
+			url: 		'ajax.php',
+			method: 	'POST',
+			dataType: 	'text',
+			data:		$(this).serialize()	,
+			success : function(response)
+				 {
+					 Swal.fire(
+							  'Thank You',
+							  'Your Message Sent Successfully',
+							  'success'
+							)
+					 
+					 $('#name').val('');
+					 $('#email').val('');
+					 $('#subject').val('');
+					 $('#message').val('');
+				 }
+		});
+		
+	});
 	
 
 });

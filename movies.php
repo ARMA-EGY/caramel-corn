@@ -35,7 +35,7 @@ elseif($type == 'In Theatres')
 	$last_month = strtotime("-2 Months");
 	$start_from =  date("Y-m-01", $last_month) ;
 
-	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=$start_from&primary_release_date.lte=$today&page=$page");
+	$movies = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=$start_from&primary_release_date.lte=$today&page=$page&vote_count.gte=50");
 	
 }
 elseif($type == 'Popular')
@@ -139,7 +139,7 @@ elseif($type == 'Top Revenue')
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">

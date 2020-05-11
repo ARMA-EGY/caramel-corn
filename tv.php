@@ -120,7 +120,7 @@ $total_pages = $tv_shows->total_pages;
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2">  
 
 
 					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
