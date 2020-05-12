@@ -1080,7 +1080,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 .single-footer-widget > p {
-    color: #b5aec4;
+    color: #ccc;
     font-weight: 300;
 }
 
@@ -1147,7 +1147,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 
 .single-tweet span {
     font-size: 12px;
-    color: #b5aec4;
+    color: #ccc;
 }
 
 .single-footer-widget ul li {
@@ -1161,7 +1161,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 
 .single-footer-widget ul li a {
     font-size: 14px;
-    color: #b5aec4;
+    color: #ccc;
     font-weight: 400;
     margin-bottom: 15px;
     display: block;
