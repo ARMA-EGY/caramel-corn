@@ -254,11 +254,108 @@ $join_date = date(' F, Y', strtotime($date));
 	<div class="container py-4" id="show_section" style="min-height: 500px;">		
 				
 		<div class="tab-content" id="myTabContent">
-		  <div class="tab-pane fade show active" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab"> watchlist </div>
-		  <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab"> likes </div>
-		  <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab"> favorites </div>
-		  <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab"> lists </div>
-		  <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab"> following </div>
+			
+			<!--===================  Watchlist   ===================-->
+			
+		  <div class="tab-pane fade show active" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab">  
+			
+			<div class="row">
+				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+
+					<div class="font-weight-bold toggle_type active" data-kind="watchlist" data-type="movie" data-target="#watchlist_section_movie" data-user="<?=$user_id?>">
+						<span > Movies </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'watchlist', 'Movie', 'user_id', $user_id) ?></span>
+					</div>
+
+					<div class="font-weight-bold toggle_type" data-kind="watchlist" data-type="tv" data-target="#watchlist_section_tv" data-user="<?=$user_id?>">
+						<span >Tv Shows </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'watchlist', 'TV', 'user_id', $user_id) ?></span>
+					</div>
+
+				</div>	
+			</div>
+			
+			<div>
+			  
+				<div id="watchlist_section_movie"></div>
+
+				<div id="watchlist_section_tv"></div>
+				
+			</div>
+			  
+		</div>
+			
+			<!--===================  Likes   ===================-->
+			
+		 
+		<div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+
+			<div class="row">
+				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+
+					<div class="font-weight-bold toggle_type active" data-kind="likes" data-type="movie" data-target="#likes_section_movie" data-user="<?=$user_id?>">
+						<span > Movies </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'likes', 'Movie', 'user_id', $user_id) ?></span>
+					</div>
+
+					<div class="font-weight-bold toggle_type" data-kind="likes" data-type="tv" data-target="#likes_section_tv" data-user="<?=$user_id?>">
+						<span >Tv Shows </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'likes', 'TV', 'user_id', $user_id) ?></span>
+					</div>
+
+				</div>	
+			</div>	
+			
+			<div>
+			  
+				<div id="likes_section_movie"></div>
+
+				<div id="likes_section_tv"></div>
+				
+			</div>
+			
+		</div>
+			
+			<!--===================  Favorites   ===================-->
+			
+		  <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+			
+			<div class="row">
+				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+
+					<div class="font-weight-bold toggle_type active" data-kind="favorites" data-type="movie" data-target="#favorites_section_movie" data-user="<?=$user_id?>">
+						<span > Movies </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'favorites', 'Movie', 'user_id', $user_id) ?></span>
+					</div>
+
+					<div class="font-weight-bold toggle_type" data-kind="favorites" data-type="tv" data-target="#favorites_section_tv" data-user="<?=$user_id?>">
+						<span >Tv Shows </span>
+						<span class="badge badge-toggle"><?= countItems3 ('type', 'favorites', 'TV', 'user_id', $user_id) ?></span>
+					</div>
+
+				</div>	
+			</div>	
+			
+			<div>
+			  
+				<div id="favorites_section_movie"></div>
+
+				<div id="favorites_section_tv"></div>
+				
+			</div>
+			  
+			  
+			
+		  </div>
+			
+			<!--===================  Lists   ===================-->
+			
+		  <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab">  </div>
+			
+			<!--===================  Following   ===================-->
+			
+		  <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">  </div>
+			
 		</div>
 
 	</div>
@@ -282,7 +379,9 @@ $join_date = date(' F, Y', strtotime($date));
 
 <script>
 		
-	    $('#watchlist, #likes, #favorites, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+	    $('#watchlist_section_movie, #watchlist_section_tv, #likes_section_movie, #likes_section_tv, #favorites_section_movie, #favorites_section_tv, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+		
+	    $('#watchlist_section_tv, #likes_section_tv, #favorites_section_tv').hide();
 	
 		var user_id = $('#user_id').val()
 		
@@ -291,11 +390,26 @@ $join_date = date(' F, Y', strtotime($date));
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
-								 user_id 	 : user_id
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
 								}	,
 					success : function(response)
 							 {
-								$("#watchlist").html(response);
+								$("#watchlist_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist_section_tv").html(response);
 							 }
 				});
 		
@@ -304,11 +418,26 @@ $join_date = date(' F, Y', strtotime($date));
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
-								 user_id 	 : user_id
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
 								}	,
 					success : function(response)
 							 {
-								$("#likes").html(response);
+								$("#likes_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#likes_section_tv").html(response);
 							 }
 				});
 		
@@ -317,11 +446,26 @@ $join_date = date(' F, Y', strtotime($date));
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
-								 user_id 	 : user_id
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
 								}	,
 					success : function(response)
 							 {
-								$("#favorites").html(response);
+								$("#favorites_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#favorites_section_tv").html(response);
 							 }
 				});
 		
@@ -363,24 +507,25 @@ $join_date = date(' F, Y', strtotime($date));
 
 	$(document).on('click', '.loadmore', function()
 	   {
-		  var section = $(this).attr('data-section');
-		  var type 	  = $(this).attr('data-type');
-		  var target  = $(this).attr('data-target');
-		  var btn     = $(this).attr('data-btn');
+		  var section 	  = $(this).attr('data-section');
+		  var type 	  	  = $(this).attr('data-type');
+		  var target  	  = $(this).attr('data-target');
+		  var btn     	  = $(this).attr('data-btn');
+		  var user_id     = $(this).attr('data-user');
 		//  $(this).prop('disabled', true);
-		  getData(section,type,target,btn);
+		  getData(section,type,target,btn,user_id);
 
 	   });
 
 	
-	function getData(section,type,target,btn) 
+	function getData(section,type,target,btn,user_id) 
 {
     if (reachedMax)
         return;
 	
 	//$('.loader').html('<img src="layout/img/loader.gif" width="75">');
 	
-	$(btn).fadeOut();
+	$(btn).hide();
 	$(btn).parent().append('<img class="img_loader" src="layout/img/loader.gif" width="75">');
 
     $.ajax({
@@ -393,6 +538,7 @@ $join_date = date(' F, Y', strtotime($date));
            start: start,
            limit: limit,
            section: section,
+           user_id: user_id,
            type: type
        },
        success: function(response) 

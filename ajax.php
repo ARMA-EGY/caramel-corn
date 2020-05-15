@@ -1845,10 +1845,11 @@ if (isset($_POST['getData']))
 		$limit 		= $_POST['limit'];
 		$section 	= $_POST['section'];
 		$type 		= $_POST['type'];
+		$user_id 	= $_POST['user_id'];
 
-		$stmt = $conn->prepare("SELECT * FROM $section WHERE type = ? ORDER BY id DESC LIMIT $start, $limit");
-		$stmt->execute(array($type));
-		$rows = $stmt->fetchAll();
+		$stmt  = $conn->prepare("SELECT * FROM $section WHERE type = ? AND user_id = ? ORDER BY id DESC LIMIT $start, $limit");
+		$stmt->execute(array($type, $user_id));
+		$rows  = $stmt->fetchAll();
 		$count = $stmt->rowCount();
 		
 		if ($count > 0 )
@@ -2021,6 +2022,13 @@ if (isset($_POST['getData']))
 			  <!-- End New Card -->
 
 
+			<? 
+		
+			}
+
+		} 
+	
+?>
 <script>
 $(document).ready(function() {
 	$('.tooltip2').tooltipster({
@@ -2035,14 +2043,8 @@ $(document).ready(function() {
 	theme: 'tooltipster-borderless'
 	});
 });
-	
 </script>
-
-			<? 
-		
-			}
-
-		} 
+<?
 	   
 }
 

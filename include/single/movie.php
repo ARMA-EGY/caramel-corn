@@ -99,6 +99,25 @@ else
 		 $watchlist = '';
 }
 	
+
+
+
+
+$url = 'https://vsrequest.video/request.php?key=RLVZicy8vDF3E8IY&secret_key=shopnqyo9i8en2fca9ns1ly334b2b7&video_id='.$movie_id.'&tmdb=1&tv=0&s=0&ip='.$_SERVER["REMOTE_ADDR"];
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($curl, CURLOPT_TIMEOUT, 5); // in case our server is down or busy, you can specify max time in seconds to wait for response
+curl_setopt($curl, CURLOPT_HEADER, false);
+$videospider_url = curl_exec($curl);
+curl_close($curl);
+
+
+
+//echo $videospider_url ;
+
+
 ?>
 	
 
@@ -466,6 +485,10 @@ else
 	  
 	  
 	<!-- =====================  VIDEOS  =====================  -->
+	  
+	  
+<!-- 2. load request URL with ticket in iframe -->
+<iframe src="<?php echo $videospider_url; ?>" width="600" height="400" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
 	  
 	  
 	  	<div class="container my-2">

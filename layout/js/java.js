@@ -384,22 +384,25 @@ $('.filter_form').submit(function(e){
 			$(this).siblings('.toggle_type').removeClass('active');
 			$(this).addClass('active');
 
-			$(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+			//$(target).html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+		
+			$(target).siblings().hide();
+			$(target).fadeIn();
 
-			$.ajax({
-						url: 		'ajax.php',
-						method: 	'POST',
-						dataType: 	'text',
-						data:		{ 
-									 toggle_type 	 : type,
-									 kind 	 	 	 : kind,
-									 user_id 	 	 : user_id
-									}	,
-						success : function(response)
-								 {
-									$(target).html(response);
-								 }
-					});
+//			$.ajax({
+//						url: 		'ajax.php',
+//						method: 	'POST',
+//						dataType: 	'text',
+//						data:		{ 
+//									 toggle_type 	 : type,
+//									 kind 	 	 	 : kind,
+//									 user_id 	 	 : user_id
+//									}	,
+//						success : function(response)
+//								 {
+//									$(target).html(response);
+//								 }
+//					});
 		
 	});
 	

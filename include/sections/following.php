@@ -1,17 +1,16 @@
 <?
 
-$kind = 'following';
-
-if(isset($_POST['user_id']))
-{
-	
 	//Include Configuration File
 
 
 	include('../db-connect.php'); 
 	include('../function.php'); 
 	include('../genre.php'); 
-	
+
+	$kind = 'following';
+
+if(isset($_POST['user_id']))
+{
 	
 	$user_id 	 	= $_POST['user_id'];
 	
@@ -43,19 +42,24 @@ if(isset($_POST['user_id']))
 	 <div class="row my-2">
 		<div class="col-md-12 pb-1">
 			
-			<select dir="ltr" class="select-control float-right m-1 select_sort" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
+		<div class="select-wrapper">
+			<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
 				<option value="id DESC"> Latest </option>
 				<option value="id ASC"> Oldest </option>
 				<option value="name ASC"> From A to Z </option>
 				<option value="name DESC"> From Z to A </option>
 			</select>
+		</div>
 			
-			<select dir="ltr" class="select-control float-right m-1 select_show" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
+		
+		<div class="select-wrapper">
+			<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
 				<option value="20"> Show 20 </option>
 				<option value="30"> Show 30 </option>
 				<option value="40"> Show 40 </option>
 				<option value="50"> Show 50 </option>
 			</select>
+		</div>
 			
 		</div>	
 	</div>
