@@ -109,6 +109,7 @@ if($type == 'movie')
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
+							<i class="fas fa-ellipsis-h poster_more" ></i>
 							<a href="single.php?movie=<?= $movie->id?>">
 								<img width="100%" src="<?= $img?>" alt=""/>
 							</a>
@@ -382,6 +383,7 @@ if($type == 'tv')
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
 						<div class="poster"> 
+							<i class="fas fa-ellipsis-h poster_more" ></i>
 							<a href="single.php?tv=<?= $movie->id?>">
 								<img width="100%" src="<?= $img?>" alt=""/>
 							</a>

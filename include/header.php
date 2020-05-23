@@ -142,6 +142,7 @@ if(isset($_SESSION['access_token']))
 	{
 		$user_id  = $row['id'];
 		$date     = $row['Add_Date'];
+		$logo     = $row['corn_logo'];
 		
 		if ($name != $row['name'])
 		{
@@ -151,8 +152,12 @@ if(isset($_SESSION['access_token']))
 	}
 	else
 	{
-		$stmt = "INSERT INTO members ( name, email, image, login_type, Add_Date)
-						VALUES('$name', '$email', '$image', '$login_type', now() )";
+		$logo     = 'corn3.png';
+	
+		$uid = uniqid();
+		
+		$stmt = "INSERT INTO members ( name, email, image, login_type, Add_Date, uid, corn_logo)
+						VALUES('$name', '$email', '$image', '$login_type', now(), '$uid', '$logo' )";
 
 		$conn->exec($stmt);
 		
@@ -267,11 +272,11 @@ if(isset($_SESSION['access_token']))
    {
 ?>
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle btn-secondary rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="nav-link dropdown-toggle btn-secondary rounded caramel_color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img class="avatar" src="<?=$_SESSION["user_image"]?>"><?=$_SESSION['user_name']?></a>
 			  
 			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <li><a class="dropdown-item" href="corn.php"><img class="mr-2" src="layout/img/popcorn/corn3.png" width="35"> My Corn</a></li>
+			  <li><a class="dropdown-item" href="corn.php"><img class="mr-2" src="layout/img/popcorn/<?=$logo ?>" width="35"> My Corn</a></li>
 			  <li><a class="dropdown-item" href="logout.php"><img class="mr-3" src="layout/img/logout.png" width="28"> Logout</a></li>
 			</ul>
 			  
@@ -280,7 +285,7 @@ if(isset($_SESSION['access_token']))
 <? }else{ ?>
 		  
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle btn-secondary rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
+			<a class="nav-link dropdown-toggle btn-secondary rounded caramel_color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
 			  
 			<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="right: 0; left: unset;">
 			  <li><?=$facebook_login_url?></li>

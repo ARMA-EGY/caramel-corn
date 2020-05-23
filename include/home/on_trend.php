@@ -16,7 +16,7 @@ $f_movie_background = $playing_now->results[0]->backdrop_path;
 		
 			<div class="row">
 			  <div class="col-sm-12">
-				<div class="section-title text-center">
+				<div class="section-title text-center-md">
 
 				<h5 class="font-weight-bold title_btn"  >Trending <span class="text-white">Movies</span> </h5>
 					

@@ -22,6 +22,12 @@
 
 .cnt {display: flex;margin: 20px auto;}
 
+.text-center-md {text-align: center;}
+
+.dropdown .rounded {border-radius: 25px!important;}
+
+.d-none2 {display: none;}
+
 select option {
   background: rgba(0, 0, 0, 0.85);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
@@ -51,7 +57,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.caramel_color {color: #fbd747;}
+.caramel_color {color: #fbd747!important;}
 
 .scrolled {
     background: rgba(0,0,0,0.65)!important;
@@ -294,7 +300,7 @@ b {
   float: left;
   height: auto;
 /*  padding: 75px 0;*/
-	background: url(" ../img/body.png") ;
+	background: #181818 ;
 	background-size: 100% 100%;
 	background-attachment:fixed;
 	position:relative;
@@ -378,6 +384,8 @@ b {
 
 /*================================= poster card =================================*/
 
+
+.poster {position: relative;}
 
 .poster-card {
 	display: flex;
@@ -525,6 +533,28 @@ a {cursor: pointer}
 
 .variable_card {max-width: 180px; }
 
+
+.poster_more, .poster_remove {
+	background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+	z-index: 9;
+}
+
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b!important;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+
 /*poster card ends*/
 
 /*======================================== Start actors=============================*/
@@ -652,7 +682,7 @@ h2 {
 	width: 100%;
     height: 100%;
     padding: 3px;
-    background-color: rgba(0, 0, 0, 0.75);  /* rgba(53, 45, 26, 0.9) // rgba(70, 59, 36, 0.85) // rgba(70, 57, 20, 0.85) */ 
+    background-color: rgba(0, 0, 0, 0.85);  /* rgba(53, 45, 26, 0.9) // rgba(70, 59, 36, 0.85) // rgba(70, 57, 20, 0.85) */ 
     z-index: 4;
     color: #fff;
         }
@@ -749,6 +779,7 @@ h2 {
     left: 0;
     top: 0;
     padding: 10px;
+	cursor: pointer;
 }
 
 
@@ -793,7 +824,7 @@ h2 {
 	border-left: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-#search_result
+#search_result,#search_result2,#search_result3
 {
 	position: absolute;
 	width: 100%;
@@ -1407,7 +1438,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	
 	.back_layer
 	{
-		background: rgba(0, 0, 0,0.8);
+/*		background: rgba(0, 0, 0,0.8);*/
 		padding-top: 77px;
 		padding-bottom: 10px;
 	}
@@ -1476,6 +1507,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 		transition: all 0.3s linear;
 		border: 1px solid rgba(255, 255, 255, 0.5);
 		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
+		line-height: 2.5;
 
 	}
 	
@@ -1563,6 +1595,77 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 
+/**========== Start List Box  ==========**/
+
+.photo-box {position: relative;}
+
+.post-box {
+    text-align: center;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+	transition: all 0.3s linear;
+    border-radius: 10px;
+}
+
+.post-box .highlight {
+	width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s linear;
+    opacity: 1;
+}
+
+.post-box:hover .highlight {
+	opacity: 0;
+}
+
+.post-box:hover {
+	border-radius: 0!important;
+}
+
+.post-box .text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+}
+
+.post-box .text h6 {
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 30px;
+    letter-spacing: 1.92px;
+    margin-bottom: 10px;
+    font-style: normal;
+    transition: all 0.5s ease;
+}
+
+.post-box .text span {
+    font-size: 13px;
+    line-height: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: #ffffff;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+/**========== End List Box  ==========**/
 
 
 
@@ -1778,15 +1881,15 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 
 @media (min-width: 576px)
 {
-	.col-person {
-		max-width: 16%;
-	}
+	.col-person {max-width: 16%;}
 }
 
 
 @media (max-width: 575px)
 {
-	.col-person {
-		max-width: 50%;
-	}
+	.col-person {max-width: 50%;}
+	
+	.text-center-md {text-align: unset;}
+	
+	 h5 {font-size: 1rem;}
 }

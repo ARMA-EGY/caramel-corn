@@ -35,8 +35,10 @@ $(document).on('change', '.select_page', function()
 	
 
  
-  $(".search_bar").keyup(function(){
-	  if($(this).val().length > 2)
+  
+	$(document).on('keyup', '.search_bar', function(){
+		
+	  if($(this).val().length > 1)
 		 {
 			var type =  $('.select-search').val();
 			 
@@ -60,7 +62,7 @@ $(document).on('change', '.select_page', function()
 
 $('.select-search').change(function(){
 	
-	if($(".search_bar").val().length > 2)
+	if($(".search_bar").val().length > 1)
 		 {
 			var type =  $('.select-search').val();
 			 
@@ -304,7 +306,7 @@ $('.btn-group').hover(function()
 	
 	// ==========================  SHOW TRAILER  ==========================
 	
-$('.get_trailer').click(function(){
+$(document).on('click', '.get_trailer', function(){
 	
 	$('#trailer_body').html('<img src="layout/img/loader.gif" width="75">');
 	
@@ -329,6 +331,12 @@ $('.get_trailer').click(function(){
 });
 	
 	
+
+$(document).on('click', '.close_trailer', function(){
+	
+	$('#trailer_body').html('');
+	
+});
 	
 	// ==========================  Browse Filter  ==========================
 	
@@ -462,6 +470,11 @@ $('.filter_form').submit(function(e){
 								  title: title
 								})
 								 
+		
+								var snd = new Audio("audio/beep.mp3");
+								snd.play();
+								snd.currentTime=0;
+								 
 								dis.removeClass('added')
 							 }
 				});
@@ -489,6 +502,11 @@ $('.filter_form').submit(function(e){
 								  icon: 'success',
 								  title: title
 								})
+								 
+		
+								var snd = new Audio("audio/lesser.mp3");
+								snd.play();
+								snd.currentTime=0;
 								 
 								dis.addClass('added')
 							 }
@@ -731,6 +749,157 @@ $('.subscribe_form').submit(function(e){
 		
 	});
 	
+	
+	
+	
+	
+	// ========================== List Page   ==========================	
+	
+
+	$(document).on('submit', '.list_form', function(e){
+
+	e.preventDefault();
+	//$('.submit').prop('disabled', true);
+
+
+	$('#create_list').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+
+	$.ajax({
+		url: 		'ajax_list.php',
+		method: 	'POST',
+		dataType: 	'text',
+		data:		$(this).serialize()	,
+		success : function(response)
+			 {
+				$("#create_list").html(response);
+			 }
+	});
+
+});
+	
+
+	$(document).on('keyup', '.search_bar2', function(){
+		
+	 var target =  $(this).attr('data-target');
+	 var type   =  $(this).attr('data-type');
+	 var list   =  $(this).attr('data-list');
+	 var user   =  $(this).attr('data-user');
+		
+	  if($(this).val().length > 1)
+		 {
+    		$(target).fadeIn();
+			 
+			 $.ajax({
+                  url:    'ajax_list.php',
+                  method:   'POST',
+                  dataType:   'text',
+                  data:   {search: $(this).val(), type: type, target: target, list: list, user: user} ,
+                  success : function(response)
+                     {$(target).html(response);}
+                });
+		 }
+	  else
+		  {
+			 $(target).fadeOut();
+		  }
+	  
+  });
+
+	
+	$(document).on('click', '.select_list', function(){
+		
+		
+		 var target 	=  $(this).attr('data-target');
+		 var tmdb 	    =  $(this).attr('data-tmdb');
+		 var type   	=  $(this).attr('data-type');
+		 var list   	=  $(this).attr('data-list');
+		 var user   	=  $(this).attr('data-user');
+		 var section    =  $(this).attr('data-section');
+		
+		
+		$(target).fadeOut();
+		$('.search_bar2').val('');
+
+		 $.ajax({
+			  url:    'ajax_list.php',
+			  method:   'POST',
+			  dataType:   'text',
+			  data:   {add_list: list, type: type, tmdb: tmdb, user: user} ,
+			  success : function(response)
+				 {$(section).append(response);}
+			});
+	
+  });
+	
+	
+	$(document).on('click', '.poster_remove', function(){
+		
+		
+		 var id   	=  $(this).attr('data-id');
+		
+		 $(this).parents('.variable_card').remove();
+
+		 $.ajax({
+			  url:    'ajax_list.php',
+			  method:   'POST',
+			  dataType:   'text',
+			  data:   {remove_item: id} ,
+			  success : function(response)
+				 {}
+			});
+	
+  });
+	
+	
+	$(document).on('click', '.select_cover', function(){
+		
+		
+		 var list   	=  $(this).attr('data-list');
+		 var cover   	=  $(this).attr('data-cover');
+		
+		 $('.cover_selected').remove();
+		 $(this).append('<i class="fas fa-check poster_more cover_selected text-warning"></i>');
+		
+
+		 $.ajax({
+			  url:    'ajax_list.php',
+			  method:   'POST',
+			  dataType:   'text',
+			  data:   {cover: cover, list_id: list, step_3 : 3} ,
+			  success : function(response)
+				 {}
+			});
+	
+  });
+	
+	
+	
+	
+	
+	// ========================== Copy Shareable Link  ==========================	
+	  
+  
+	$(document).on('click', '.copyButton', function()
+	{
+
+		var title = 'Shareable Link Has Copied Successfully .';
+		$(this).siblings('input.linkToCopy').select();      
+		document.execCommand("copy");
+		
+		console.log($(this).siblings('input.linkToCopy').select());
+		
+		var snd = new Audio("audio/lesser.mp3");
+
+		snd.play();
+
+		snd.currentTime=0;
+
+		Toast.fire({
+		  icon: 'success',
+		  title: title
+		})
+
+	});
 
 });
 

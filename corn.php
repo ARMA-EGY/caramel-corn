@@ -20,6 +20,15 @@ include('include/genre.php');
 
 $join_date = date(' F, Y', strtotime($date));
 
+
+$stmt = $conn->prepare("SELECT * FROM members WHERE id = ? ");
+$stmt->execute(array($user_id));
+$user = $stmt->fetch();
+
+$private = $user['private'];
+$uid     = $user['uid'];
+$logo    = $user['corn_logo'];
+
 ?>
 
 <style>
@@ -39,7 +48,6 @@ $join_date = date(' F, Y', strtotime($date));
 	}
 	
 	.toggle_type.active{color: #fbd747;}
-	
 	
 	.badge-toggle 
 	{
@@ -82,7 +90,28 @@ $join_date = date(' F, Y', strtotime($date));
 		margin: 0!important;
 	}
 	
+
+	.floaty {
+		float: left;
+		width: 250px;
+		color: #fff;}
+
+	.info p, .info-last p {margin-left: 50px;}
+
+	.info {
+		border-bottom: 1px solid #bbb;
+		padding-top: 15px;}
+
+	.info-last {
+		padding-top: 15px;
+		padding-bottom: 1px;}
+/*
+	.info:hover, .info-last:hover{background-color: rgba(239, 239, 239, 0.5)}
+*/
 	
+	.logo-hov:hover {background: #555; border-radius: 5px;}
+	
+	.logo_select {background: #bbb; border-radius: 5px; padding: 5px;}
 	
 </style>
 
@@ -184,14 +213,16 @@ $join_date = date(' F, Y', strtotime($date));
 
 						<div class="col-md-12 pt-4 text-white">
 
-							<img class="mr-2 mb-2" src="layout/img/popcorn/corn3.png" alt="" width="70"> 
-
+							<div class="d-inline-block corn_logo">
+								<img class="mr-2 mb-2" src="layout/img/popcorn/<?=$logo ?>" alt="" width="70"> 
+							</div>
+							
 							<h4 class="font-weight-bold" style="display: inline-block;color: #fbd747;font-family: Lobster, 'sans-serif';">My <span class="text-white" style="font-family: Lobster, 'sans-serif';">Corn</span> 
 							</h4> 
 							
-							<button class="btn-filter btn-list float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-cog"></i> </button>
+							<button class="btn-filter btn-list float-right px-2 py-1 mt-4 mx-1" data-toggle="modal" data-target="#setting_modal"><i class="fa fa-cog"></i> </button>
 							
-							<button class="btn-filter btn-list float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-plus"></i> Create List</button>
+							<a href="list.php" class="btn-filter btn-list text-white float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-plus"></i> Create List</a>
 
 						</div>
 
@@ -369,13 +400,92 @@ $join_date = date(' F, Y', strtotime($date));
 
 
 
-<div class="loader hidden" style="position: fixed;bottom: 10px;width: 150px;left: 50%;z-index: 999;transform: translateX(-50%);"></div>
+
+<!-- Setting Modal -->
+<div class="modal fade" id="setting_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="background: rgba(0, 0, 0, 0.7);color: #fff;border: 1px solid rgba(255, 255, 255, 0.5);">
+      <div class="modal-header">
+        <h5 class="modal-title" id="setting_label">Setting</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		    
+        <div class="info">
+			
+			<span class="floaty"><i class="far fa-file-image mr-2"></i> Logo</span>
+			
+			<div class="mb-2">
+				<button class="btn btn-light get_logo px-1 py-0 ml-2" data-user="<?=$user_id ?>"><i class="fas fa-edit"></i> Change</button>
+			</div>
+			
+			<div id="corn_logos" class="text-center"></div>
+			
+		</div>
+		
+		  
+        <div class="info-last">
+			
+			<span class="floaty"><i class="fas fa-user-shield mr-2"></i> Private Account</span>
+			
+			<div class="custom-control custom-switch">
+			  <input type="checkbox" class="custom-control-input" id="private" data-user="<?=$user_id ?>" <? if($private == 1){echo 'checked';} ?>>
+			  <label class="custom-control-label ml-5 mb-2" for="private"> Private</label>
+			</div>
+			
+		</div>
+		  
+		  
+		<div class="info-last sharelink <? if($private == 1){echo 'd-none2';} ?>" style="border-top: 1px solid #bbb;">
+			
+			<span class="floaty"><i class="fas fa-share-alt mr-2"></i> Shareable Link</span>
+			
+			<div class="mb-2">
+				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
+				<input class="linkToCopy" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
+
+				<p class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
+			</div>
+			
+		</div>
+		  
+		  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-filter" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+
+<!-- List Modal -->
+<div class="modal fade" id="list_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" >
+		
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+		
+      <div class="modal-body" id="get_list_modal">
+		    
+	  </div>
+		
+    </div>
+  </div>
+</div>
 
 	
 
 <? include('include/footer.php'); ?>
+
+
 
 <script>
 		
@@ -494,6 +604,19 @@ $join_date = date(' F, Y', strtotime($date));
 								$("#following").html(response);
 							 }
 				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
 	
 
 	
@@ -519,7 +642,7 @@ $join_date = date(' F, Y', strtotime($date));
 
 	
 	function getData(section,type,target,btn,user_id) 
-{
+	{
     if (reachedMax)
         return;
 	
@@ -561,6 +684,200 @@ $join_date = date(' F, Y', strtotime($date));
     });
 }
 
+	
+ $('#private').click(function()
+  {
+	 		
+		var user_id = $(this).attr('data-user');
+	 
+	 	 if($('#private').is(':checked'))
+			 {
+				 $('.sharelink').slideUp();
+				 
+				 $.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{private : 1, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+							 }
+				});
+			 }
+	 	 else
+			{
+				 $('.sharelink').slideDown(); 
+				
+				 $.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{private : 0, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+							 }
+				});
+			}
+       
 
+  });
+	
+	
+	
+ $('.get_logo').click(function()
+      {
+	 
+			$('#corn_logos').slideDown();
+			var user_id = $(this).attr('data-user');
+	 	
+			$.ajax({
+				url: 		'ajax.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{get_logo : 1, 
+							 user_id 	 : user_id
+							}	,
+				success : function(response)
+						 {
+							 $('#corn_logos').html(response);
+						 }
+			});
+
+      });
+	
+		
+	
+ $(document).on('click', '.select_corn', function()
+      {
+	 
+			var user_id = $(this).attr('data-user');
+			var logo 	= $(this).attr('data-logo');
+	 	
+			$.ajax({
+				url: 		'ajax.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{change_logo : logo, 
+							 user_id 	 : user_id
+							}	,
+				success : function(response)
+						 {
+							 $('#corn_logos').slideUp();
+							 $('.corn_logo').html(response);
+						 }
+			});
+
+      });
+
+	
+	
+ $(document).on('click', '.get_list_modal', function()
+      {
+	 
+			var list    = $(this).attr('data-list');
+			var kind 	= $(this).attr('data-kind');
+			var user 	= $(this).attr('data-user');
+	 
+	 		$('.photo-box').removeClass('active');
+	 		$(this).parents('.photo-box').addClass('active');
+	 
+	 		if (kind == 'remove')
+				{
+					  Swal.fire({
+					  title: 'Are you sure?',
+					  text: "You won't be able to revert this!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#d33',
+					  cancelButtonColor: '#3085d6',
+					  confirmButtonText: 'Yes, Remove it!'
+					}).then((result) => {
+					  if (result.value) {
+						  
+		 				    $(this).parents('.photo-box').remove();
+						  
+						    $.ajax({
+									url: 		'ajax_list.php',
+									method: 	'POST',
+									dataType: 	'text',
+									data:		{list_kind : kind, 
+												 user_id 	 : user, 
+												 list_id 	 : list
+												}	,
+									success : function(response)
+											 {
+
+											 }
+								});
+						  
+							Swal.fire(
+							  'Deleted!',
+							  'Your List has been removed.',
+							  'success'
+							)
+					  }
+					})
+				}
+	 		else
+			{
+				$('#list_modal').modal('show');
+	    		$('#get_list_modal').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+				
+				 $.ajax({
+							url: 		'ajax_list.php',
+							method: 	'POST',
+							dataType: 	'text',
+							data:		{list_kind : kind, 
+										 user_id 	 : user, 
+										 list_id 	 : list
+										}	,
+							success : function(response)
+									 {
+		 				    			$('#get_list_modal').html(response);
+									 }
+						});
+			}
+	 
+	 	
+
+      });
+	
+	
+
+ $(document).on('submit', '.edit_list_form', function(e){
+
+	e.preventDefault();
+	$('#list_modal').modal('hide');
+
+	$.ajax({
+		url: 		'ajax_list.php',
+		method: 	'POST',
+		dataType: 	'text',
+		data:		$(this).serialize()	,
+		success : function(response)
+			 {
+				$(".photo-box.active").find('.highlight').html(response);
+			 }
+	});
+
+});
+	
+	
+
+ $(document).on('click', '.change_list_cover', function()
+      {
+			var cover 		= $(this).attr('data-cover');
+			var background  = 'url(https://image.tmdb.org/t/p/w355_and_h200_bestv2' + cover + ')';
+	 	
+    		$(".photo-box.active").find('.post-box').css({"background": background});
+
+      });
+
+	
 </script>
 
+	

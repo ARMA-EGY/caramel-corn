@@ -717,31 +717,83 @@ if(isset($_POST['add_to']))
 	if ($kind == 'Favorites')
 	{
 		
-		$stmt = "INSERT INTO favorites ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+		$stmt = $conn->prepare("SELECT * FROM favorites WHERE tmdb_id = ? AND user_id = ?");
+		$stmt->execute(array($tmdb, $user_id));
+		$row = $stmt->fetch();
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+		$count = $stmt->rowCount();
 
-		$conn->exec($stmt);
+		// if count > 0 this mean the database contain record about this data
+
+		if ($count > 0 )
+		{
+			
+		}
+		else
+		{
+			
+			$stmt = "INSERT INTO favorites ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+
+						VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+
+			$conn->exec($stmt);
+			
+		}
+		
 		
 	}
 	elseif ($kind == 'Likes')
 	{
 		
-		$stmt = "INSERT INTO likes ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+		$stmt = $conn->prepare("SELECT * FROM likes WHERE tmdb_id = ? AND user_id = ?");
+		$stmt->execute(array($tmdb, $user_id));
+		$row = $stmt->fetch();
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+		$count = $stmt->rowCount();
 
-		$conn->exec($stmt);
+		// if count > 0 this mean the database contain record about this data
+
+		if ($count > 0 )
+		{
+			
+		}
+		else
+		{
+		
+			$stmt = "INSERT INTO likes ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+
+						VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+
+			$conn->exec($stmt);
+			
+		}
 		
 	}
 	elseif ($kind == 'Watchlist')
 	{
 		
-		$stmt = "INSERT INTO watchlist ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+		$stmt = $conn->prepare("SELECT * FROM watchlist WHERE tmdb_id = ? AND user_id = ?");
+		$stmt->execute(array($tmdb, $user_id));
+		$row = $stmt->fetch();
 
-					VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+		$count = $stmt->rowCount();
 
-		$conn->exec($stmt);
+		// if count > 0 this mean the database contain record about this data
+
+		if ($count > 0 )
+		{
+			
+		}
+		else
+		{
+		
+			$stmt = "INSERT INTO watchlist ( `name`, `tmdb_id`, `imdb_id`, `type`, `release_date`, `rate`, `user_id`, `Add_Date`)
+
+						VALUES('$name', '$tmdb' , '$imdb', '$type', '$date', '$rate', '$user_id', now() )";
+
+			$conn->exec($stmt);
+			
+		}
 		
 	}
 	
@@ -2187,6 +2239,78 @@ if (isset($_POST['oldToken']))
 
 
 
+// ========================= GET ALL CORN LOGOS  =========================
 
+if (isset($_POST['get_logo']))
+{
+	
+    	$user_id = $_POST['user_id'];
+	
+		$stmt = $conn->prepare("SELECT * FROM members WHERE id = ? ");
+		$stmt->execute(array($user_id));
+		$user = $stmt->fetch();
+	
+		$logo = $user['corn_logo'];
+	
+		$stmt = $conn->prepare("SELECT * FROM corn_logo ");
+		$stmt->execute();
+		$rows = $stmt->fetchAll();
+
+
+		foreach($rows as $row)
+		{
+			if($logo == $row['logo'])
+			{
+				$select = 'logo_select';
+			}
+			else
+			{
+				$select = '';
+			}
+?>
+			<img class="m-2 select_corn pointer transition logo-hov <?=$select ?>" src="layout/img/popcorn/<?=$row['logo'] ?>" data-logo="<?=$row['logo'] ?>" data-user="<?=$user_id ?>" alt="" width="70">
+
+<?
+		}
+	
+	
+}
+
+
+
+// ========================= CHANGE CORN LOGO  =========================
+
+if (isset($_POST['change_logo']))
+{
+	
+    	$user_id = $_POST['user_id'];
+    	$logo    = $_POST['change_logo'];
+	
+	
+		$stmt = $conn->prepare("UPDATE members SET corn_logo = ? WHERE id = ?");
+		$stmt->execute(array($logo, $user_id));
+	
+?>
+		<img class="mr-2 mb-2" src="layout/img/popcorn/<?=$logo ?>" alt="" width="70"> 
+<?
+	
+}
+
+
+
+// ========================= CHANGE ACCOUNT PRIVACY  =========================
+
+if (isset($_POST['private']))
+{
+	
+    	$user_id    = $_POST['user_id'];
+    	$private    = $_POST['private'];
+
+	
+		$stmt = $conn->prepare("UPDATE members SET private = ? WHERE id = ?");
+		$stmt->execute(array($private, $user_id));
+
+	
+}
 
 ?>

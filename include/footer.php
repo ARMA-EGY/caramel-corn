@@ -120,12 +120,22 @@
 
 
 <!--==========================Start Modal Trailer ================================-->
-<div class="modal fade" id="trailer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="trailer_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	  
-    <div class="modal-content text-white text-center" style="background: #0000;">
+    <div class="modal-content text-white text-center" style="background: #0000;border: unset;">
+		
+		<div class="modal-header" style="border-bottom: unset;">
+			<button type="button" class="close text-white close_trailer" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">×</span>
+			</button>
+		</div>
 		
       	<div id="trailer_body" class="modal-body"></div>
+		
+		<div class="modal-footer">
+        	<button type="button" class="btn btn-secondary close_trailer" data-dismiss="modal">Close</button>
+        </div>
       
     </div>
   </div>
