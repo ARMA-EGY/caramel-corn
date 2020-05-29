@@ -125,7 +125,7 @@ else
 						if($download_exist == 1)
 						{
 					?>
-						<button class="btn my-3 text-white down-btn" data-toggle="modal" data-target="#download_modal"><i class="fas fa-download"></i> Download</button>
+						<button class="btn my-3 text-white down-btn d-mid-none" data-toggle="modal" data-target="#download_modal"><i class="fas fa-download"></i> Download</button>
 
 					<?
 						}
@@ -350,113 +350,115 @@ else
 				?>
 						
 				<!-- =========  Similar Movies =========  -->
-
-						<h5 class="text-center text-white font-weight-bold">Similar Movies</h5>
-
-						<div class="row justify-content-center m-auto text-center similar_box" >
-
-					<?
 						
-						foreach(array_slice($similar->results, 0, 4) as $movie )
-						{
-							$date =  $movie->release_date;
-							$newdate = date('j M, Y', strtotime($date));
-							$rate = $movie->vote_average * 10 ;
-						
-							if ($movie->poster_path == '')
-							{
-								$img = 'layout/img/no_poster.jpeg';
-							}
-							else
-							{
-								$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
-							}
-					?>
+						<div class="d-mid-none">
 
-					  <!-- Start New Card -->
-						<div class="col-md-6 my-2" >  
+							<h5 class="text-center text-white font-weight-bold">Similar Movies</h5>
 
-							<div class=" tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
-								<div class="poster"> 
-									<a href="single.php?movie=<?= $movie->id?>">
-										<img width="75%" src="<?= $img?>" alt="" class="poster_img" />
-									</a>
+							<div class="row justify-content-center m-auto text-center similar_box" >
+
+						<?
+
+							foreach(array_slice($similar->results, 0, 4) as $movie )
+							{
+								$date =  $movie->release_date;
+								$newdate = date('j M, Y', strtotime($date));
+								$rate = $movie->vote_average * 10 ;
+
+								if ($movie->poster_path == '')
+								{
+									$img = 'layout/img/no_poster.jpeg';
+								}
+								else
+								{
+									$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+								}
+						?>
+
+						  <!-- Start New Card -->
+							<div class="col-md-6 my-2" >  
+
+								<div class=" tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+									<div class="poster"> 
+										<a href="single.php?movie=<?= $movie->id?>">
+											<img width="75%" src="<?= $img?>" alt="" class="poster_img" />
+										</a>
+									</div>
+
 								</div>
 
-							</div>
 
+								<div class="d-none">
 
-							<div class="d-none">
+									<div class="c-body" id="tooltip_content_<?= $movie->id?>">
 
-								<div class="c-body" id="tooltip_content_<?= $movie->id?>">
+									 <div class="wrapper">
 
-								 <div class="wrapper">
-
-									<div class="c-title">
-										<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
-										<div class="ratings">
-										  <div class="empty-stars"></div>
-										  <div class="full-stars" style="width:<?= $rate?>%"></div>
+										<div class="c-title">
+											<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+											<div class="ratings">
+											  <div class="empty-stars"></div>
+											  <div class="full-stars" style="width:<?= $rate?>%"></div>
+											</div>
+											<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
 										</div>
-										<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
+
+										<div class="rate">
+											 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+										</div>
+
+
+
+									  </div>
+
+									<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+
+									<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+									<div class="cate mt-3" >
+
+										<?
+
+											foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+											{
+												$genre_cate = '_'.$genre;
+												?>
+
+										<div class="mb-1 cate_color_<?= $genre;?>">
+											<a href="m_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
+										</div>
+
+												<?
+											}
+
+										?>
+
 									</div>
 
-									<div class="rate">
-										 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+
+									<div class="details mt-3" >
+
+										<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+										<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
 									</div>
 
 
-
-								  </div>
-
-								<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
-
-								<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
-
-
-								<div class="cate mt-3" >
-
-									<?
-
-										foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
-										{
-											$genre_cate = '_'.$genre;
-											?>
-
-									<div class="mb-1 cate_color_<?= $genre;?>">
-										<a href="m_browse.php?type=genre&genre=<?= $genre?>"><?= $cate->$genre_cate;?></a>
 									</div>
-
-											<?
-										}
-
-									?>
-
-								</div>
-
-
-								<div class="details mt-3" >
-
-									<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
-
-									<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
-								</div>
-
 
 								</div>
 
 							</div>
 
-						</div>
+						  <!-- End New Card -->
 
-					  <!-- End New Card -->
+						<? } ?>
+
+							</div>
 
 					<? } ?>
-
 						</div>
-
-				<? } ?>
-						
 
 					</div>
 

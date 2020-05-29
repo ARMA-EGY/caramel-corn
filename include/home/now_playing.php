@@ -24,7 +24,7 @@
 			</div>
 
 
-		<div class="p-4 playing" id="playing">
+		<div class="py-4 playing" id="playing">
 
 
 			<div class="show_cards row justify-content-center fade show">

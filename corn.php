@@ -31,89 +31,6 @@ $logo    = $user['corn_logo'];
 
 ?>
 
-<style>
-
-	.toggle_type 
-	{
-		margin: 0 5px;
-		background: #000;
-		border-radius: 15px;
-		border: 1px solid rgba(255, 255, 255, 0.7);
-		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-		transition: all 0.3s linear;
-		display: inline-block;
-		color: #fff;
-		padding: 5px 15px;
-		cursor: pointer;
-	}
-	
-	.toggle_type.active{color: #fbd747;}
-	
-	.badge-toggle 
-	{
-		color: #212529;
-		background-color: #f8f9fa;
-	}
-	
-	
-	.toggle_type.active .badge-toggle
-	{
-		color: #212529;
-		background-color: #ffc107;
-	}
-	
-	.select-wrapper
-	{
-		border-radius: 30px;
-		display: inline-block;
-		overflow: hidden;
-		background: #000;
-		border: 1px solid #ccc;
-		float: right;
-		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
-		margin: 2px;
-	}
-	
-	.select-control
-	{
-		width: fit-content;
-		background: rgb(0, 0, 0);
-   		color: #fff;
-		height: calc(1.5em + .75rem + 2px);
-		font-size: 0.8rem;
-		font-weight: 400;
-		line-height: 1.5;
-		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		border: 0px;
-		outline: none;
-		padding: 0;
-		margin: 0!important;
-	}
-	
-
-	.floaty {
-		float: left;
-		width: 250px;
-		color: #fff;}
-
-	.info p, .info-last p {margin-left: 50px;}
-
-	.info {
-		border-bottom: 1px solid #bbb;
-		padding-top: 15px;}
-
-	.info-last {
-		padding-top: 15px;
-		padding-bottom: 1px;}
-/*
-	.info:hover, .info-last:hover{background-color: rgba(239, 239, 239, 0.5)}
-*/
-	
-	.logo-hov:hover {background: #555; border-radius: 5px;}
-	
-	.logo_select {background: #bbb; border-radius: 5px; padding: 5px;}
-	
-</style>
 
 <input type="hidden" id="user_id" value="<?=$user_id?>">
 	
@@ -444,9 +361,9 @@ $logo    = $user['corn_logo'];
 			
 			<div class="mb-2">
 				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
-				<input class="linkToCopy" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
+				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
 
-				<p class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
+				<p id="corn_link" class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
 			</div>
 			
 		</div>
@@ -462,166 +379,12 @@ $logo    = $user['corn_logo'];
 
 
 
-<!-- List Modal -->
-<div class="modal fade" id="list_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content" >
-		
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-		
-      <div class="modal-body" id="get_list_modal">
-		    
-	  </div>
-		
-    </div>
-  </div>
-</div>
-
-	
 
 <? include('include/footer.php'); ?>
 
 
 
 <script>
-		
-	    $('#watchlist_section_movie, #watchlist_section_tv, #likes_section_movie, #likes_section_tv, #favorites_section_movie, #favorites_section_tv, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
-		
-	    $('#watchlist_section_tv, #likes_section_tv, #favorites_section_tv').hide();
-	
-		var user_id = $('#user_id').val()
-		
-		$.ajax({
-					url: 		'include/sections/watchlist.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#watchlist_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/watchlist.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#watchlist_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/likes.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#likes_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/likes.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#likes_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/favorites.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#favorites_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/favorites.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#favorites_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/lists.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#lists").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/following.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#following").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/lists.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#lists").html(response);
-							 }
-				});
-	
-
-	
-	
-	///////////////////////////////////////////////
 	
 	var start = 20;
 	var limit = 20;
@@ -685,197 +448,32 @@ $logo    = $user['corn_logo'];
 }
 
 	
- $('#private').click(function()
-  {
-	 		
-		var user_id = $(this).attr('data-user');
+
+	
 	 
-	 	 if($('#private').is(':checked'))
-			 {
-				 $('.sharelink').slideUp();
-				 
-				 $.ajax({
-					url: 		'ajax.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{private : 1, 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-							 }
-				});
-			 }
-	 	 else
-			{
-				 $('.sharelink').slideDown(); 
-				
-				 $.ajax({
-					url: 		'ajax.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{private : 0, 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-							 }
-				});
-			}
-       
-
-  });
+//	$('.copyButton').click(function()
+//	{
+//	  var copyText = document.getElementById("linkToCopy");
+//	  copyText.select();
+//	  document.execCommand("copy");
+//	  alert("Copied the text: " + copyText.value);
+//
+//	});
 	
-	
-	
- $('.get_logo').click(function()
-      {
-	 
-			$('#corn_logos').slideDown();
-			var user_id = $(this).attr('data-user');
-	 	
-			$.ajax({
-				url: 		'ajax.php',
-				method: 	'POST',
-				dataType: 	'text',
-				data:		{get_logo : 1, 
-							 user_id 	 : user_id
-							}	,
-				success : function(response)
-						 {
-							 $('#corn_logos').html(response);
-						 }
-			});
-
-      });
-	
-		
-	
- $(document).on('click', '.select_corn', function()
-      {
-	 
-			var user_id = $(this).attr('data-user');
-			var logo 	= $(this).attr('data-logo');
-	 	
-			$.ajax({
-				url: 		'ajax.php',
-				method: 	'POST',
-				dataType: 	'text',
-				data:		{change_logo : logo, 
-							 user_id 	 : user_id
-							}	,
-				success : function(response)
-						 {
-							 $('#corn_logos').slideUp();
-							 $('.corn_logo').html(response);
-						 }
-			});
-
-      });
-
-	
-	
- $(document).on('click', '.get_list_modal', function()
-      {
-	 
-			var list    = $(this).attr('data-list');
-			var kind 	= $(this).attr('data-kind');
-			var user 	= $(this).attr('data-user');
-	 
-	 		$('.photo-box').removeClass('active');
-	 		$(this).parents('.photo-box').addClass('active');
-	 
-	 		if (kind == 'remove')
-				{
-					  Swal.fire({
-					  title: 'Are you sure?',
-					  text: "You won't be able to revert this!",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#d33',
-					  cancelButtonColor: '#3085d6',
-					  confirmButtonText: 'Yes, Remove it!'
-					}).then((result) => {
-					  if (result.value) {
-						  
-		 				    $(this).parents('.photo-box').remove();
-						  
-						    $.ajax({
-									url: 		'ajax_list.php',
-									method: 	'POST',
-									dataType: 	'text',
-									data:		{list_kind : kind, 
-												 user_id 	 : user, 
-												 list_id 	 : list
-												}	,
-									success : function(response)
-											 {
-
-											 }
-								});
-						  
-							Swal.fire(
-							  'Deleted!',
-							  'Your List has been removed.',
-							  'success'
-							)
-					  }
-					})
-				}
-	 		else
-			{
-				$('#list_modal').modal('show');
-	    		$('#get_list_modal').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
-				
-				 $.ajax({
-							url: 		'ajax_list.php',
-							method: 	'POST',
-							dataType: 	'text',
-							data:		{list_kind : kind, 
-										 user_id 	 : user, 
-										 list_id 	 : list
-										}	,
-							success : function(response)
-									 {
-		 				    			$('#get_list_modal').html(response);
-									 }
-						});
-			}
-	 
-	 	
-
-      });
-	
-	
-
- $(document).on('submit', '.edit_list_form', function(e){
-
-	e.preventDefault();
-	$('#list_modal').modal('hide');
-
-	$.ajax({
-		url: 		'ajax_list.php',
-		method: 	'POST',
-		dataType: 	'text',
-		data:		$(this).serialize()	,
-		success : function(response)
-			 {
-				$(".photo-box.active").find('.highlight').html(response);
-			 }
-	});
-
-});
-	
-	
-
- $(document).on('click', '.change_list_cover', function()
-      {
-			var cover 		= $(this).attr('data-cover');
-			var background  = 'url(https://image.tmdb.org/t/p/w355_and_h200_bestv2' + cover + ')';
-	 	
-    		$(".photo-box.active").find('.post-box').css({"background": background});
-
-      });
+	  
+//	$(document).on('click', '.copyButton', function()
+//	{
+//		//$(this).siblings('input.linkToCopy').select();      
+//		$('#linkToCopy').select();
+//		document.execCommand("copy");
+//		
+//		var snd = new Audio("audio/lesser.mp3");
+//		snd.play();
+//		snd.currentTime=0;
+//		
+//	  alert("Copied the text: " + $('#linkToCopy').val());
+//
+//	});
 
 	
 </script>

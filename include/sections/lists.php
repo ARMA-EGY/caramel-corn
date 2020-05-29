@@ -54,11 +54,11 @@
 									<i class="fas fa-share-alt text-primary"></i> Share</a>	
 							</div>
 						
-						<a href="viewlist.php?u=<?=$row['uid'] ?>" class="post-box" style="background-image: url(<?=$cover ?>)" >
+						<a href="viewlist.php?u=<?=$row['uid']?>&u2=<?= $user_id ?>" class="post-box" style="background-image: url(<?=$cover ?>)" >
 							
 							<div class="highlight">
 								<div class="text text-light">
-									<h6><?=$row['name'] ?></h6>
+									<h6><?= ucwords($row['name'])  ?></h6>
 									<span><?=$newdate ?></span>
 									<br>
 									<? if($row['public'] == 'Yes'){echo '<span class="badge badge-secondary mt-1">Public</span>';}else{echo '<span class="badge badge-primary mt-1">Private</span>'; } ?>
@@ -80,4 +80,5 @@
 				
 	</div>
 				
+
 

@@ -159,15 +159,15 @@ else
 			
 			<form class="filter_form">
 				
-				<div class="col-md-12 mb-3" style="border-bottom: 2px solid #fff;">
-					<h4 class="text-white font-weight-bold pointer slide_box"><i class="fas fa-filter fs-13-t"></i> Filter 
+				<div class="col-md-12" >
+					<h4 class="text-white font-weight-bold pointer slide_box mb-0"><i class="fas fa-filter fs-13-t"></i> Filter 
 						<i class="fa fa-chevron-down fs-13-t float-right pointer transition  rotate"></i> 
 					</h4>
 				</div>
 				
 				<div class="form-box">
 				
-					<div class="form-row mb-2 filter-box" style="border-bottom: 1px solid rgba(255,255,255,0.3)">
+					<div class="form-row my-2 pt-3 filter-box" style="border-bottom: 1px solid rgba(255,255,255,0.3);border-top: 1px solid rgba(255,255,255,0.3);">
 
 						 <div class="form-group col-md-3 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Certification</label>

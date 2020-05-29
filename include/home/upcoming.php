@@ -33,7 +33,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 			</div>
 
 
-		<div class="p-4">
+		<div class="py-4">
 
 
 			<div class="show_cards row justify-content-center fade show">

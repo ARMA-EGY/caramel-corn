@@ -837,16 +837,37 @@ $('.subscribe_form').submit(function(e){
 		
 		 var id   	=  $(this).attr('data-id');
 		
-		 $(this).parents('.variable_card').remove();
+		  Swal.fire({
+		  title: 'Are you sure?',
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#d33',
+		  cancelButtonColor: '#3085d6',
+		  confirmButtonText: 'Yes, Remove it!'
+		}).then((result) => {
+		  if (result.value) {
 
-		 $.ajax({
-			  url:    'ajax_list.php',
-			  method:   'POST',
-			  dataType:   'text',
-			  data:   {remove_item: id} ,
-			  success : function(response)
-				 {}
-			});
+		 		$(this).parents('.variable_card').remove();
+
+				 $.ajax({
+						  url:    'ajax_list.php',
+						  method:   'POST',
+						  dataType:   'text',
+						  data:   {remove_item: id} ,
+						  success : function(response)
+							 {}
+						});
+
+				Swal.fire(
+				  'Deleted!',
+				  'Your item has been removed.',
+				  'success'
+				)
+		  }
+		})
+		
+
+		
 	
   });
 	
@@ -881,25 +902,347 @@ $('.subscribe_form').submit(function(e){
   
 	$(document).on('click', '.copyButton', function()
 	{
-
-		var title = 'Shareable Link Has Copied Successfully .';
 		$(this).siblings('input.linkToCopy').select();      
 		document.execCommand("copy");
 		
-		console.log($(this).siblings('input.linkToCopy').select());
-		
 		var snd = new Audio("audio/lesser.mp3");
-
 		snd.play();
-
 		snd.currentTime=0;
 
+		var title = 'Shareable Link Has Copied Successfully .';
 		Toast.fire({
 		  icon: 'success',
 		  title: title
 		})
 
 	});
+	
+	
+	// ========================== Corn Page  ==========================	
+		
+	    $('#watchlist_section_movie, #watchlist_section_tv, #likes_section_movie, #likes_section_tv, #favorites_section_movie, #favorites_section_tv, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+		
+	    $('#watchlist_section_tv, #likes_section_tv, #favorites_section_tv, #list_section_tv').hide();
+	
+		var user_id = $('#user_id').val()
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#likes_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#likes_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#favorites_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#favorites_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/following.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#following").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
+	
+
+	
+ $('#private').click(function()
+  {
+	 		
+		var user_id = $(this).attr('data-user');
+	 
+	 	 if($('#private').is(':checked'))
+			 {
+				 $('.sharelink').slideUp();
+				 
+				 $.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{private : 1, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+							 }
+				});
+			 }
+	 	 else
+			{
+				 $('.sharelink').slideDown(); 
+				
+				 $.ajax({
+					url: 		'ajax.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{private : 0, 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+							 }
+				});
+			}
+       
+
+  });
+	
+	
+	
+ $('.get_logo').click(function()
+   {
+	 
+			$('#corn_logos').slideDown();
+			var user_id = $(this).attr('data-user');
+	 	
+			$.ajax({
+				url: 		'ajax.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{get_logo : 1, 
+							 user_id 	 : user_id
+							}	,
+				success : function(response)
+						 {
+							 $('#corn_logos').html(response);
+						 }
+			});
+
+      });
+	
+		
+	
+ $(document).on('click', '.select_corn', function()
+      {
+	 
+			var user_id = $(this).attr('data-user');
+			var logo 	= $(this).attr('data-logo');
+	 	
+			$.ajax({
+				url: 		'ajax.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{change_logo : logo, 
+							 user_id 	 : user_id
+							}	,
+				success : function(response)
+						 {
+							 $('#corn_logos').slideUp();
+							 $('.corn_logo').html(response);
+						 }
+			});
+
+      });
+
+	
+	
+ $(document).on('click', '.get_list_modal', function()
+      {
+	 
+			var list    = $(this).attr('data-list');
+			var kind 	= $(this).attr('data-kind');
+			var user 	= $(this).attr('data-user');
+	 
+	 		$('.photo-box').removeClass('active');
+	 		$(this).parents('.photo-box').addClass('active');
+	 
+	 		if (kind == 'remove')
+				{
+					  Swal.fire({
+					  title: 'Are you sure?',
+					  text: "You won't be able to revert this!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#d33',
+					  cancelButtonColor: '#3085d6',
+					  confirmButtonText: 'Yes, Remove it!'
+					}).then((result) => {
+					  if (result.value) {
+						  
+		 				    $(this).parents('.photo-box').remove();
+						  
+						    $.ajax({
+									url: 		'ajax_list.php',
+									method: 	'POST',
+									dataType: 	'text',
+									data:		{list_kind : kind, 
+												 user_id 	 : user, 
+												 list_id 	 : list
+												}	,
+									success : function(response)
+											 {
+
+											 }
+								});
+						  
+							Swal.fire(
+							  'Deleted!',
+							  'Your List has been removed.',
+							  'success'
+							)
+					  }
+					})
+				}
+	 		else
+			{
+				$('#list_modal').modal('show');
+	    		$('#get_list_modal').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+				
+				 $.ajax({
+							url: 		'ajax_list.php',
+							method: 	'POST',
+							dataType: 	'text',
+							data:		{list_kind : kind, 
+										 user_id 	 : user, 
+										 list_id 	 : list
+										}	,
+							success : function(response)
+									 {
+		 				    			$('#get_list_modal').html(response);
+									 }
+						});
+			}
+	 
+	 	
+
+      });
+	
+	
+
+ $(document).on('submit', '.edit_list_form', function(e){
+
+	e.preventDefault();
+	$('#list_modal').modal('hide');
+
+	$.ajax({
+		url: 		'ajax_list.php',
+		method: 	'POST',
+		dataType: 	'text',
+		data:		$(this).serialize()	,
+		success : function(response)
+			 {
+				$(".photo-box.active").find('.highlight').html(response);
+			 }
+	});
+
+});
+	
+	
+
+ $(document).on('click', '.change_list_cover', function()
+      {
+			var cover 		= $(this).attr('data-cover');
+			var background  = 'url(https://image.tmdb.org/t/p/w355_and_h200_bestv2' + cover + ')';
+	 	
+    		$(".photo-box.active").find('.post-box').css({"background": background});
+
+      });
+
 
 });
 

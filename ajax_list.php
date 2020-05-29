@@ -963,7 +963,7 @@ if (isset($_POST['list_kind']))
 				<span class="floaty text-dark"><i class="fas fa-share-alt mr-2"></i> Shareable Link</span>
 
 				<div class="mb-2">
-					<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
+					<button class="btn btn-dark copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
 					<input class="linkToCopy" value="https://caramel-corn.com/viewlist.php?u=<?=$list_uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
 
 					<p class="mt-3 ml-4">https://caramel-corn.com/viewlist.php?u=<?=$list_uid ?></p>
@@ -980,13 +980,81 @@ if (isset($_POST['list_kind']))
 		}
 	}
 
+}
 
+
+// ========================= LIST EDIT FROM (LIST PAGE)  =========================
+
+if (isset($_POST['list_edit']))
+{
+	$user_id 	    = $_POST['user_id'];
+	$list_uid 	    = $_POST['list_id'];
+	
+		
+	$stmt = $conn->prepare("SELECT * FROM lists WHERE uid = ? AND user_id = ? ");
+	$stmt->execute(array($list_uid, $user_id));
+	$row = $stmt->fetch();
+	
+	
+		?>
+
+
+          <form class="edit_list_form2" >
+			  
+			 <!--======= List Name ========-->  
+
+					<div class="form-row form-group"> 
+
+						<div class="col-md-10 mx-auto mb-2" style="border-bottom: 1px solid #555;">
+							<div class="form-group">
+							  <label class="font-weight-bold" for="inputName">Name</label>
+							  <input pattern=".{3,32}" title="Name Must Be Between 3:32 Chars" type="text" class="form-control text-dark" id="inputName" name="edit_list_name2" value="<?=$row['name'] ?>" required>
+							</div>
+						</div>
+						
+						
+			 <!--======= List Description ========-->  
+
+						<div class="col-md-10 mx-auto mb-2" style="border-bottom: 1px solid #555;">
+							<div class="form-group">
+							  <label class="font-weight-bold" for="inputDesc">Description</label>
+								<textarea class="form-control text-dark" id="inputDesc" name="edit_desc"><?=$row['description'] ?></textarea>
+							</div>
+						</div>
+						
+						
+			 <!--======= Public List ========-->  
+
+						<div class="col-md-10 mx-auto mb-2">
+							<div class="form-group">
+							  <label class="font-weight-bold" for="inputState">Public List</label>		 
+							  <select id="inputState" class="form-control text-dark" name="edit_public">
+								<option <? if($row['public'] == 'Yes'){echo 'selected';} ?>>Yes</option>
+								<option <? if($row['public'] == 'No'){echo 'selected';} ?>>No</option>
+							  </select>
+							</div>
+						</div>
+				
+
+					</div>
+			  
+			  <input type="hidden" name="user_id" value="<?=$user_id ?>">
+			  <input type="hidden" name="list_id" value="<?=$list_uid ?>">
+			  
+			  <div class="modal-footer">
+				<button type="submit" class="btn-filter">Save</button>
+			  </div>
+				
+		    </form>
+
+		<?
+		
 }
 
 
 
 
-// ========================= EDIT LIST DATA  =========================
+// ========================= EDIT LIST DATA FROM (CORN PAGE)  =========================
 
 if (isset($_POST['edit_list_name']))
 {
@@ -1008,7 +1076,7 @@ if (isset($_POST['edit_list_name']))
 	$newdate = date('j M, Y', strtotime($row['Add_Date']));
 ?>
 	<div class="text text-light">
-		<h6><?=$row['name'] ?></h6>
+		<h6><?= ucwords($row['name']) ?></h6>
 		<span><?=$newdate ?></span>
 		<br>
 		<? if($row['public'] == 'Yes'){echo '<span class="badge badge-secondary mt-1">Public</span>';}else{echo '<span class="badge badge-primary mt-1">Private</span>'; } ?>
@@ -1016,5 +1084,109 @@ if (isset($_POST['edit_list_name']))
 
 <?
 }
+
+
+
+// ========================= EDIT LIST DATA FROM (LIST PAGE)  =========================
+
+if (isset($_POST['edit_list_name2']))
+{
+    $name    	= filter_var($_POST['edit_list_name2'], FILTER_SANITIZE_STRING);
+    $desc    	= filter_var($_POST['edit_desc'], FILTER_SANITIZE_STRING);
+	$public 	= $_POST['edit_public'];
+	$user_id 	= $_POST['user_id'];
+	$list_uid 	= $_POST['list_id'];
+	
+	
+	$stmt = $conn->prepare("UPDATE lists SET name = ?, description = ?, public = ? WHERE uid = ? AND user_id = ?");
+	$stmt->execute(array($name, $desc, $public, $list_uid, $user_id));
+	
+	
+	$stmt = $conn->prepare("SELECT * FROM lists WHERE uid = ? AND user_id = ? ");
+	$stmt->execute(array($list_uid, $user_id));
+	$row = $stmt->fetch();
+	
+	$newdate = date('j M, Y', strtotime($row['Add_Date']));
+?>
+	
+	  <h3 class="font-weight-bold text-white"><?= ucwords($row['name'])  ?> </h3> 
+
+	  <p class="font-weight-bold text-white"><? if($row['description'] == ''){echo 'No description entered.';}else{echo $row['description'];}  ?> </p> 
+
+	  <? if($row['public'] == 'Yes'){echo '<span class="badge badge-secondary list-badge mb-3">Public</span>';}else{echo '<span class="badge badge-primary list-badge mb-3">Private</span>'; } ?>
+
+<?
+}
+
+
+
+// ========================= LIST CHANGE COVER (LIST PAGE)  =========================
+
+if (isset($_POST['list_cover']))
+{
+	$user_id 	    = $_POST['user_id'];
+	$list_uid 	    = $_POST['list_id'];
+	
+		
+	$stmt = $conn->prepare("SELECT * FROM lists WHERE uid = ? AND user_id = ? ");
+	$stmt->execute(array($list_uid, $user_id));
+	$row = $stmt->fetch();
+	
+	
+		?>
+			<div class="row justify-content-center">
+				
+		<?
+	
+		$stmt = $conn->prepare("SELECT * FROM movie_list WHERE list_id = ?  ");
+		$stmt->execute(array($row['id']));
+		$rows = $stmt->fetchAll();
+	
+		
+		$count = $stmt->rowCount();
+
+		// if count > 0 this mean the database contain record about this username
+
+		if ($count > 0 )
+		{
+			
+			foreach($rows as $row2)
+			{  
+	?>
+					<div class="mx-2 photo-box select_cover change_list_cover2" style="width: 355px" data-cover="<?=$row2['cover'] ?>" data-list="<?=$row['id'] ?>" >
+						<? 
+							if($row['cover'] == $row2['cover'])
+							{
+								echo '<i class="fas fa-check poster_more cover_selected text-warning"></i>';
+							}
+						?>
+						<a class="post-box" style="background-image: url(https://image.tmdb.org/t/p/w355_and_h200_bestv2<?=$row2['cover'] ?>) " >
+							<div class="highlight">
+							</div>
+						</a>
+					</div>
+	<? 		
+			} 
+			
+		}
+	else
+	{
+		echo "<p class='text-center'>There's No Images To Select .</p>";
+	}
+				
+?>		
+				
+			</div>
+
+		  <div class="modal-footer">
+			<button type="button" class="btn-filter" data-dismiss="modal">Save</button>
+		  </div>
+		<?
+		
+
+}
+
+
+
 
 ?>

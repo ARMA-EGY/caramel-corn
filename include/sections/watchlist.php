@@ -195,7 +195,8 @@ if($type == 'movie')
 						  <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><? 
+								if (strlen($movie->title) > 40){echo substr($movie->title,0,40) . '...';}else{echo $movie->title ;}  ?></a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>
@@ -469,7 +470,8 @@ if($type == 'tv')
 						  <div class="wrapper">
 
 							<div class="c-title">
-								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><?= $movie->name?> </a>  
+								<a href="single.php?tv=<?= $movie->id?>" class="caramel_color"><? 
+								if (strlen($movie->name) > 40){echo substr($movie->name,0,40) . '...';}else{echo $movie->name ;}  ?> </a>  
 								<div class="ratings">
 								  <div class="empty-stars"></div>
 								  <div class="full-stars" style="width:<?= $rate?>%"></div>

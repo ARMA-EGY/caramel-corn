@@ -119,7 +119,7 @@
 
 
 
-<!--==========================Start Modal Trailer ================================-->
+<!--========================== Start Modal Trailer ================================-->
 <div class="modal fade" id="trailer_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	  
@@ -140,6 +140,31 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!--========================== List Modal ================================-->
+<div class="modal fade" id="list_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" >
+		
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+		
+      <div class="modal-body" id="get_list_modal">
+		    
+	  </div>
+		
+    </div>
+  </div>
+</div>
+
+	
+
 
 
 	<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>

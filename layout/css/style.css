@@ -452,8 +452,9 @@ b {
 
 .cate div {
 	display: inline-block;
-	padding: 0px 4px ;
-	border-radius: 3px;
+    padding: 0px 4px 3px 4px;
+    border-radius: 3px;
+    line-height: 1.3;
 }
 
 .cate span a, .cate div a {
@@ -475,6 +476,7 @@ b {
 	width: 100%;
 	border-top: 1px solid rgba(255,255,255,0.3);
     padding: 10px;
+    background: #000;
 }
 
 .details a, .details .get_trailer{
@@ -1654,7 +1656,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     transition: all 0.5s ease;
 }
 
-.post-box .text span {
+.post-box .text span , .list-badge {
     font-size: 13px;
     line-height: 20px;
     text-transform: uppercase;
@@ -1665,8 +1667,90 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     -webkit-font-smoothing: antialiased;
 }
 
+
 /**========== End List Box  ==========**/
 
+
+
+	.toggle_type 
+	{
+		margin: 0 5px;
+		background: #000;
+		border-radius: 15px;
+		border: 1px solid rgba(255, 255, 255, 0.7);
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+		transition: all 0.3s linear;
+		display: inline-block;
+		color: #fff;
+		padding: 5px 15px;
+		cursor: pointer;
+	}
+	
+	.toggle_type.active{color: #fbd747;}
+	
+	.badge-toggle 
+	{
+		color: #212529;
+		background-color: #f8f9fa;
+	}
+	
+	
+	.toggle_type.active .badge-toggle
+	{
+		color: #212529;
+		background-color: #ffc107;
+	}
+	
+	.select-wrapper
+	{
+		border-radius: 30px;
+		display: inline-block;
+		overflow: hidden;
+		background: #000;
+		border: 1px solid #ccc;
+		float: right;
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+		margin: 2px;
+	}
+	
+	.select-control
+	{
+		width: fit-content;
+		background: rgb(0, 0, 0);
+   		color: #fff;
+		height: calc(1.5em + .75rem + 2px);
+		font-size: 0.8rem;
+		font-weight: 400;
+		line-height: 1.5;
+		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		border: 0px;
+		outline: none;
+		padding: 0;
+		margin: 0!important;
+	}
+	
+
+	.floaty {
+		float: left;
+		width: 250px;
+		color: #fff;}
+
+	.info p, .info-last p {margin-left: 50px;}
+
+	.info {
+		border-bottom: 1px solid #bbb;
+		padding-top: 15px;}
+
+	.info-last {
+		padding-top: 15px;
+		padding-bottom: 1px;}
+/*
+	.info:hover, .info-last:hover{background-color: rgba(239, 239, 239, 0.5)}
+*/
+	
+	.logo-hov:hover {background: #555; border-radius: 5px;}
+	
+	.logo_select {background: #bbb; border-radius: 5px; padding: 5px;}
 
 
 				/**==================== End Corn Page  ====================**/
@@ -1715,6 +1799,15 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	max-width: 118px;
     padding-left: .25rem!important;
     padding-right: .25rem!important;
+	}
+	
+.cate {
+	height: 50px;
+	overflow: auto;
+	}
+	
+.slick-list {
+    padding: 40px 15px !important;
 	}
 	
 }
@@ -1845,6 +1938,8 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	}
 	
 	.single-tweet img {display: unset;}
+	
+	.d-mid-none {display: none;}
 
 }
 
@@ -1869,6 +1964,8 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     margin: 0 0 20px;
     width: 70px;
   }
+	
+	.poster_img {width: 230px;}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

@@ -25,7 +25,7 @@
 			</div>
 	  
 	  
-	  	<div class="p-4" id="on_tv">
+	  	<div class="py-4" id="on_tv">
 
 
 			<div class="show_cards row justify-content-center fade show">
