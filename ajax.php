@@ -2313,4 +2313,132 @@ if (isset($_POST['private']))
 	
 }
 
+
+// ========================= ADD ITEM TO LIST  =========================
+
+	if(isset($_POST['item_list']))
+	{
+		$list 	= $_POST['item_list'];
+		$type 		= $_POST['type'];
+		$tmdb 	    = $_POST['tmdb'];
+		$user_id 	= $_POST['user_id'];
+		
+	
+		$stmt = $conn->prepare("SELECT * FROM movie_list WHERE tmdb_id = ? AND user_id = ? AND list_id = ? ");
+		$stmt->execute(array($tmdb, $user_id, $list));
+		$row = $stmt->fetch();
+
+		$count = $stmt->rowCount();
+
+		// if count > 0 this mean the database contain record about this username
+
+		if ($count > 0 )
+		{
+			?>
+			<script>
+				
+					
+				 const Toast = Swal.mixin({
+					  toast: true,
+					  position: 'top-end',
+					  showConfirmButton: false,
+					  timer: 3000,
+					  timerProgressBar: true,
+					  onOpen: (toast) => {
+						toast.addEventListener('mouseenter', Swal.stopTimer)
+						toast.addEventListener('mouseleave', Swal.resumeTimer)
+					  }
+					})
+				
+					var title = "This item is already on the List";
+
+						Toast.fire({
+						  icon: 'error',
+						  title: title
+						})
+
+			</script>
+			<?
+
+		}
+		else
+		{
+
+			if($type == 'Movie')
+			{
+
+						$movie_id = $tmdb;
+
+						$movie = api_connect("https://api.themoviedb.org/3/movie/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+						$date =  $movie->release_date;
+						$newdate = date('j M, Y', strtotime($date));
+
+						$rate  = $movie->vote_average * 10 ;
+						$rate1 = $movie->vote_average  ;
+						$name  = $movie->title  ;
+						$cover = $movie->backdrop_path  ;
+
+						$stmt = "INSERT INTO movie_list ( `list_id`, `tmdb_id`, `type`, `user_id`, `Add_Date`, `name`, `rate`, `cover`, `release_date`)
+
+									VALUES('$list', '$tmdb' , '$type', '$user_id', now(), '$name', '$rate1', '$cover' , '$date' )";
+
+						$conn->exec($stmt);
+
+			}
+			elseif($type == 'TV')
+			{
+
+					$movie_id = $tmdb;
+
+					$movie = api_connect("https://api.themoviedb.org/3/tv/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+					$date =  $movie->first_air_date;
+					$newdate = date('j M, Y', strtotime($date));
+
+					$rate  = $movie->vote_average * 10 ;
+					$rate1 = $movie->vote_average  ;
+					$name  = $movie->name  ;
+					$cover = $movie->backdrop_path  ;
+
+					$stmt = "INSERT INTO movie_list ( `list_id`, `tmdb_id`, `type`, `user_id`, `Add_Date`, `name`, `rate`, `cover`, `release_date`)
+
+								VALUES('$list', '$tmdb' , '$type', '$user_id', now(), '$name', '$rate1', '$cover' , '$date' )";
+
+					$conn->exec($stmt);
+
+
+			}
+
+?>
+
+	<script>		
+				 const Toast = Swal.mixin({
+					  toast: true,
+					  position: 'top-end',
+					  showConfirmButton: false,
+					  timer: 3000,
+					  timerProgressBar: true,
+					  onOpen: (toast) => {
+						toast.addEventListener('mouseenter', Swal.stopTimer)
+						toast.addEventListener('mouseleave', Swal.resumeTimer)
+					  }
+					})
+				
+					var title = "Item Added to list successfully";
+
+						Toast.fire({
+						  icon: 'success',
+						  title: title
+						})
+
+			</script>
+<?
+			
+		}
+
+		
+	}
+
+
 ?>

@@ -4,7 +4,7 @@
 $today = date("Y-m-d");
 
 
-$last_month = strtotime("-2 Months");
+$last_month = strtotime("-1 Months");
 
 $start_from =  date("Y-m-01", $last_month) ;
 

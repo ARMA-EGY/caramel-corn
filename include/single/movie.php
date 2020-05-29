@@ -181,9 +181,43 @@ else
 									<i class="fa fa-star"></i>
 							    </li>
 							   
-								<li class="action-btn use_tooltips" data-toggle="tooltip" data-placement="bottom" title="Add To List">
-									<i class="fa fa-list"></i>
+								<li class="action-btn use_tooltips" data-toggle="tooltip" data-placement="top" title="Add To List">
+									<i class="fa fa-list" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+									
+									<div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="dropdownMenuLink">
+										
+										<a href="list.php" class="dropdown-item" style="border-bottom: 1px solid #fff;" >
+											<i class="fas fa-plus-square text-warning"></i> Create New List</a>
+										<div style="max-height: 200px; overflow: auto;">
+										<?
+								   
+		$stmt = $conn->prepare("SELECT * FROM lists WHERE user_id = ?");
+		$stmt->execute(array($user_id));
+		$lists = $stmt->fetchAll();
+		$count = $stmt->rowCount();
+
+		if ($count > 0 )
+		{
+			foreach($lists as $list)
+			{
+				
+			?>
+				<a class="dropdown-item item_list" data-tmdb="<?= $movie_id ?>" data-type="Movie" data-userid="<?= $user_id ?>" data-listid="<?=$list['id'] ?>" > <?=$list['name'] ?></a>					
+			<?
+				
+			}
+						
+		}
+		else
+		{
+			echo '<p class="text-center mt-3">No Lists Found.</p>';
+		}
+								   		?>
+										</div>
+									</div>
 							    </li>
+							   
+							
 							   
 							   <?
 								   }

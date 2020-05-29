@@ -516,6 +516,37 @@ $('.filter_form').submit(function(e){
 	});
 	
 	
+	
+	// ==========================  Add Item To List  ==========================
+ 
+	$('.item_list').click(function()
+	 {
+		
+		var list_id = $(this).attr('data-listid');
+		var user_id = $(this).attr('data-userid');
+		var tmdb 	= $(this).attr('data-tmdb');
+		var type    = $(this).attr('data-type');
+		
+				
+		$.ajax({
+			url: 		'ajax.php',
+			method: 	'POST',
+			dataType: 	'text',
+			data:		{
+						 item_list   : list_id, 
+						 tmdb 		 : tmdb, 
+						 type 	 	 : type, 
+						 user_id 	 : user_id
+						}	,
+			success : function(response)
+					 {
+						 $('.ajax_result').html(response);
+					 }
+		});
+			
+		
+	});
+	
  
 	$('.follow_person').click(function()
 	 {

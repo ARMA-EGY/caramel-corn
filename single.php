@@ -25,7 +25,11 @@ elseif(isset($_GET['person']))
 	
 }
 
-	
+?>
+
+<div class="ajax_result"></div>
+
+<?
 
 
  include('include/footer.php'); ?>
