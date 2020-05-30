@@ -11,6 +11,56 @@ if(!isset($_SESSION['access_token']))
 }
 
 
+	$watchlist_color = '#e46932';
+	$likes_color 	 = '#fff';
+	$favorites_color = '#fff';
+	$lists_color 	 = '#fff';
+	$following_color = '#fff';
+	
+	$watchlist_sec   = 'show active';
+	$likes_sec 	     = '';
+	$favorites_sec   = '';
+	$lists_sec 	     = '';
+	$following_sec   = '';
+
+if(isset($_GET['sec']))
+{
+	$sec = $_GET['sec'];
+	
+	if ($sec == 'likes')
+	{
+		$watchlist_color = '#fff';
+		$likes_color 	 = '#ff3447';
+		
+		$watchlist_sec 	 = '';
+		$likes_sec 	   	 = 'show active';
+	}
+	elseif ($sec == 'favorites')
+	{
+		$watchlist_color = '#fff';
+		$favorites_color = '#ffc107';
+		
+		$watchlist_sec   = '';
+		$favorites_sec 	 = 'show active';
+	}
+	elseif ($sec == 'lists')
+	{
+		$watchlist_color = '#fff';
+		$lists_color 	 = '#caa552';
+		
+		$watchlist_sec   = '';
+		$lists_sec 	 	 = 'show active';
+	}
+	elseif ($sec == 'following')
+	{
+		$watchlist_color = '#fff';
+		$following_color = '#9c9887';
+		
+		$watchlist_sec   = '';
+		$following_sec 	 = 'show active';
+	}
+	
+}
 
 include('include/header.php'); 
 
@@ -160,39 +210,27 @@ $logo    = $user['corn_logo'];
 					<ul class="nav col-12" id="myTab" role="tablist">
 						
 					  <li class="col" style="border-right: 1px solid #fff;">
-						  <i class="fa fa-bookmark pointer col p-2 transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="color: rgb(228, 105, 50);"></i>
+						  <i class="fa fa-bookmark pointer col p-2 transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="color: <?=$watchlist_color?>;"></i>
 					  </li>
 						
 					  <li class="col" style="border-right: 1px solid #fff;">
-						  <i class="fa fa-heart pointer col p-2 transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447"></i>
+						  <i class="fa fa-heart pointer col p-2 transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="color: <?=$likes_color?>;"></i>
 					  </li>
 						
 					  <li class="col" style="border-right: 1px solid #fff;">
-						  <i class="fa fa-star pointer col p-2 transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107"></i>
+						  <i class="fa fa-star pointer col p-2 transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="color: <?=$favorites_color?>;"></i>
 					  </li>
 						
 					  <li class="col" style="border-right: 1px solid #fff;">
-						  <i class="fa fa-list pointer col p-2 transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552"></i>
+						  <i class="fa fa-list pointer col p-2 transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="color: <?=$lists_color?>;"></i>
 					  </li>
 						
 					  <li class="col">
-						  <i class="fa fa-users pointer col p-2 transition section" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
+						  <i class="fa fa-users pointer col p-2 transition section" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887" style="color: <?=$following_color?>;"></i>
 					  </li>
 						
 					</ul>
 					
-<!--
-					<i class="fa fa-bookmark col p-2 pointer transition section" id="watchlist-tab" data-toggle="tab" href="#watchlist" role="tab" aria-controls="watchlist" aria-selected="true" data-section="watchlist" data-user="<?=$user_id ?>" data-color="#e46932" style="border-right: 1px solid #fff;"></i>
-					
-					
-					<i class="fa fa-heart col p-2 pointer transition section" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="true" data-section="likes" data-user="<?=$user_id ?>" data-color="#ff3447" style="border-right: 1px solid #fff;"></i>
-					
-					<i class="fa fa-star col p-2 pointer transition section" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="true" data-section="favorites" data-user="<?=$user_id ?>" data-color="#ffc107" style="border-right: 1px solid #fff;"></i>
-					
-					<i class="fa fa-list col p-2 pointer transition section" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="true" data-section="lists" data-user="<?=$user_id ?>" data-color="#caa552" style="border-right: 1px solid #fff;"></i>
-					
-					<i class="fa fa-users col p-2 pointer transition section" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true" data-section="following" data-user="<?=$user_id ?>" data-color="#9c9887"></i>
--->
 					
 				</div>
 
@@ -205,7 +243,7 @@ $logo    = $user['corn_logo'];
 			
 			<!--===================  Watchlist   ===================-->
 			
-		  <div class="tab-pane fade show active" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab">  
+		  <div class="tab-pane fade <?=$watchlist_sec?>" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab">  
 			
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
@@ -234,9 +272,8 @@ $logo    = $user['corn_logo'];
 		</div>
 			
 			<!--===================  Likes   ===================-->
-			
 		 
-		<div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+		  <div class="tab-pane fade <?=$likes_sec?>" id="likes" role="tabpanel" aria-labelledby="likes-tab">
 
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
@@ -266,7 +303,7 @@ $logo    = $user['corn_logo'];
 			
 			<!--===================  Favorites   ===================-->
 			
-		  <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+		  <div class="tab-pane fade <?=$favorites_sec?>" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
 			
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
@@ -298,11 +335,11 @@ $logo    = $user['corn_logo'];
 			
 			<!--===================  Lists   ===================-->
 			
-		  <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab">  </div>
+		   <div class="tab-pane fade <?=$lists_sec?>" id="lists" role="tabpanel" aria-labelledby="lists-tab">  </div>
 			
 			<!--===================  Following   ===================-->
 			
-		  <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">  </div>
+		   <div class="tab-pane fade <?=$following_sec?>" id="following" role="tabpanel" aria-labelledby="following-tab">  </div>
 			
 		</div>
 

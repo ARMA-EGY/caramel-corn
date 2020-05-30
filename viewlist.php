@@ -623,7 +623,11 @@ else
 		</div>
 		
 		<div class="modal-footer">
+			
         	<button type="button" class="btn-filter close_items" data-list="<?=$list_uid ?>" data-user="<?=$user_id?>" data-dismiss="modal">Save</button>
+			
+        	<button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+			
         </div>
       
     </div>

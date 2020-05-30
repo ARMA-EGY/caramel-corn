@@ -24,12 +24,22 @@
                     <!-- Footer Widget -->
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget">
+							
                             <h6>Our Newsletter</h6>
+							
                             <p>Subscribe to our mailing list to get the updates to your email inbox.</p>
-                            <form  class="subscribe_form">
+							
+                            <form class="subscribe_form">
                                 <input type="email" name="subscribe_email" placeholder="E-mail" required>
                                 <button class="btn-filter submit" type="submit">Subscribe</button>
                             </form>
+							
+							<div class="footer-social-widegt d-flex align-items-center text-center">
+                                <a href="#"><i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fab fa-instagram fa-2x" aria-hidden="true"></i></a>
+								<a href="#"><i class="fab fa-twitter fa-2x" aria-hidden="true"></i></a>
+                            </div>
+							
                         </div>
                     </div>
                     <!-- Footer Widget -->
@@ -75,12 +85,53 @@
                             <h6>Account</h6>
                             <nav>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Corn</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Watchlist</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Likes</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Favorites</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Lists</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Following</a></li>
+									   
+							   <? if(isset($_SESSION['access_token']))
+									{
+							   ?>
+							      <li><a href="corn.php"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Corn</a></li>
+                                    <li><a href="corn.php?sec=watchlist"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Watchlist</a></li>
+                                    <li><a href="corn.php?sec=likes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Likes</a></li>
+                                    <li><a href="corn.php?sec=favorites"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Favorites</a></li>
+                                    <li><a href="corn.php?sec=lists"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Lists</a></li>
+                                    <li><a href="corn.php?sec=following"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Following</a></li>
+							   
+							   <?
+								   }
+							   else
+								   {
+								?>
+							   
+                                    <li class="login_modal" data-login="Login to view your CORN">
+										<a><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Corn</a>
+									</li>
+									
+                                    <li class="login_modal" data-login="Login to view your Watchlist">
+										<a ><i class="fa fa-angle-double-right" aria-hidden="true"></i> Watchlist</a>
+									</li>
+									
+                                    <li class="login_modal" data-login="Login to view your Likes">
+										<a ><i class="fa fa-angle-double-right" aria-hidden="true"></i> Likes</a
+									</li>
+									
+                                    <li class="login_modal" data-login="Login to view your Favorites">
+										<a ><i class="fa fa-angle-double-right" aria-hidden="true"></i> Favorites</a>
+									</li>
+									
+                                    <li class="login_modal" data-login="Login to view your Lists">
+										<a ><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Lists</a>
+									</li>
+									
+                                    <li class="login_modal" data-login="Login to view your Following">
+										<a ><i class="fa fa-angle-double-right" aria-hidden="true"></i> Following</a>
+									</li>
+							
+							   
+							   <?
+								   }
+							   ?>
+									
+									
                                 </ul>
                             </nav>
                         </div>
