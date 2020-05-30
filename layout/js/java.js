@@ -1273,6 +1273,28 @@ $('.subscribe_form').submit(function(e){
     		$(".photo-box.active").find('.post-box').css({"background": background});
 
       });
+		
+	
+ $(document).on('click', '.close_items', function()
+      {
+	 
+			var user_id 	= $(this).attr('data-user');
+			var list_item 	= $(this).attr('data-list');
+	 	
+			$.ajax({
+				url: 		'ajax_list.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{list_items : list_item, 
+							 user_id   : user_id
+							}	,
+				success : function(response)
+						 {
+							 $('#list_items').html(response);
+						 }
+			});
+
+      });
 
 
 });

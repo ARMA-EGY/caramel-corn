@@ -146,7 +146,7 @@
 
 <!--========================== List Modal ================================-->
 <div class="modal fade" id="list_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content" >
 		
       <div class="modal-header">

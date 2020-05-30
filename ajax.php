@@ -2356,6 +2356,11 @@ if (isset($_POST['private']))
 						  icon: 'error',
 						  title: title
 						})
+				
+						
+						var snd = new Audio("audio/beep.mp3");
+						snd.play();
+						snd.currentTime=0;
 
 			</script>
 			<?
@@ -2431,6 +2436,10 @@ if (isset($_POST['private']))
 						  icon: 'success',
 						  title: title
 						})
+		
+						var snd = new Audio("audio/lesser.mp3");
+						snd.play();
+						snd.currentTime=0;
 
 			</script>
 <?

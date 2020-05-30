@@ -63,7 +63,7 @@ else
 
 						<h5 class="font-weight-bold caramel_color mb-3"><?= $name ?> </h5> 
 						
-						<button class="btn btn-light p-1 m-1"><i class="fas fa-plus"></i> Add</button>
+						<button class="btn btn-light p-1 m-1" data-toggle="modal" data-target="#item_modal"><i class="fas fa-plus"></i> Add</button>
 						<button class="btn btn-light p-1 m-1 get_list_modal_edit" data-list="<?= $row['uid'] ?>" data-user="<?= $user_id ?>"><i class="fas fa-pen-square"></i> Edit</button>
 						<button class="btn btn-light p-1 m-1 get_list_modal" data-kind="share" data-list="<?= $row['uid'] ?>" data-user="<?= $user_id ?>"><i class="fas fa-share-alt"></i> Share</button>
 						<button class="btn btn-light p-1 m-1 get_list_modal_cover" data-list="<?= $row['uid'] ?>" data-user="<?= $user_id ?>"><i class="fas fa-images"></i> Covers</button>
@@ -97,7 +97,7 @@ else
 		
 		
 		
-  <div class="container" >
+  <div class="container" id="list_items">
 	   
 		<div>
 			
@@ -118,9 +118,10 @@ else
 			</div>	
 			
 			
-	<!-- ==========  Movies  ==========  -->
 
-		<div >
+		<div>
+			
+	<!-- ==========  Movies  ==========  -->
 			
 			<div id="list_section_movie">
 
@@ -563,9 +564,71 @@ else
 	  
 
    </div>
+		
   </div>
 </section>
 <!-- List Ends -->
+
+
+
+<!--========================== Start Modal Add Items ================================-->
+<div class="modal fade" id="item_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	  
+    <div class="modal-content">
+		
+      	<div class="modal-body">
+		
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+			  <li class="nav-item" role="presentation">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Movies</a>
+			  </li>
+			  <li class="nav-item" role="presentation">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tv Shows</a>
+			  </li>
+
+			</ul>
+			<div class="tab-content" id="myTabContent" style="
+				min-height: 130px;
+			">
+			  <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+			  <div class="form-group mt-3 mb-5" style="position: relative">
+				<label for="formGroupExampleInput">Add Movie</label>
+				<input type="text" class="form-control text-dark search_bar2" id="formGroupExampleInput" placeholder="Search for a Movie" data-type="movie" data-target="#search_result2" data-list="<?=$list_id ?>" data-user="<?=$user_id ?>">
+				<div id="search_result2"></div>
+			  </div>
+				  
+			  <div id="movie_list" class="row justify-content-center"></div>
+
+
+
+			</div>
+			  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+			  <div class="form-group mt-3 mb-5" style="position: relative">
+				<label for="formGroupExampleInput">Add Tv Show</label>
+				<input type="text" class="form-control text-dark search_bar2" id="formGroupExampleInput" placeholder="Search for a Tv Show" data-type="tv" data-target="#search_result3" data-list="<?=$list_id ?>" data-user="<?=$user_id ?>">
+				<div id="search_result3"></div>
+			  </div>
+				  
+			  <div id="tv_list" class="row justify-content-center"></div>
+
+			</div>
+
+			</div>
+					
+		
+		</div>
+		
+		<div class="modal-footer">
+        	<button type="button" class="btn-filter close_items" data-list="<?=$list_uid ?>" data-user="<?=$user_id?>" data-dismiss="modal">Save</button>
+        </div>
+      
+    </div>
+  </div>
+</div>
 
 	  
 	  
