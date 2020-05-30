@@ -102,7 +102,7 @@
 								   {
 								?>
 							   
-                                    <li class="login_modal" data-login="Login to view your CORN">
+                                    <li class="login_modal" data-login="Login to view your Corn">
 										<a><i class="fa fa-angle-double-right" aria-hidden="true"></i> My Corn</a>
 									</li>
 									

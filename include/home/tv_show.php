@@ -28,7 +28,7 @@
 	  	<div class="py-4" id="on_tv">
 
 
-			<div class="show_cards row justify-content-center fade show">
+			<div class="row justify-content-center">
 
 			<?
 
@@ -49,7 +49,7 @@
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2 show_cards fade show">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
@@ -125,42 +125,12 @@
 				</div>
 
 			  <!-- End New Card -->
-
-
-
-			<? 
-						$i++;
-
-						if($i==6) break;
-					} 
-				}
-			?>	
-
-
-			</div>	
-
-			<!-- ==========================================  -->
-
-			<div class="show_cards_details row justify-content-center fade">
-
-			<?
-
-					$i=0;
-
-				foreach(array_slice($tv_shows->results, 0, 15) as $tv )
-				{
-					if ($tv->original_language == 'en')
-					{
-
-					$date =  $tv->first_air_date;
-					$newdate = date('j M, Y', strtotime($date));
-
-					$rate = $tv->vote_average * 10 ;
-
-			?>
-
+				
+				
+				
+				
 			  <!-- Start New Card -->
-				<div class="col-sm-6">  
+				<div class="col-sm-6 show_cards_details fade">  
 
 					<div class="poster-card" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)">
 						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/></div>
@@ -226,6 +196,7 @@
 			  <!-- End New Card -->
 
 
+
 			<? 
 						$i++;
 
@@ -234,7 +205,9 @@
 				}
 			?>	
 
+
 			</div>	
+
 
 		</div>	
 	  

@@ -36,7 +36,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 		<div class="py-4">
 
 
-			<div class="show_cards row justify-content-center fade show">
+			<div class="row justify-content-center">
 
 			<?
 
@@ -67,7 +67,7 @@ $playing_now = api_connect("https://api.themoviedb.org/3/discover/movie?api_key=
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2 show_cards fade show">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">

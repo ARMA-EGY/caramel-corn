@@ -27,7 +27,7 @@
 		<div class="py-4 playing" id="playing">
 
 
-			<div class="show_cards row justify-content-center fade show">
+			<div class="row justify-content-center">
 
 			<?
 
@@ -47,7 +47,7 @@
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2 show_cards fade show">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
@@ -125,41 +125,10 @@
 
 			  <!-- End New Card -->
 
-
-
-			<? 
-						$i++;
-
-						if($i==6) break;
-					} 
-				}
-			?>	
-
-
-			</div>	
-
-			<!-- ==========================================  -->
-
-			<div class="show_cards_details row justify-content-center fade ">
-
-			<?
-
-					$i=0;
-
-				foreach(array_slice($playing_now->results, 0, 10) as $movie )
-				{
-					if ($movie->original_language == 'en')
-					{
-
-					$date =  $movie->release_date;
-					$newdate = date('j M, Y', strtotime($date));
-
-					$rate = $movie->vote_average * 10 ;
-
-			?>
-
+				
+			
 			  <!-- Start New Card -->
-				<div class="col-sm-6">  
+				<div class="col-sm-6 show_cards_details fade">  
 
 					<div class="poster-card">
 						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $movie->poster_path?>" alt=""/></div>
@@ -235,6 +204,7 @@
 
 
 			</div>	
+
 
 		</div>		
 	

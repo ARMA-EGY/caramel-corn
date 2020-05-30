@@ -25,7 +25,7 @@
 	  	<div class="py-4">
 
 
-			<div class="show_cards row justify-content-center fade show">
+			<div class="row justify-content-center">
 
 			<?
 
@@ -46,7 +46,7 @@
 			?>
 
 			  <!-- Start New Card -->
-				<div class="col-sm-3 variable_card">  
+				<div class="variable_card px-2 show_cards fade show">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
