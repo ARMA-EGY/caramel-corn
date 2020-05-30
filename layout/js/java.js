@@ -754,6 +754,7 @@ $('.subscribe_form').submit(function(e){
 	
 	// ========================== Contact Us Form  ==========================	
 	
+	
 	$('.msg_form').submit(function(e){
 		
 		e.preventDefault();
@@ -779,9 +780,6 @@ $('.subscribe_form').submit(function(e){
 		});
 		
 	});
-	
-	
-	
 	
 	
 	// ========================== List Page   ==========================	
@@ -925,7 +923,86 @@ $('.subscribe_form').submit(function(e){
   });
 	
 	
+    $(document).on('click', '.get_list_modal_edit', function()
+      {
+			var list    = $(this).attr('data-list');
+			var user 	= $(this).attr('data-user');
+	 
+			$('#list_modal').modal('show');
+			$('#get_list_modal').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+
+			 $.ajax({
+						url: 		'ajax_list.php',
+						method: 	'POST',
+						dataType: 	'text',
+						data:		{list_edit : 'edit', 
+									 user_id 	 : user, 
+									 list_id 	 : list
+									}	,
+						success : function(response)
+								 {
+									$('#get_list_modal').html(response);
+								 }
+					});
+
+      });
 	
+	
+ 	$(document).on('submit', '.edit_list_form2', function(e){
+
+	e.preventDefault();
+	$('#list_modal').modal('hide');
+
+	$.ajax({
+		url: 		'ajax_list.php',
+		method: 	'POST',
+		dataType: 	'text',
+		data:		$(this).serialize()	,
+		success : function(response)
+			 {
+				$(".list_info").html(response);
+			 }
+	});
+
+});
+	
+	
+ 	$(document).on('click', '.get_list_modal_cover', function()
+      {
+			var list    = $(this).attr('data-list');
+			var user 	= $(this).attr('data-user');
+	 
+				$('#list_modal').modal('show');
+	    		$('#get_list_modal').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+				
+				$.ajax({
+							url: 		'ajax_list.php',
+							method: 	'POST',
+							dataType: 	'text',
+							data:		{list_cover : 'cover', 
+										 user_id 	 : user, 
+										 list_id 	 : list
+										}	,
+							success : function(response)
+									 {
+		 				    			$('#get_list_modal').html(response);
+									 }
+						});
+      });
+	
+	
+ 	$(document).on('click', '.change_list_cover2', function()
+      {
+			var cover 		= $(this).attr('data-cover');
+			var background  = 'url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + cover + ')';
+	 	
+    		$(".cover_list").css({"background": background, "background-size": 'cover'});
+
+      });
+
+	
+	
+ 	$('#list_section_tv').hide();
 	
 	
 	// ========================== Copy Shareable Link  ==========================	
@@ -951,136 +1028,6 @@ $('.subscribe_form').submit(function(e){
 	
 	// ========================== Corn Page  ==========================	
 		
-	    $('#watchlist_section_movie, #watchlist_section_tv, #likes_section_movie, #likes_section_tv, #favorites_section_movie, #favorites_section_tv, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
-		
-	    $('#watchlist_section_tv, #likes_section_tv, #favorites_section_tv, #list_section_tv').hide();
-	
-		var user_id = $('#user_id').val()
-		
-		$.ajax({
-					url: 		'include/sections/watchlist.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#watchlist_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/watchlist.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#watchlist_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/likes.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#likes_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/likes.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#likes_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/favorites.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'movie'
-								}	,
-					success : function(response)
-							 {
-								$("#favorites_section_movie").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/favorites.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id,
-								 type 		 : 'tv'
-								}	,
-					success : function(response)
-							 {
-								$("#favorites_section_tv").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/lists.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#lists").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/following.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#following").html(response);
-							 }
-				});
-		
-		$.ajax({
-					url: 		'include/sections/lists.php',
-					method: 	'POST',
-					dataType: 	'text',
-					data:		{ 
-								 user_id 	 : user_id
-								}	,
-					success : function(response)
-							 {
-								$("#lists").html(response);
-							 }
-				});
-	
-
 	
  $('#private').click(function()
   {
@@ -1297,5 +1244,6 @@ $('.subscribe_form').submit(function(e){
       });
 
 
+	
 });
 

@@ -398,7 +398,7 @@ $logo    = $user['corn_logo'];
 			
 			<div class="mb-2">
 				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
-				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
+				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; left: 0;" />
 
 				<p id="corn_link" class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
 			</div>
@@ -422,6 +422,135 @@ $logo    = $user['corn_logo'];
 
 
 <script>
+	
+	    $('#watchlist_section_movie, #watchlist_section_tv, #likes_section_movie, #likes_section_tv, #favorites_section_movie, #favorites_section_tv, #lists, #following').html('<img class="d-flex m-auto" src="layout/img/loader.gif" width="75">');
+		
+	    $('#watchlist_section_tv, #likes_section_tv, #favorites_section_tv').hide();
+	
+		var user_id = $('#user_id').val()
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/watchlist.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#watchlist_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#likes_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/likes.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#likes_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'movie'
+								}	,
+					success : function(response)
+							 {
+								$("#favorites_section_movie").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/favorites.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id,
+								 type 		 : 'tv'
+								}	,
+					success : function(response)
+							 {
+								$("#favorites_section_tv").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/following.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#following").html(response);
+							 }
+				});
+		
+		$.ajax({
+					url: 		'include/sections/lists.php',
+					method: 	'POST',
+					dataType: 	'text',
+					data:		{ 
+								 user_id 	 : user_id
+								}	,
+					success : function(response)
+							 {
+								$("#lists").html(response);
+							 }
+				});
 	
 	var start = 20;
 	var limit = 20;

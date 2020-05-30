@@ -964,7 +964,7 @@ if (isset($_POST['list_kind']))
 
 				<div class="mb-2">
 					<button class="btn btn-dark copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
-					<input class="linkToCopy" value="https://caramel-corn.com/viewlist.php?u=<?=$list_uid ?>" style="position: absolute; opacity: 0;top: 0; width: 0;" />
+					<input class="linkToCopy" value="https://caramel-corn.com/viewlist.php?u=<?=$list_uid ?>" style="position: absolute; opacity: 0;top: 0; left: 0;" />
 
 					<p class="mt-3 ml-4">https://caramel-corn.com/viewlist.php?u=<?=$list_uid ?></p>
 				</div>
