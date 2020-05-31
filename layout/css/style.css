@@ -94,6 +94,85 @@ h1 {
 }
 
 
+
+#mainslide {
+	overflow: hidden;
+	position: relative;
+    height: 75vh;
+    width: 100%;
+}
+
+#mainslide .header {
+	position: absolute;
+    z-index: 99;
+    color: #fff;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    left: 50%;
+	text-align: center;
+	max-width: 650px;
+    padding: 10px
+}
+
+#mainslide .left {
+	top: 60%!important;
+    transform: translate(0,-40%)!important;
+    left: 2%!important;
+    text-align: left!important;
+}
+
+#mainslide .header h1 {
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+#mainslide .header p {
+	font-size: 14px;
+    line-height: 25px;
+    font-weight: 400 !important;
+    letter-spacing: 1.12px !important;
+    margin: 40px 0;
+}
+
+#slideshow {
+ 	position: relative;
+    width: 100%;
+    height: 75vh;
+	
+  animation: slideShow 24s linear infinite 0s;
+  -o-animation: slideShow 24s linear infinite 0s;
+  -moz-animation: slideShow 24s linear infinite 0s;
+  -webkit-animation: slideShow 24s linear infinite 0s;
+}
+
+#slideshow > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed!important;
+	
+}
+
+
+@keyframes slideShow {
+  0% {
+    transform:scale(1);
+  }
+  30% {
+    transform:scale(1.1);
+  }
+  60% {
+    transform:scale(1.2);
+  }
+  80% {
+    transform:scale(1.1);
+  }
+  100% {
+    transform:scale(1);
+  }    
+ }
+
+
 /*===================  Start Scroll Bar   ======================*/
 
 /* width */
@@ -1458,21 +1537,6 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
 	}
 
-	.watchlist_icon:hover i
-	{
-	  color: #e46932;
-	}
-
-	.like_icon:hover i
-	{
-	  color: #ff3447;
-	}
-
-	.favorite_icon:hover i
-	{
-	  color: #ffc107;
-	}
-
 
 	.added .fa-bookmark{color: #e46932;}
 
@@ -1979,6 +2043,22 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 @media (min-width: 576px)
 {
 	.col-person {max-width: 16%;}
+	
+	.watchlist_icon:hover i
+	{
+	  color: #e46932;
+	}
+
+	.like_icon:hover i
+	{
+	  color: #ff3447;
+	}
+
+	.favorite_icon:hover i
+	{
+	  color: #ffc107;
+	}
+
 }
 
 

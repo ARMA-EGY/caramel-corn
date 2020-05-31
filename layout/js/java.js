@@ -84,6 +84,24 @@ $('.select-search').change(function(){
 });
 
 
+
+	// ==========================  HOME SLIDESHOW  ==========================
+	
+$("#slideshow > div:gt(0)").hide();
+
+var time = $('#slideshow').data('time') + "000"	;
+	
+setInterval(function() 
+{
+  $('#slideshow > div:first')
+    .fadeOut("slow")
+    .next()
+    .fadeIn("slow")
+    .end()
+    .appendTo('#slideshow');
+}, time);
+
+
 	
 		// ========================== SHOW NAVBAR WHEN SCROLL   ==========================
 
