@@ -23,7 +23,7 @@ include('ini.php');
 	
 	<? } 
 	
-	foreach (array_slice($tv_covers->results, 0, 10) as $tv_cover)
+	foreach (array_slice($tv_covers->results, 0, 7) as $tv_cover)
 	{
 	?>	
 	   <div style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?= $tv_cover->backdrop_path?>') no-repeat ; background-size:100% 100%; "> 
