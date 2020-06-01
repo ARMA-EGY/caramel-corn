@@ -1400,7 +1400,10 @@ if(isset($_POST['select_sort']))
 	$kind 	 	 	= $_POST['kind'];
 	$type 	 		= $_POST['type'];
 	$sort 	 		= $_POST['select_sort'];
-	$show 	 		= $_POST['select_show'];
+	$target 	 	= $_POST['target'];
+	$subtarget 	 	= $_POST['subtarget'];
+	$load 	 		= $_POST['load'];
+	$show 	 		= 20;
 	$user_id 	 	= $_POST['user_id'];
 	
 	
@@ -1422,6 +1425,7 @@ if(isset($_POST['select_sort']))
 	{
 		if($result > 0) 
 		{
+			echo '<div class="row justify-content-center" id="'.$subtarget.'">';
 				foreach($rows as $row )
 				{
 
@@ -1598,8 +1602,18 @@ if(isset($_POST['select_sort']))
 <? 
 				}
 					
-					
+				echo '</div>';	
 
+			
+ if($total_pages > 1)
+	{
+?>
+	<div class="mt-4 text-center">
+   		 <button id="<?=$load?>" class="btn btn-filter cnt loadmore" data-sort="<?=$sort?>" data-type="<?=$type?>" data-section="<?=$kind?>" data-target="#<?=$subtarget?>" data-btn="#<?=$load?>" data-user="<?=$user_id?>" >Show More</button>
+	</div>	
+<?
+	}
+			
 		}
 		else
 		{
@@ -1895,11 +1909,12 @@ if (isset($_POST['getData']))
 
 		$start 		= $_POST['start'];
 		$limit 		= $_POST['limit'];
+		$sort 	    = $_POST['sort'];
 		$section 	= $_POST['section'];
 		$type 		= $_POST['type'];
 		$user_id 	= $_POST['user_id'];
 
-		$stmt  = $conn->prepare("SELECT * FROM $section WHERE type = ? AND user_id = ? ORDER BY id DESC LIMIT $start, $limit");
+		$stmt  = $conn->prepare("SELECT * FROM $section WHERE type = ? AND user_id = ? ORDER BY $sort LIMIT $start, $limit");
 		$stmt->execute(array($type, $user_id));
 		$rows  = $stmt->fetchAll();
 		$count = $stmt->rowCount();
@@ -2077,9 +2092,8 @@ if (isset($_POST['getData']))
 			<? 
 		
 			}
-
-		} 
-	
+			
+			
 ?>
 <script>
 $(document).ready(function() {
@@ -2097,6 +2111,9 @@ $(document).ready(function() {
 });
 </script>
 <?
+
+		} 
+
 	   
 }
 

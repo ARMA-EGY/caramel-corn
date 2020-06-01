@@ -32,34 +32,21 @@ if($type == 'movie')
 	
 	$url = '&kind='.$kind.'&type=movies';
 	
-?>  
-	
-	<div id="favorites_section">
-		
-<?
+
 		if($result > 0) 
 		{
 ?>
 			<div class="row my-2">
-		<div class="col-md-12 pb-1">
+		<div class="col-md-12 pb-1">	
 			
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control float-right m-1 select_sort" data-kind="<?=$kind?>" data-type="movie" data-target="#favorites_movies" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_favorites_movie" data-kind="<?=$kind?>" data-type="movies" data-target="#favorites_section_m" data-subtarget="favorites_movies" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
 					<option value="release_date DESC"> Release Date </option>
 					<option value="name ASC"> From A to Z </option>
 					<option value="name DESC"> From Z to A </option>
-				</select>
-			</div>
-			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control float-right m-1 select_show" data-kind="<?=$kind?>" data-type="movie" data-target="#favorites_movies" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
 				</select>
 			</div>
 			
@@ -70,6 +57,7 @@ if($type == 'movie')
 		</div>	
 	</div>
 
+		<div id="favorites_section_m">
 		
 			<div class="row justify-content-center" id="favorites_movies">
 
@@ -271,7 +259,7 @@ if($type == 'movie')
 	{
 ?>
 	<div class="mt-4 text-center">
-   		 <button id="load_favorites_movie" class="btn btn-filter cnt loadmore" data-type="movie" data-section="favorites" data-target="#favorites_movies" data-btn="#load_favorites_movie" data-user="<?=$user_id?>" >Show More</button>
+   		 <button id="load_favorites_movie" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="movie" data-section="favorites" data-target="#favorites_movies" data-btn="#load_favorites_movie" data-user="<?=$user_id?>" >Show More</button>
 	</div>
 <?
 	}
@@ -338,9 +326,9 @@ if($type == 'tv')
 ?>
 	 <div class="row my-2">
 		<div class="col-md-12 pb-1">
-			
+				
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="tv" data-target="#favorites_tv" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_favorites_tv" data-kind="<?=$kind?>" data-type="tv" data-target="#favorites_section_t" data-subtarget="favorites_tv" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
@@ -350,14 +338,6 @@ if($type == 'tv')
 				</select>
 			</div>
 			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="tv" data-target="#favorites_tv" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
-				</select>
-			</div>
 			
 			<i class="ti-layout-list-thumb show_grid2" data-show=".show_cards_details" data-target="#favorites_tv"></i>
 			
@@ -366,6 +346,7 @@ if($type == 'tv')
 		</div>	
 	</div>
 
+		<div id="favorites_section_t">
 		
 			<div class="row justify-content-center" id="favorites_tv">
 
@@ -568,7 +549,7 @@ if($type == 'tv')
 	{
 ?>
 	<div class="mt-4 text-center">
-   		 <button id="load_favorites_tv" class="btn btn-filter cnt loadmore" data-type="movie" data-section="favorites" data-target="#favorites_tv" data-btn="#load_favorites_tv" data-user="<?=$user_id?>" >Show More</button>
+   		 <button id="load_favorites_tv" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="movie" data-section="favorites" data-target="#favorites_tv" data-btn="#load_favorites_tv" data-user="<?=$user_id?>" >Show More</button>
 	</div>
 		
 <?
@@ -578,7 +559,7 @@ if($type == 'tv')
 
 ?>
 
-
+		</div>
 
 
 

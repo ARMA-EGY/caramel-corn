@@ -1,11 +1,67 @@
 <?
 
+ob_start();
 
 //Include Configuration File
 include('include/config.php');
 
+include('include/header.php'); 
 
-if(!isset($_SESSION['access_token']))
+include('include/function.php'); 
+
+include('include/genre.php'); 
+
+
+
+if(isset($_GET['u']))
+{
+	
+	$uid = $_GET['u'];
+	
+	$stmt = $conn->prepare("SELECT * FROM members WHERE uid = ? ");
+	$stmt->execute(array($uid));
+	$user = $stmt->fetch();
+	$count = $stmt->rowCount();
+
+	if ($count > 0 )
+	{
+	
+		if(isset($_SESSION['access_token']))
+		{
+
+			if ($user['id'] == $user_id)
+			{
+				header('location:corn.php');
+			}
+			else
+			{
+				$private 	= $user['private'];
+				$logo    	= $user['corn_logo'];
+				$date    	= $user['Add_Date'];
+				$user_id    = $user['id'];
+				$name    	= $user['name'];
+				$image      = $user['image'];
+				$join_date = date(' F, Y', strtotime($date));
+			}
+		}
+		else
+		{
+			$private 	= $user['private'];
+			$logo    	= $user['corn_logo'];
+			$date    	= $user['Add_Date'];
+			$user_id    = $user['id'];
+			$name    	= $user['name'];
+			$image      = $user['image'];
+			$join_date = date(' F, Y', strtotime($date));
+
+		}
+	}
+	else
+	{
+		header('location:index.php');
+	}
+}
+else
 {
 	header('location:index.php');
 }
@@ -22,62 +78,6 @@ if(!isset($_SESSION['access_token']))
 	$favorites_sec   = '';
 	$lists_sec 	     = '';
 	$following_sec   = '';
-
-if(isset($_GET['sec']))
-{
-	$sec = $_GET['sec'];
-	
-	if ($sec == 'likes')
-	{
-		$watchlist_color = '#fff';
-		$likes_color 	 = '#ff3447';
-		
-		$watchlist_sec 	 = '';
-		$likes_sec 	   	 = 'show active';
-	}
-	elseif ($sec == 'favorites')
-	{
-		$watchlist_color = '#fff';
-		$favorites_color = '#ffc107';
-		
-		$watchlist_sec   = '';
-		$favorites_sec 	 = 'show active';
-	}
-	elseif ($sec == 'lists')
-	{
-		$watchlist_color = '#fff';
-		$lists_color 	 = '#caa552';
-		
-		$watchlist_sec   = '';
-		$lists_sec 	 	 = 'show active';
-	}
-	elseif ($sec == 'following')
-	{
-		$watchlist_color = '#fff';
-		$following_color = '#9c9887';
-		
-		$watchlist_sec   = '';
-		$following_sec 	 = 'show active';
-	}
-	
-}
-
-include('include/header.php'); 
-
-include('include/function.php'); 
-
-include('include/genre.php'); 
-
-$join_date = date(' F, Y', strtotime($date));
-
-
-$stmt = $conn->prepare("SELECT * FROM members WHERE id = ? ");
-$stmt->execute(array($user_id));
-$user = $stmt->fetch();
-
-$private = $user['private'];
-$uid     = $user['uid'];
-$logo    = $user['corn_logo'];
 
 ?>
 
@@ -152,7 +152,7 @@ $logo    = $user['corn_logo'];
 						<div class="icon">
 						  <i class="fa fa-list fs-15-t list-color"></i>
 						</div>
-						<span>   <?= countItems2 ('user_id', 'lists', $user_id) ?> </span>
+						<span>   <?= countItems3 ('user_id', 'lists', $user_id, 'public', 'Yes') ?> </span>
 					  </div>
 				  </div>
 				</div>
@@ -187,9 +187,6 @@ $logo    = $user['corn_logo'];
 							<h4 class="font-weight-bold" style="display: inline-block;color: #fbd747;font-family: Lobster, 'sans-serif';">My <span class="text-white" style="font-family: Lobster, 'sans-serif';">Corn</span> 
 							</h4> 
 							
-							<button class="btn-filter btn-list float-right px-2 py-1 mt-4 mx-1" data-toggle="modal" data-target="#setting_modal"><i class="fa fa-cog"></i> </button>
-							
-							<a href="list.php" class="btn-filter btn-list text-white float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-plus"></i> Create List</a>
 
 						</div>
 
@@ -244,6 +241,15 @@ $logo    = $user['corn_logo'];
 			<!--===================  Watchlist   ===================-->
 			
 		  <div class="tab-pane fade <?=$watchlist_sec?>" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab">  
+			  
+		<?
+			if($private == 1)
+			{
+				echo '<h3 class="text-center text-white">This Account Is Private.</h3>';
+			}
+	   		else
+			{
+		?>
 			
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
@@ -269,12 +275,22 @@ $logo    = $user['corn_logo'];
 				
 			</div>
 			  
+		<? } ?>
+			  
 		</div>
 			
 			<!--===================  Likes   ===================-->
 		 
 		  <div class="tab-pane fade <?=$likes_sec?>" id="likes" role="tabpanel" aria-labelledby="likes-tab">
-
+	  
+		<?
+			if($private == 1)
+			{
+				echo '<h3 class="text-center text-white">This Account Is Private.</h3>';
+			}
+	   		else
+			{
+		?>
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
 
@@ -298,13 +314,23 @@ $logo    = $user['corn_logo'];
 				<div id="likes_section_tv"></div>
 				
 			</div>
+			  
+		<? } ?>
 			
 		</div>
 			
 			<!--===================  Favorites   ===================-->
 			
 		  <div class="tab-pane fade <?=$favorites_sec?>" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
-			
+				  
+		<?
+			if($private == 1)
+			{
+				echo '<h3 class="text-center text-white">This Account Is Private.</h3>';
+			}
+	   		else
+			{
+		?>
 			<div class="row">
 				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
 
@@ -329,17 +355,35 @@ $logo    = $user['corn_logo'];
 				
 			</div>
 			  
+		<? } ?>
 			  
-			
 		  </div>
 			
 			<!--===================  Lists   ===================-->
 			
-		   <div class="tab-pane fade <?=$lists_sec?>" id="lists" role="tabpanel" aria-labelledby="lists-tab">  </div>
+		   <div class="tab-pane fade <?=$lists_sec?>" id="lists" role="tabpanel" aria-labelledby="lists-tab"> 
+				  
+		<?
+			if($private == 1)
+			{
+				echo '<h3 class="text-center text-white">This Account Is Private.</h3>';
+			}
+		?>
+			
+			</div>
 			
 			<!--===================  Following   ===================-->
 			
-		   <div class="tab-pane fade <?=$following_sec?>" id="following" role="tabpanel" aria-labelledby="following-tab">  </div>
+		   <div class="tab-pane fade <?=$following_sec?>" id="following" role="tabpanel" aria-labelledby="following-tab"> 
+			   		  
+		<?
+			if($private == 1)
+			{
+				echo '<h3 class="text-center text-white">This Account Is Private.</h3>';
+			}
+		?>
+			
+			</div>
 			
 		</div>
 
@@ -355,71 +399,17 @@ $logo    = $user['corn_logo'];
 
 
 
-<!-- Setting Modal -->
-<div class="modal fade" id="setting_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content" style="background: rgba(0, 0, 0, 0.7);color: #fff;border: 1px solid rgba(255, 255, 255, 0.5);">
-      <div class="modal-header">
-        <h5 class="modal-title" id="setting_label">Setting</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		    
-        <div class="info">
-			
-			<span class="floaty"><i class="far fa-file-image mr-2"></i> Logo</span>
-			
-			<div class="mb-2">
-				<button class="btn btn-light get_logo px-1 py-0 ml-2" data-user="<?=$user_id ?>"><i class="fas fa-edit"></i> Change</button>
-			</div>
-			
-			<div id="corn_logos" class="text-center"></div>
-			
-		</div>
-		
-		  
-        <div class="info-last">
-			
-			<span class="floaty"><i class="fas fa-user-shield mr-2"></i> Private Account</span>
-			
-			<div class="custom-control custom-switch">
-			  <input type="checkbox" class="custom-control-input" id="private" data-user="<?=$user_id ?>" <? if($private == 1){echo 'checked';} ?>>
-			  <label class="custom-control-label ml-5 mb-2" for="private"> Private</label>
-			</div>
-			
-		</div>
-		  
-		  
-		<div class="info-last sharelink <? if($private == 1){echo 'd-none2';} ?>" style="border-top: 1px solid #bbb;">
-			
-			<span class="floaty"><i class="fas fa-share-alt mr-2"></i> Shareable Link</span>
-			
-			<div class="mb-2">
-				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
-				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; left: 0;" />
-
-				<p id="corn_link" class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
-			</div>
-			
-		</div>
-		  
-		  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-filter" data-dismiss="modal">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 
 <? include('include/footer.php'); ?>
 
+<?
 
+if($private != 1)
+{
+
+?>
 
 <script>
 	
@@ -514,7 +504,7 @@ $logo    = $user['corn_logo'];
 				});
 		
 		$.ajax({
-					url: 		'include/sections/lists.php',
+					url: 		'include/sections/viewlists.php',
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
@@ -602,11 +592,13 @@ $logo    = $user['corn_logo'];
         }
     });
 }
-
-	
-
-
 	
 </script>
 
+<?
 	
+}
+
+ob_end_flush(); 
+
+?>

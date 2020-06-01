@@ -35,8 +35,8 @@
                             </form>
 							
 							<div class="footer-social-widegt d-flex align-items-center text-center">
-                                <a href="#"><i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fab fa-instagram fa-2x" aria-hidden="true"></i></a>
+                                <a href="https://www.facebook.com/caramelcornofficial/"><i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/caramelcornofficial/"><i class="fab fa-instagram fa-2x" aria-hidden="true"></i></a>
 								<a href="#"><i class="fab fa-twitter fa-2x" aria-hidden="true"></i></a>
                             </div>
 							

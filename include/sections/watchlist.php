@@ -49,22 +49,13 @@ if($type == 'movie')
 		<div class="col-md-12 pb-1">
 			
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_watchlist_movie" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_section_m" data-subtarget="watchlist_movies" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
 					<option value="release_date DESC"> Release Date </option>
 					<option value="name ASC"> From A to Z </option>
 					<option value="name DESC"> From Z to A </option>
-				</select>
-			</div>
-			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="movies" data-target="#watchlist_movies" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
 				</select>
 			</div>
 			
@@ -75,6 +66,7 @@ if($type == 'movie')
 		</div>	
 	</div>
 
+		<div id="watchlist_section_m">
 		
 			<div class="row justify-content-center" id="watchlist_movies">
 
@@ -277,17 +269,17 @@ if($type == 'movie')
 	{
 ?>
 	<div class="mt-4 text-center">
-   		 <button id="load_watchlist_movie" class="btn btn-filter cnt loadmore" data-type="movie" data-section="watchlist" data-target="#watchlist_movies" data-btn="#load_watchlist_movie" data-user="<?=$user_id?>" >Show More</button>
+   		 <button id="load_watchlist_movie" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="movie" data-section="watchlist" data-target="#watchlist_movies" data-btn="#load_watchlist_movie" data-user="<?=$user_id?>" >Show More</button>
 	</div>
 		
 <?
 	}
 
  } 
+?>
+</div>
 
-
-
-
+<?
 if($type == 'tv')
 {
 	
@@ -321,24 +313,15 @@ if($type == 'tv')
 ?>
 	 <div class="row my-2">
 		<div class="col-md-12 pb-1">
-			
+				
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="tv" data-target="#watchlist_tv" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_watchlist_tv" data-kind="<?=$kind?>" data-type="tv" data-target="#watchlist_section_t" data-subtarget="watchlist_tv" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
 					<option value="release_date DESC"> Release Date </option>
 					<option value="name ASC"> From A to Z </option>
 					<option value="name DESC"> From Z to A </option>
-				</select>
-			</div>
-			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="tv" data-target="#watchlist_tv" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
 				</select>
 			</div>
 			
@@ -349,6 +332,7 @@ if($type == 'tv')
 		</div>	
 	</div>
 
+		<div id="watchlist_section_t">
 		
 			<div class="row justify-content-center" id="watchlist_tv">
 
@@ -551,7 +535,7 @@ if($type == 'tv')
 	{
 ?>
 	<div class="mt-4 text-center">
-   		 <button id="load_watchlist_tv" class="btn btn-filter cnt loadmore" data-type="movie" data-section="watchlist" data-target="#watchlist_tv" data-btn="#load_watchlist_tv" data-user="<?=$user_id?>" >Show More</button>
+   		 <button id="load_watchlist_tv" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="movie" data-section="watchlist" data-target="#watchlist_tv" data-btn="#load_watchlist_tv" data-user="<?=$user_id?>" >Show More</button>
 	</div>
 		
 <?
@@ -561,7 +545,7 @@ if($type == 'tv')
 
 ?>
 
-
+	</div>
 
 
 

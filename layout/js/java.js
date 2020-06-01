@@ -659,9 +659,10 @@ $('.filter_form').submit(function(e){
 		var kind 		= $(this).attr('data-kind');
 		var type 		= $(this).attr('data-type');
 		var target 		= $(this).attr('data-target');
+		var subtarget 	= $(this).attr('data-subtarget');
+		var load 	    = $(this).attr('data-load');
 		var user_id 	= $(this).attr('data-user');
 		var sort 		= $(this).val();
-		var show 		= $(this).siblings('.select_show').val();
 
 		$(this).siblings('.toggle_type').removeClass('active');
 		$(this).addClass('active');
@@ -673,10 +674,12 @@ $('.filter_form').submit(function(e){
 					method: 	'POST',
 					dataType: 	'text',
 					data:		{ 
-									 type 	 : type,
+									 type 	 		 : type,
 									 kind 	 	 	 : kind,
 									 select_sort 	 : sort,
-									 select_show 	 : show,
+									 target 	 	 : target,
+									 subtarget 	 	 : subtarget,
+									 load 	 	 	 : load,
 									 user_id 	 	 : user_id
 								}	,
 					success : function(response)

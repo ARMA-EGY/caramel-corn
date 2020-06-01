@@ -117,13 +117,6 @@ else
 if(isset($_SESSION['access_token']))
 {
 	
-//	echo $_SESSION['access_token'] . '<br>' ;
-//	echo $_SESSION['user_name'] . '<br>' ;
-//	echo $_SESSION['user_image'] . '<br>' ;
-//	echo $_SESSION['user_email_address'] . '<br>' ;
-//	echo $_SESSION['login_type'] . '<br>' ;
-	
-	
 	$name 			= $_SESSION['user_name'];
 	$image 			= $_SESSION['user_image'];
 	$email 			= $_SESSION['user_email_address'];

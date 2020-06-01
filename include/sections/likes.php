@@ -37,7 +37,6 @@ if($type == 'movie')
 	    
 
 	
-	<div id="likes_section">
 		
 <?
 		if($result > 0) 
@@ -47,22 +46,13 @@ if($type == 'movie')
 		<div class="col-md-12 pb-1">
 			
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="movie" data-target="#likes_movies" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_likes_movie" data-kind="<?=$kind?>" data-type="movie" data-target="#likes_section_m" data-subtarget="likes_movies" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
 					<option value="release_date DESC"> Release Date </option>
 					<option value="name ASC"> From A to Z </option>
 					<option value="name DESC"> From Z to A </option>
-				</select>
-			</div>
-			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="movie" data-target="#likes_movies" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
 				</select>
 			</div>
 			
@@ -73,6 +63,8 @@ if($type == 'movie')
 		</div>	
 	</div>
 
+		
+	  <div id="likes_section_m">
 		
 			<div class="row justify-content-center" id="likes_movies">
 
@@ -270,21 +262,23 @@ if($type == 'movie')
 
 		
 
+<? if($total_pages > 1)
+	{
+?>
+	<div class="mt-4 text-center">
+   		 <button id="load_likes_movie" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="movie" data-section="likes" data-target="#likes_movies" data-btn="#load_likes_movie" data-user="<?=$user_id?>" >Show More</button>
+	</div>	
+<?
+	}
+?>
+		
+		
 	</div>	
 
 
 					
 				<!-- ================   Load More   ================  -->
 
-<? if($total_pages > 1)
-	{
-?>
-	<div class="mt-4 text-center">
-   		 <button id="load_likes_movie" class="btn btn-filter cnt loadmore" data-type="movie" data-section="likes" data-target="#likes_movies" data-btn="#load_likes_movie" data-user="<?=$user_id?>" >Show More</button>
-	</div>	
-<?
-	}
-?>
 
 <script>
 
@@ -340,11 +334,13 @@ if($type == 'tv')
 		if($result > 0) 
 		{
 ?>
+
 	 <div class="row my-2">
 		<div class="col-md-12 pb-1">
 			
+			
 			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_sort" data-kind="<?=$kind?>" data-type="tv" data-target="#likes_tv" data-user="<?=$user_id?>">
+				<select dir="ltr" class="select-control m-1 select_sort" data-load="load_likes_tv"  data-kind="<?=$kind?>" data-type="tv" data-target="#likes_section_t" data-subtarget="likes_tv" data-user="<?=$user_id?>">
 					<option value="id DESC"> Latest </option>
 					<option value="id ASC"> Oldest </option>
 					<option value="rate DESC"> Top Rated </option>
@@ -354,14 +350,6 @@ if($type == 'tv')
 				</select>
 			</div>
 			
-			<div class="select-wrapper">
-				<select dir="ltr" class="select-control m-1 select_show" data-kind="<?=$kind?>" data-type="tv" data-target="#likes_tv" data-user="<?=$user_id?>">
-					<option value="20"> Show 20 </option>
-					<option value="30"> Show 30 </option>
-					<option value="40"> Show 40 </option>
-					<option value="50"> Show 50 </option>
-				</select>
-			</div>
 			
 			<i class="ti-layout-list-thumb show_grid2" data-show=".show_cards_details" data-target="#likes_tv"></i>
 			
@@ -370,7 +358,8 @@ if($type == 'tv')
 		</div>	
 	</div>
 
-		
+		<div id="likes_section_t">
+
 			<div class="row justify-content-center" id="likes_tv">
 
 			<?
@@ -572,7 +561,7 @@ if($type == 'tv')
 	{
 ?>
 	<div class="mt-4 text-center">
-   		 <button id="load_likes_tv" class="btn btn-filter cnt loadmore" data-type="tv" data-section="likes" data-target="#likes_tv" data-btn="#load_likes_tv" data-user="<?=$user_id?>" >Show More</button>
+   		 <button id="load_likes_tv" class="btn btn-filter cnt loadmore" data-sort="id DESC" data-type="tv" data-section="likes" data-target="#likes_tv" data-btn="#load_likes_tv" data-user="<?=$user_id?>" >Show More</button>
 	</div>
 		
 <?
@@ -583,7 +572,7 @@ if($type == 'tv')
 
 ?>
 
-
+	</div>
 
 
 
