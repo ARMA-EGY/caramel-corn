@@ -170,6 +170,25 @@ if(isset($_SESSION['access_token']))
 	
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="Movies, TV Shows, Actors, best movies, trending movies, top movies, top rated movies, popular movies, upcoming movies,  ">
+	<meta name="Description" content="Caramel Corn is a website for movies and TV shows, with the easiest way to mark your favorites and list what you love." />
+	<meta name="robots" content="noindex,nofollow">
+	<meta http-equiv="refresh" content="240">
+   
+   <meta content='' name='current_path' />
+   <meta content='false' name='protect_images' />
+   <meta content="This photo is Copyright © 2020 Caramel Corn. All rights reserved." name='image_protection_blurb' />
+   
+   <meta property="og:site_name" content="Caramel Corn"/>
+   
+    <meta property="og:url"           content="https://caramel-corn.com/" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Caramel Corn" />
+	<meta property="og:description"   content="Caramel Corn is a website for movies and TV shows, with the easiest way to mark your favorites and list what you love." />
+	<meta property="og:image"         content="layout/img/corn.png" />
+	
+	<meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="layout/img/logo.png"/>
 <!--===============================================================================================-->	
