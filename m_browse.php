@@ -169,21 +169,11 @@ else
 				
 					<div class="form-row my-2 pt-3 filter-box" style="border-bottom: 1px solid rgba(255,255,255,0.3);border-top: 1px solid rgba(255,255,255,0.3);">
 
-						 <div class="form-group col-md-3 mb-2">
-							<label for="" class="font-weight-bolder text-white fs-13-t">Certification</label>
-							  <select dir="ltr" class="form-control" name="certification" >
-								<option value=""> Select  </option>
-								<option <? if($certification == 'G'){echo 'selected';} ?> >G</option>
-								<option <? if($certification == 'R'){echo 'selected';} ?>>R</option>
-								<option <? if($certification == 'NR'){echo 'selected';} ?>>NR</option>
-								<option <? if($certification == 'PG'){echo 'selected';} ?>>PG</option>
-								<option <? if($certification == 'PG-13'){echo 'selected';} ?>>PG-13</option>
-								<option <? if($certification == 'NC-17'){echo 'selected';} ?>>NC-17</option>
-							  </select>
-						  </div>
+						
+						<input type="hidden" name="certification" value="">
 
 
-						 <div class="form-group col-md-3 mb-2">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Rating</label>
 							  <select dir="ltr" class="form-control" name="rating" >
 								<option value="" > Select  </option>
@@ -198,7 +188,7 @@ else
 						  </div>
 
 
-						 <div class="form-group col-md-3 mb-2">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Year</label>
 							  <select dir="ltr" class="form-control" name="year" >
 								<option value="" > Select  </option>
@@ -217,7 +207,7 @@ else
 						  </div>
 
 						
-						 <div class="form-group col-md-3 mb-2">
+						 <div class="form-group col-md-4 mb-2">
 							<label for="" class="font-weight-bolder text-white fs-13-t">Sort By</label>
 							  <select  dir="ltr" class="form-control" name="sort" >
 								<option value=""  selected=""> Select  </option>
