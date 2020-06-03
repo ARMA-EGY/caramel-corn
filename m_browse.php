@@ -538,7 +538,7 @@ else
 
 
 				<?php if ($page > 3): ?>
-				<li class="page-item"><a class="page-link" href="?page=1&type=<?=$type?>">1</a></li>
+				<li class="page-item"><a class="page-link" href="?page=1<?=$url?>">1</a></li>
 				<li class="page-item"><div class="page-link">...</div></li>
 				<?php endif; ?>
 
