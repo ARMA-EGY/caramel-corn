@@ -90,7 +90,7 @@ $total_pages = $tv_shows->total_pages;
     </div>
 	  
 
-	<div class="row p-4" id="tv">
+	<div class="row py-4" id="tv">
 		
 		
 		

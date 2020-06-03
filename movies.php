@@ -109,7 +109,7 @@ elseif($type == 'Top Revenue')
 	  
 	  
 	  
-	<div class="row p-4" id="movies">
+	<div class="row py-4" id="movies">
 		
 		
 		
