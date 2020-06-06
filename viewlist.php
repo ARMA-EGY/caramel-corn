@@ -656,7 +656,7 @@ if(isset($_GET['u']))
 
 										  <h3 class="font-weight-bold text-white"><?= ucwords($row['name'])  ?> </h3> 
 
-										  <p class="font-weight-bold text-white"><? if($row['description'] == ''){echo 'No description entered.';}else{echo $row['description'];}  ?> </p> 
+										  <p class="font-weight-bold text-white"><? if($row['description'] == ''){echo 'No description entered.';}else{echo nl2br($row['description']) ;}  ?> </p> 
 
 										</div>
 
@@ -1224,7 +1224,7 @@ if(isset($_GET['u']))
 
 										  <h3 class="font-weight-bold text-white"><?= ucwords($row['name'])  ?> </h3> 
 
-										  <p class="font-weight-bold text-white"><? if($row['description'] == ''){echo 'No description entered.';}else{echo $row['description'];}  ?> </p> 
+										  <p class="font-weight-bold text-white"><? if($row['description'] == ''){echo 'No description entered.';}else{echo nl2br($row['description']);}  ?> </p> 
 
 										</div>
 
