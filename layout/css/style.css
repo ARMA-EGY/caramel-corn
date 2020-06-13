@@ -98,7 +98,7 @@ h1 {
 #mainslide {
 	overflow: hidden;
 	position: relative;
-    height: 75vh;
+    height: 50vh;
     width: 100%;
 }
 
@@ -201,7 +201,7 @@ h1 {
 
 	
 	
-.navbar:hover {background: rgba(0,0,0,0.4)!important;}
+.navbar:hover {background: rgba(0,0,0,0.8)!important;}
 
 .navbar-brand {
     padding: unset;

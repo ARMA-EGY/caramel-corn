@@ -94,6 +94,14 @@ style="position: absolute; z-index: -999; opacity: 0;" />
 		
 	});
 	
+	var animals = ['Cat', 'Dog', 'Mouse'] ;
+	
+	for (var i = 0; i < animals.length; i++)
+		{
+		
+			console.log(animals[i]);
+		}
+	
 	
 </script>
 
