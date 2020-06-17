@@ -69,7 +69,7 @@
 					
 					<p class="text-white mt-3">Tell us what do you think, any kind of feedback is highly appreciated.  </p>
 					
-					<textarea class="form-control mt-3" rows="4" name="feeback" placeholder="Your Feedback ..." required></textarea>
+					<textarea id="feedback_text" class="form-control mt-3" rows="4" name="feedback" placeholder="Your Feedback ..." required></textarea>
 					
 				</div>
 				
@@ -190,7 +190,7 @@
  </section>
 
 
-
+<div id="result"></div>
 
 
 	
@@ -268,50 +268,15 @@ var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
 	{
 		
 		e.preventDefault();
-    	$('.submit').prop('disabled', true);
 		
 		$.ajax({
 			url: 		'rating.php',
 			method: 	'POST',
-			dataType: 	'json',
+			dataType: 	'text',
 			data:		$(this).serialize()	,
-			success : function(data)
+			success : function(response)
 				 {
-    				$('.submit').prop('disabled', false);
-					 
-					if (data['state'] == 'success')
-					{
-					 		Swal.fire(
-							  'Thank You',
-							  'Your Survey Completed Successfully',
-							  'success'
-							)
-					}
-					 else if (data['state'] == 'category')
-					{
-					 		Swal.fire(
-							  'Oops...',
-							  'Please select your feedback category.',
-							  'warning'
-							)
-					}
-					 else if (data['state'] == 'feedback')
-					{
-					 		Swal.fire(
-							  'Oops...',
-							  'Please write your feedback.',
-							  'warning'
-							)
-					}
-					 else if (data['state'] == 'rating')
-					{
-					 		Swal.fire(
-							  'Oops...',
-							  'Please choose your rating by selecting one of (Emotions).',
-							  'warning'
-							)
-					}
-
+					 $('#result').html(response);
 				 }
 		});
 		
@@ -334,7 +299,7 @@ var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
 	});
 	
 	
-	var MyPath = firebase.database().ref('Users/');
+	var MyPath = firebase.database().ref('Rating/');
 	 MyPath.on('value', function(GetData) {
 
 		console.log("Change Data" , GetData.val());
