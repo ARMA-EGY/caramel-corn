@@ -1,7 +1,34 @@
 <?  include('ini.php'); ?>
 
-	
 
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAf-iU56NqohoFxIFtwYWiX1Ix7FKfFdW8",
+    authDomain: "caramel-corn.firebaseapp.com",
+    databaseURL: "https://caramel-corn.firebaseio.com",
+    projectId: "caramel-corn",
+    storageBucket: "caramel-corn.appspot.com",
+    messagingSenderId: "652581811330",
+    appId: "1:652581811330:web:3cd814bc941c9a5299b09b",
+    measurementId: "G-YC236VJYC6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 
 
  <section class="section-spacing">
@@ -88,10 +115,11 @@
 				<h2 class="text-white font-weight-bold">Reviews</h2>
 			</div>
 			
+			
 			<div id="reviews">
 			
 <?
-	$stmt = $conn->prepare("SELECT * FROM rating ");
+	$stmt = $conn->prepare("SELECT * FROM rating ORDER BY id DESC ");
 	$stmt->execute();
 	$rows = $stmt->fetchAll();
 
@@ -305,6 +333,26 @@ var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
 		
 	});
 	
+	
+	var MyPath = firebase.database().ref('Users/');
+	 MyPath.on('value', function(GetData) {
+
+		console.log("Change Data" , GetData.val());
+           
+		$.ajax({
+			url: 		'reviews.php',
+			method: 	'POST',
+			dataType: 	'text',
+			data:		{getreviews: 1}	,
+			success : function(response)
+				 {
+    				$('#reviews').html(response);
+				 }
+		});
+
+	 });
+	
 
 </script>
+
 
