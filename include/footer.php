@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <!-- Footer Widget -->
-                    <div class="col-12 col-sm-6 col-lg-2">
+                    <div class="col-6 col-sm-6 col-lg-2">
                         <div class="single-footer-widget">
                             <h6>Categories</h6>
                             <nav>
@@ -74,13 +74,13 @@
                                     <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Support</a></li>
 -->
                                     <li><a href="contact.php"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Contact Us</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Rate Us</a></li>
+                                    <li><a href="rate.php"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Rate Us</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <!-- Footer Widget -->
-                    <div class="col-12 col-sm-6 col-lg-2">
+                    <div class="col-6 col-sm-6 col-lg-2">
                         <div class="single-footer-widget">
                             <h6>Account</h6>
                             <nav>
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <!-- Footer Widget -->
-                    <div class="col-12 col-sm-6 col-lg-2">
+                    <div class="col-6 col-sm-6 col-lg-2">
                         <div class="single-footer-widget">
                             <h6>Legal</h6>
                             <nav>

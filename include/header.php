@@ -170,7 +170,7 @@ if(isset($_SESSION['access_token']))
 	
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="Movies, TV Shows, Actors, best movies, trending movies, top movies, top rated movies, popular movies, upcoming movies,  ">
+	<meta name="keywords" content="Movies,TV Shows,Actors,best movies,trending movies,top movies,top rated movies,popular movies,upcoming movies,  ">
 	<meta name="Description" content="Caramel Corn is a website for movies and TV shows, with the easiest way to mark your favorites and list what you love." />
 	<meta name="robots" content="noindex,nofollow">
 	<meta http-equiv="refresh" content="240">
@@ -297,7 +297,7 @@ if(isset($_SESSION['access_token']))
 <? }else{ ?>
 		  
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle btn-secondary rounded caramel_color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
+			<a class="nav-link dropdown-toggle btn-secondary rounded " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
 			  
 			<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="right: 0; left: unset;">
 			  <li><?=$facebook_login_url?></li>
