@@ -216,6 +216,160 @@
 
 	
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-messaging.js"></script>
+
+
+<script>
+   // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAf-iU56NqohoFxIFtwYWiX1Ix7FKfFdW8",
+    authDomain: "caramel-corn.firebaseapp.com",
+    databaseURL: "https://caramel-corn.firebaseio.com",
+    projectId: "caramel-corn",
+    storageBucket: "caramel-corn.appspot.com",
+    messagingSenderId: "652581811330",
+    appId: "1:652581811330:web:3cd814bc941c9a5299b09b",
+    measurementId: "G-YC236VJYC6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+	
+  // Retrieve Firebase Messaging object.
+const messaging = firebase.messaging();
+
+	  
+messaging.requestPermission()
+	.then(function()
+	{
+		console.log('Have Permission');
+		if(isTokenSentToServer())
+		{
+			getRegToken();		  
+			console.log('Token Already Saved');
+			
+		}
+		else
+		{
+			getRegToken();
+		}
+	
+	//	getRegToken();
+	})
+	.catch(function(err)
+	{
+		console.log('Error Occured');
+	})
+	
+	
+
+	function getRegToken() 
+	{
+		 messaging.getToken()
+		 .then((currentToken) => {
+		  if (currentToken) {
+			console.log(currentToken);
+			token =  getToken();     
+			newToken =  currentToken;
+		//	console.log(token);
+		//	console.log(newToken);
+			if (token !== '' && token !== null && token != newToken)
+				{
+					console.log('token changed');
+					changeToken(token, newToken);
+				}
+			setTokenSentToServer(true);
+			saveToken(currentToken);
+    		setToken(currentToken);
+		  } else {
+			console.log('No Instance ID token available. Request permission to generate one.');
+			setTokenSentToServer(false);
+        	setTokenSaved(false);
+		  }
+		}).catch((err) => {
+		  console.log('An error occurred while retrieving token. ', err);
+		  showToken('Error retrieving Instance ID token. ', err);
+		  setTokenSentToServer(false);
+          setTokenSaved(false);
+		});
+	}
+	
+	
+  function isTokenSentToServer() {
+    return window.localStorage.getItem('sentToServer') === '1';
+  }
+
+  function setTokenSentToServer(sent) {
+    window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+  }
+    
+	function setTokenSaved(sent){
+		window.localStorage.setItem('notificationTokenSaved', sent ? 1 : 0);
+	}
+
+	function isTokenSaved(){
+		return window.localStorage.getItem('notificationTokenSaved') == 1;
+	}
+
+    		
+	function setToken(token){
+		window.localStorage.setItem('notificationToken', token);
+		setTokenSaved(true);
+	}
+
+	function getToken(){
+		return window.localStorage.getItem('notificationToken');
+	}
+	
+	function saveToken(currentToken) {
+		
+		 $.ajax({
+				url: 		'ajax.php',
+				method: 	'POST',
+				dataType: 	'text',
+				data:		{token: currentToken},
+			    success : function(response)
+				 {
+					console.log(response);
+				 }		
+			});
+	}
+
+    		
+	function changeToken(oldToken, newToken){
+		$.ajax({
+			url: 		'ajax.php',
+			method: 	'POST',
+			data: 		{oldToken: oldToken, newToken: newToken },
+			success : function(response)
+			 {
+				console.log(response);
+			 }		
+		});
+	}
+
+	messaging.onMessage(function(payload) {
+	  console.log("Message received. ", payload);
+	  notificationTitle = payload.data.title;
+	  notificationOptions = {
+	  	body: payload.data.body,
+	  	icon: payload.data.icon,
+	  	image:  payload.data.image,
+        data:{
+            time: new Date(Date.now()).toString(),
+            click_action: payload.data.click_action
+        }
+	  };
+	  var notification = new Notification(notificationTitle,notificationOptions);
+	});
+	
+</script>
 
 
 	<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>

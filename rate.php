@@ -164,7 +164,7 @@
 					<?
 						if ($row['rate'] == 1){echo '&#x1F620; Angry';}  
 						 elseif ($row['rate'] == 2){echo '&#x1F61E; &#x1F61E; Disappointed';} 
-						 elseif ($row['rate'] == 3){echo '&#x1F610; &#x1F610; &#x1F610; Natural';} 
+						 elseif ($row['rate'] == 3){echo '&#x1F610; &#x1F610; &#x1F610; Normal';} 
 						 elseif ($row['rate'] == 4){echo '&#x1F60A; &#x1F60A; &#x1F60A; &#x1F60A; Happy';} 
 						 elseif ($row['rate'] == 5){echo '&#x1F60D; &#x1F60D; &#x1F60D; &#x1F60D; &#x1F60D; InLove';} 
 					?>
@@ -268,6 +268,7 @@ var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
 	{
 		
 		e.preventDefault();
+    	$('.submit').prop('disabled', true);
 		
 		$.ajax({
 			url: 		'rating.php',
@@ -277,6 +278,7 @@ var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
 			success : function(response)
 				 {
 					 $('#result').html(response);
+    				$('.submit').prop('disabled', false);
 				 }
 		});
 		
