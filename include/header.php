@@ -173,7 +173,7 @@ if(isset($_SESSION['access_token']))
 	<meta name="keywords" content="Movies,TV Shows,Actors,best movies,trending movies,top movies,top rated movies,popular movies,upcoming movies,  ">
 	<meta name="Description" content="Caramel Corn is a website for movies and TV shows, with the easiest way to mark your favorites and list what you love." />
 	<meta name="robots" content="noindex,nofollow">
-	<meta http-equiv="refresh" content="240">
+<!--	<meta http-equiv="refresh" content="240">-->
    
    <meta content='' name='current_path' />
    <meta content='false' name='protect_images' />

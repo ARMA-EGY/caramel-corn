@@ -2,35 +2,6 @@
 
 
 
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-database.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAf-iU56NqohoFxIFtwYWiX1Ix7FKfFdW8",
-    authDomain: "caramel-corn.firebaseapp.com",
-    databaseURL: "https://caramel-corn.firebaseio.com",
-    projectId: "caramel-corn",
-    storageBucket: "caramel-corn.appspot.com",
-    messagingSenderId: "652581811330",
-    appId: "1:652581811330:web:3cd814bc941c9a5299b09b",
-    measurementId: "G-YC236VJYC6"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-
-
  <section class="section-spacing">
 	<div class="back_layer">
 		
@@ -47,7 +18,7 @@
 			</div>
 				
 				
-				<div class="col-md-12 text-center m-4">
+				<div class="col-md-12 text-center my-4">
 					<div id="myRating"></div>
 				</div>
 
@@ -57,13 +28,13 @@
 				<div class="col-12 text-center mb-4">
 					<p class="text-white"> Please select your feedback category  </p>
 					<div>
-						<span class="badge badge-light pointer p-2 mx-2 feedback_category" data-category="idea" style="font-size: 14px;" ><i class="fa fa-lightbulb"></i> Idea</span>
+						<span class="badge badge-light pointer p-2 m-2 feedback_category" data-category="idea" style="font-size: 14px;" ><i class="fa fa-lightbulb"></i> Idea</span>
 
-						<span class="badge badge-light pointer p-2 mx-2 feedback_category" data-category="problem" style="font-size: 14px;" ><i class="fa fa-exclamation-triangle"></i> Problem</span>
+						<span class="badge badge-light pointer p-2 m-2 feedback_category" data-category="problem" style="font-size: 14px;" ><i class="fa fa-exclamation-triangle"></i> Problem</span>
 
-						<span class="badge badge-light pointer p-2 mx-2 feedback_category" data-category="question" style="font-size: 14px;" ><i class="fa fa-question-circle"></i> Question</span>
+						<span class="badge badge-light pointer p-2 m-2 feedback_category" data-category="question" style="font-size: 14px;" ><i class="fa fa-question-circle"></i> Question</span>
 
-						<span class="badge badge-light pointer p-2 mx-2 feedback_category" data-category="praise" style="font-size: 14px;" ><i class="fa fa-heart"></i> Praise</span>
+						<span class="badge badge-light pointer p-2 m-2 feedback_category" data-category="praise" style="font-size: 14px;" ><i class="fa fa-heart"></i> Praise</span>
 					</div>
 					
 					
@@ -195,6 +166,13 @@
 
 	
 <? include('include/footer.php'); ?>
+
+
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-database.js"></script>
 
 
 <script src="layout/js/emotions_rate.js"></script>

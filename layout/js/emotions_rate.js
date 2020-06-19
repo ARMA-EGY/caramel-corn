@@ -79,7 +79,7 @@
             this.manageClick();
         },
         emotionStyle: function() {
-            var styles = ".emotion-style{margin-right:20px;border-radius: 50%;cursor:pointer;opacity:0.7;display: inline-block;font-size:"
+            var styles = ".emotion-style{margin-right:15px;border-radius: 50%;cursor:pointer;opacity:0.7;display: inline-block;font-size:"
                  + this.settings.emotionSize +"px; text-decoration:none;line-height:0.9;text-align: center;color:"+colorsArray[this.settings.color]+"}";
             $element.append("<style>" + styles + "</style>");
         },
