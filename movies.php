@@ -69,7 +69,7 @@ elseif($type == 'Top Revenue')
 <!-- Movies starts -->
 <!-- Start Playing Now  -->
 <section id="about" class="section-spacing">
-  <div style="background: rgba(0, 0, 0,0.8);padding-top: 80px;padding-bottom: 10px;">
+  <div class="back_layer" >
 		
   	<div class="container">
 	  
