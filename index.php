@@ -72,45 +72,6 @@ include('ini.php');
 
 <!-- above is menu -->
 
-<!--
-<section id="sect" class="header">
-	
-
-  <div class="banner-content">
-    <div class="container">
-		
-	
-		
-	  <div class="row col-md-8 px-0 mx-auto mb-5">
-		  
-		<div class="top-search">
-
-				<select class="select-search" >
-					<option value="movie">Movies</option>
-					<option value="tv">TV Show</option>
-					<option value="person">Actors</option>
-				</select>
-			
-				<div style="width: 100%; position: relative;">
-					<input class="search_bar" type="text" placeholder="Search for a Movie, TV Show or Actor" style="height: 46px;">
-					<div id="search_result"></div>
-				</div>
-			
-				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
-
-		</div>	  
-
-      </div>
-		
-
-		
-    </div>
-  </div>
-	
-
-
-</section>
--->
 
 <!-- End Banner -->
 

@@ -59,9 +59,11 @@ h1 {
 
 .caramel_color {color: #fbd747!important;}
 
+/*
 .scrolled {
     background: rgba(0,0,0,0.65)!important;
 }
+*/
 
 .custColor {
   color: #D1B57C;
@@ -100,6 +102,7 @@ h1 {
 	position: relative;
     height: 50vh;
     width: 100%;
+	margin-top: 77px;
 }
 
 #mainslide .header {
@@ -200,8 +203,9 @@ h1 {
 /*===================  End Scroll Bar   ======================*/
 
 	
-	
+/*
 .navbar:hover {background: rgba(0,0,0,0.8)!important;}
+*/
 
 .navbar-brand {
     padding: unset;
@@ -732,12 +736,13 @@ h2 {
 .customNav {
   width: 100%;
   margin: 0px !important;
-  background-color: #0000;
+  background-color: #000;
   margin-top: 0px !important;
   position: fixed !important;
   z-index: 99;
   transition: all 0.5s linear;
   min-height: 77px;
+  top: 0;
 }
 
 .dropdown-menu {

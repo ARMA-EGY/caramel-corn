@@ -16,9 +16,13 @@ if(isset($_GET['movie']))
 	$name = $movie->title;
 	
 	$date =  $movie->release_date;
+	
+	$back_link = 'single.php?movie='.$movie_id ;
+	
 }
 elseif(isset($_GET['tv']))
 {
+	
 	$movie_id = $_GET['tv'];
 
 	$movie = api_connect("https://api.themoviedb.org/3/tv/$movie_id?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
@@ -28,6 +32,8 @@ elseif(isset($_GET['tv']))
 	$name = $movie->name;
 	
 	$date =  $movie->first_air_date;
+	
+	$back_link = 'single.php?tv='.$movie_id ;
 }
 
 
@@ -113,7 +119,7 @@ else
 							</div>
 
 
-							<a class="text-white" href="single.php?movie=<?= $movie_id ?>">
+							<a class="text-white" href="<?= $back_link ?>">
 								<i class="fas fa-long-arrow-alt-left"></i> Back To Main
 						    </a>
 

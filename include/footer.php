@@ -6,10 +6,11 @@
 	$background = $row['background'];
 ?>
 
-
+<!--
 	<div class="back-to-top">
 		<i class="fas fa-rocket"></i>
 	</div>
+-->
 
 
 
