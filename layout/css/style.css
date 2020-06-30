@@ -1825,6 +1825,22 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 				/**==================== End Corn Page  ====================**/
 
 
+
+.as 
+{
+	color: #6c757d;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
 /*======================================== Responsive Design =============================*/
 
 @media only screen and (max-width: 479px) {

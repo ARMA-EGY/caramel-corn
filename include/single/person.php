@@ -26,6 +26,17 @@ else
 $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10&with_people=$person_id");
 
 
+/*================================= Acting Movies API ==========================================	*/
+
+$acting_movies   	= api_connect("https://api.themoviedb.org/3/person/$person_id/movie_credits?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+
+/*================================= Acting TV API ==========================================	*/
+
+$acting_tvs   	= api_connect("https://api.themoviedb.org/3/person/$person_id/tv_credits?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+
+
+
 if(isset($_SESSION['access_token']))
 {
 
@@ -50,6 +61,8 @@ else
 		 $follow_text 	= 'Follow';
 }
 
+
+
 ?>
 	
 
@@ -63,7 +76,7 @@ else
 			<div class="container-fluid p-3 layer_background mb-3">
 				<div class="row">
 
-					<div class="col-md-4 text-center m-auto" >
+					<div class="col-md-3 text-center m-auto" >
 
 						<img class="poster_img" src="<?= $img?>"  alt=""/> 
 						
@@ -98,7 +111,7 @@ else
 					</div>
 
 
-					<div class="col-md-8 pt-4 text-white m-auto">
+					<div class="col-md-9 pt-4 text-white m-auto pl-4">
 						
 					   <? if(isset($_SESSION['access_token']))
 							{
@@ -119,7 +132,130 @@ else
 
 						<h4 class="text-white font-weight-bold" style="font-size: 1.3em;">Biography</h4>
 
-						<p style="max-width: 700px;font-size: 0.9em;"><?= nl2br($person->biography) ?></p>
+						<p style="max-width: 800px;font-size: 0.9em;"><?= nl2br($person->biography) ?></p>
+						
+						  	
+						<div class="col-sm-12 mt-4 mb-2">
+							<h5 class="font-weight-bold title_btn"  >
+								<span class="text-white">Known For</span> 
+							</h5>
+						</div>
+
+
+
+						<div class="py-2 px-5">
+
+
+							<div class="row justify-content-center cridets">
+
+							<?
+
+								foreach(array_slice($known->results, 0, 10) as $movie )
+								{
+
+
+									$date =  $movie->release_date;
+									$newdate = date('j M, Y', strtotime($date));
+
+									$rate = $movie->vote_average * 10 ;
+
+									if ($movie->poster_path == '')
+									{
+										$img = 'layout/img/no_poster.jpeg';
+									}
+									else
+									{
+										$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
+									}
+
+							?>
+
+							  <!-- Start New Card -->
+
+								<div class="variable_card">  
+
+									<div class=" tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+
+										<div class="poster"> 
+											<a href="single.php?movie=<?= $movie->id?>">
+												<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);" width="80%" />
+											</a>
+										</div>
+
+									</div>
+
+									<div class="d-none">
+
+										<div class="c-body" id="tooltip_content_<?= $movie->id?>">
+
+										 <div class="wrapper">
+
+											<div class="c-title">
+												<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
+												<div class="ratings">
+												  <div class="empty-stars"></div>
+												  <div class="full-stars" style="width:<?= $rate?>%"></div>
+												</div>
+												<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
+											</div>
+
+											<div class="rate">
+												 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
+											</div>
+
+										  </div>
+
+										<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
+
+										<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
+
+
+										<div class="cate mt-3" >
+
+											<?
+
+												foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
+												{
+													$genre_cate = '_'.$genre;
+													?>
+
+											<div class="mb-1 cate_color_<?= $genre;?>">
+												<a href="#"><?= $cate->$genre_cate;?></a>
+											</div>
+
+													<?
+												}
+
+											?>
+
+										</div>
+
+
+										<div class="details mt-3" >
+
+											<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
+
+											<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+										</div>
+
+
+										</div>
+
+									</div>
+
+								</div>
+
+							  <!-- End New Card -->
+
+							<? 
+								}
+							?>	
+
+
+							</div>	
+
+
+						</div>	
 
 					</div>
 
@@ -132,132 +268,190 @@ else
 	  
 		  
 		<div class="container">
-		  	
-		    <div class="col-sm-12">
-				<h5 class="font-weight-bold title_btn"  >
-					<span class="text-white">Known For</span> 
-				</h5>
+		
+	  
+			
+			<div class="row">
+				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+
+					<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#acting_movies" data-user="<?=$user_id?>">
+						<span > Movies </span>
+					</div>
+
+					<div class="font-weight-bold toggle_type" data-type="tv" data-target="#acting_tv" data-user="<?=$user_id?>">
+						<span >Tv Shows </span>
+					</div>
+
+				</div>	
 			</div>
 			
-		  
-		  
-	    <div class="py-4 px-5">
-				
-				
-			
-			
-			<div class="row justify-content-center cridets">
-
-			<?
-				
-				foreach(array_slice($known->results, 0, 10) as $movie )
-				{
-
-
-					$date =  $movie->release_date;
-					$newdate = date('j M, Y', strtotime($date));
-
-					$rate = $movie->vote_average * 10 ;
+			<div>
+			  
+				<div id="acting_movies">
+					<ul class="listitems pl-3">
 					
-					if ($movie->poster_path == '')
-					{
-						$img = 'layout/img/no_poster.jpeg';
-					}
-					else
-					{
-						$img = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' . $movie->poster_path ;
-					}
+					<?
 
-			?>
+						foreach($acting_movies->cast as $acting_movie )
+						{
+							if( !isset($acting_movie->release_date) || $acting_movie->release_date == '')
+							{
 
-			  <!-- Start New Card -->
-				
-				<div class="variable_card">  
-
-					<div class=" tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
+							$character = $acting_movie->character;
+							$title = $acting_movie->title;
+					?>
+							
+							<li class="text-white py-2" style="border-bottom: 1px solid #ccc" data-position="9999">
+								<span class="caramel_color mr-2">Soon</span>
+								<a class="text-white font-weight-bold" href="single.php?movie=<?=$acting_movie->id?>"><?=$title?></a>
+								<?
+									if($character == '')
+									{
+										
+									}
+									else
+									{
+								?>
+								<span class="as"> as </span> 
+								<span class="text-light"> <?=$character?> </span>
+								<?
+									}
+								?>
+							</li>
 						
-						<div class="poster"> 
-							<a href="single.php?movie=<?= $movie->id?>">
-								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);" width="80%" />
-							</a>
-						</div>
+					<?
+								
+							}
+							else
+							{
+							
+							$date =  $acting_movie->release_date;
+							$year = date('Y', strtotime($date));
 
-					</div>
-
-					<div class="d-none">
-
-						<div class="c-body" id="tooltip_content_<?= $movie->id?>">
-
-						 <div class="wrapper">
-
-							<div class="c-title">
-								<a href="single.php?movie=<?= $movie->id?>" class="caramel_color"><?= $movie->title?> </a>  
-								<div class="ratings">
-								  <div class="empty-stars"></div>
-								  <div class="full-stars" style="width:<?= $rate?>%"></div>
-								</div>
-								<span class="votes">(<?= number_format($movie->vote_count)?> Votes)</span>
-							</div>
-
-							<div class="rate">
-								 <h5 class="text-white font-weight-bold"><?= $movie->vote_average?> </h5>
-							</div>
-
-						  </div>
-
-						<p class="c-text mb-2"><?= substr($movie->overview,0,90) . '...'?></p>
-
-						<div class="mb-0 field-label" >Relase Date : <span style="color: #fff;"><?= $newdate ?></span></div>
-
-
-						<div class="cate mt-3" >
-
-							<?
-
-								foreach(array_slice($movie->genre_ids, 0, 4) as $genre )
-								{
-									$genre_cate = '_'.$genre;
-									?>
-
-							<div class="mb-1 cate_color_<?= $genre;?>">
-								<a href="#"><?= $cate->$genre_cate;?></a>
-							</div>
-
+							$character = $acting_movie->character;
+							$title = $acting_movie->title;
+					?>
+							
+							<li class="text-white py-2" style="border-bottom: 1px solid #ccc" data-position="<?=$year?>">
+								<span class="caramel_color mr-2"><?=$year?></span>
+								<a class="text-white font-weight-bold" href="single.php?movie=<?=$acting_movie->id?>"><?=$title?></a>
 									<?
-								}
-
-							?>
-
-						</div>
-
-
-						<div class="details mt-3" >
-
-							<span class="get_trailer" data-type="movie" data-id="<?= $movie->id?>" ><i class="fa fa-play"></i>Trailer</span>
-
-							<a class="" href="single.php?movie=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
-						</div>
-
-
-						</div>
-
-					</div>
-
+									if($character == '')
+									{
+										
+									}
+									else
+									{
+								?>
+								<span class="as"> as </span> 
+								<span class="text-light"> <?=$character?> </span>
+								<?
+									}
+								?>
+							</li>
+						
+					<?
+								
+							}
+						}
+						 
+					?>
+						
+					</ul>
 				</div>
 
-			  <!-- End New Card -->
+				<div id="acting_tv" class="d-none2">
+					
+					<ul class="listitems2 pl-3">
+					
+					<?
 
-			<? 
-				}
-			?>	
+						foreach($acting_tvs->cast as $acting_tv )
+						{
+							$character 	= $acting_tv->character;
+							$title 		= $acting_tv->name;
+							$episode 	= $acting_tv->episode_count;
+							
+							
+							if($episode  > 1 )
+							{
+								$episode_num =  ' ( '.$episode. ' episodes ) ';
+							}
+							else
+							{
+								$episode_num =  ' ( '.$episode. ' episode ) ';
+							}
+							
+							if($acting_tv->first_air_date == '')
+							{
 
-
-			</div>	
+					?>
+							
+							<li class="text-white py-2" style="border-bottom: 1px solid #ccc" data-position="9999">
+								<span class="caramel_color mr-2">Soon</span>
+								<a class="text-white font-weight-bold" href="single.php?tv=<?=$acting_tv->id?>"><?=$title?></a>
+								<?
+									if($character == '')
+									{
+								?>
+								<span class="as"><?=$episode_num?> </span> 
+								<?
+									}
+									else
+									{
+								?>
+								<span class="as"><?=$episode_num?> as </span> 
+								<span class="text-light"> <?=$character?> </span>
+								<?
+									}
+								?>
+							</li>
+						
+					<?
+								
+							}
+							else
+							{
+							
+							$date =  $acting_tv->first_air_date;
+							$year = date('Y', strtotime($date));
+					?>
+							
+							<li class="text-white py-2" style="border-bottom: 1px solid #ccc" data-position="<?=$year?>">
+								<span class="caramel_color mr-2"><?=$year?></span>
+								<a class="text-white font-weight-bold" href="single.php?tv=<?=$acting_tv->id?>"><?=$title?></a>
+									<?
+									if($character == '')
+									{
+								?>
+								<span class="as"><?=$episode_num?> </span> 
+								<?
+									}
+									else
+									{
+								?>
+								<span class="as"><?=$episode_num?> as </span> 
+								<span class="text-light"> <?=$character?> </span>
+								<?
+									}
+								?>
+							</li>
+						
+					<?
+								
+							}
+						}
+						 
+					?>
+						
+					</ul>
+				</div>
+				
+			</div>
+			
 			
 		
-
-		</div>	
-	  
+			
 	  
 	  </div>
 	  
