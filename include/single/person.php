@@ -28,7 +28,7 @@ $known   	= api_connect("https://api.themoviedb.org/3/discover/movie?api_key=df2
 
 /*================================= Acting Movies API ==========================================	*/
 
-$acting_movies   	= api_connect("https://api.themoviedb.org/3/person/$person_id/movie_credits?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
+$acting_movies  = api_connect("https://api.themoviedb.org/3/person/$person_id/movie_credits?api_key=df264f8d059253c7e87471ab4809cbbf&language=en-US");
 
 
 /*================================= Acting TV API ==========================================	*/
@@ -61,6 +61,27 @@ else
 		 $follow_text 	= 'Follow';
 }
 
+
+if($person->deathday != '')
+{
+	$date 		= $person->deathday;
+	$year2 		= date('Y', strtotime($date));
+	$year 		= date('Y', strtotime($person->birthday));
+	
+	$age 		= $year2 - $year ;
+	$age1  		= '' ;
+	$age2  		= ' ('.$age. ' years old)' ;
+}
+else
+{
+	$date 		= $person->birthday;
+	$year 		= date('Y', strtotime($date));
+	$year2 		= date('Y');
+	
+	$age 		= $year2 - $year ;
+	$age1  		= ' ('.$age. ' years old)' ;
+	$age2  		= '' ;
+}
 
 
 ?>
@@ -97,12 +118,23 @@ else
 
 						   <h6 class="details_row">
 							  <strong class="details_icon mb-1 text-light"> Birthday </strong>
-							  <p class="ml-2 mb-1 font-weight-bold"><?= $person->birthday ?></p>
+							  <p class="ml-2 mb-1 font-weight-bold"><?= $person->birthday . $age1 ?></p>
 						   </h6>
+						<?
+							if ($person->deathday != '')
+							{
+						?>
+						   <h6 class="details_row">
+							  <strong class="details_icon mb-1 text-light"> Deathday </strong>
+							  <p class="ml-2 mb-1 font-weight-bold"><?= $person->deathday . $age2?></p>
+						   </h6>
+						<?	
+							}
+						?>
 
 						   <h6 class="">
 							   <strong class="details_icon mb-1 text-light">Place of Birth  </strong>
-							   <p class="ml-2 mb-1 font-weight-bold"><?= $person->place_of_birth?></p>
+							   <p class="ml-2 mb-1 font-weight-bold"><?= $person->place_of_birth ?></p>
 							    
 						   </h6>
 
