@@ -169,7 +169,7 @@ if(isset($_SESSION['access_token']))
 <html>
 <head>
 	
-<script data-ad-client="ca-pub-2074461395127410" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!--<script data-ad-client="ca-pub-2074461395127410" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
 	
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
