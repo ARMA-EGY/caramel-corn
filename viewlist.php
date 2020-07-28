@@ -65,9 +65,9 @@ if(isset($_GET['u']))
 
 										<h5 class="font-weight-bold">A List By </h5>
 
-										<img class="m-2" width="50" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
+										<img class="m-2 avatar-img" width="50" src="<?=$image ?>"  alt=""/> 
 
-										<h5 class="font-weight-bold caramel_color mb-3"><?= $name ?> </h5> 
+										<h5 class="font-weight-bold text-white mb-3"><?= $name ?> </h5> 
 
 										<button class="btn btn-light p-1 m-1" data-toggle="modal" data-target="#item_modal"><i class="fas fa-plus"></i> Add</button>
 										<button class="btn btn-light p-1 m-1 get_list_modal_edit" data-list="<?= $row['uid'] ?>" data-user="<?= $user_id ?>"><i class="fas fa-pen-square"></i> Edit</button>
@@ -108,7 +108,7 @@ if(isset($_GET['u']))
 						<div>
 
 							<div class="row">
-								<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+								<div class="col-md-12 pb-3 b-border">
 
 									<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#list_section_movie" data-user="<?=$user_id?>">
 										<span > Movies </span>
@@ -639,9 +639,9 @@ if(isset($_GET['u']))
 
 										<h5 class="font-weight-bold">A List By </h5>
 
-										<img class="m-2" width="50" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
+										<img class="m-2 avatar-img" width="50" src="<?=$image ?>"  alt="" /> 
 
-										<a href="viewcorn.php?u=<?=$user['uid']?>" class="font-weight-bold caramel_color mb-3"><?= $name ?> </a> 
+										<a href="viewcorn.php?u=<?=$user['uid']?>" class="font-weight-bold text-white mb-3"><?= $name ?> </a> 
 
 										<br>
 
@@ -676,7 +676,7 @@ if(isset($_GET['u']))
 						<div>
 
 							<div class="row">
-								<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+								<div class="col-md-12 pb-3 b-border" >
 
 									<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#list_section_movie" data-user="<?=$user_id?>">
 										<span > Movies </span>
@@ -1207,9 +1207,9 @@ if(isset($_GET['u']))
 
 										<h5 class="font-weight-bold">A List By </h5>
 
-										<img class="m-2" width="50" src="<?=$image ?>"  alt="" style="border-radius: 50%;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);display: inline-block;"/> 
+										<img class="m-2 avatar-img" width="50" src="<?=$image ?>"  alt="" /> 
 
-										<a href="viewcorn.php?u=<?=$user['uid']?>" class="font-weight-bold caramel_color mb-3"><?= $name ?> </a> 
+										<a href="viewcorn.php?u=<?=$user['uid']?>" class="font-weight-bold text-white mb-3"><?= $name ?> </a> 
 
 										<br>
 
@@ -1244,7 +1244,7 @@ if(isset($_GET['u']))
 						<div>
 
 							<div class="row">
-								<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+								<div class="col-md-12 pb-3 b-border">
 
 									<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#list_section_movie" data-user="<?=$user_id?>">
 										<span > Movies </span>

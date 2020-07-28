@@ -168,7 +168,7 @@ else
 									
 									<div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="dropdownMenuLink">
 										
-										<a href="list.php" class="dropdown-item" style="border-bottom: 1px solid #fff;" >
+										<a href="list.php" class="dropdown-item text-white b-border" >
 											<i class="fas fa-plus-square text-warning"></i> Create New List</a>
 										<div style="max-height: 200px; overflow: auto;">
 										<?
@@ -469,7 +469,7 @@ else
 
 						<span class="video_counter"><?=$counter;?></span>
 					
-						<div class="ml-3 text-white">
+						<div class="ml-3 text-white text-white2">
 							<h6><?= $name?></h6>
 						</div>
 
@@ -625,7 +625,7 @@ else
 						
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $movie->id?>">
-								<img src="<?= $img?>" alt="" style="border-radius: 10px;box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);" width="80%" />
+								<img class="poster_img" src="<?= $img?>" alt="" width="80%" />
 							</a>
 						</div>
 

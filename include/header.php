@@ -1,5 +1,6 @@
 <?php
 
+$mode = 0;
 
 $login_google_button = '';
 
@@ -102,7 +103,8 @@ if(isset($_GET["code"]))
 }
 else
 {
-	
+ //https://caramel-corn.com/
+ //http://localhost:8080/corn/caramel-corn/
  // Get login url
     $facebook_permissions = ['email']; // Optional permissions
 
@@ -136,6 +138,7 @@ if(isset($_SESSION['access_token']))
 		$user_id  = $row['id'];
 		$date     = $row['Add_Date'];
 		$logo     = $row['corn_logo'];
+		$mode     = $row['dark_mode'];
 		
 		if ($name != $row['name'])
 		{
@@ -210,34 +213,80 @@ if(isset($_SESSION['access_token']))
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="layout/css/style.css">
 <!--===============================================================================================-->	
+	<?
+		if($mode == 0)
+		{
+	?>
+		<link rel="stylesheet" type="text/css" href="layout/css/light-theme.css">
+	<?
+		}
+		else
+		{
+	?>
+		<link rel="stylesheet" type="text/css" href="layout/css/dark-theme.css">
+	<?
+		}
+	?>
+	
+	
+<!--===============================================================================================-->	
 <title>Caramel Corn</title>
 </head>
 
 <body>
 	
 	
-	<nav class="navbar navbar-expand-md navbar-light customNav">
+	<nav class="navbar navbar-expand-lg navbar-light customNav">
 
 		<a id="askFaran" class="navbar-brand" href="index.php"><img src="layout/img/logo.png" width="32" alt=""/> Caramel <span style="color: #fff;font-family: Lobster, 'sans-serif';">Corn</span></a>
 		
-		<div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-			 <div class="container1" >
-			  <div class="bar1"></div>
-			  <div class="bar2"></div>
-			  <div class="bar3"></div>
-			 </div>
-	   </div>
+		<div class="mob-nav" >
+			
+			<a class="nav-link mx-1 btn-secondary rounded text-center searchtool" data-tooltip-content="#searchDropdown" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;padding: 8px;">
+				<i class="fa fa-search"></i>
+			</a>
+			
+<?
+   if(isset($_SESSION['user_name']))
+   {
+?>
+			<a class="nav-link mx-1 btn-secondary rounded text-center" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;padding: 8px;">
+				<i class="fa fa-bell"></i>
+			</a>
+<?
+   }
+	else
+	{
+?>			
+			<a class="nav-link mx-1 btn-secondary rounded text-center dark_mode_guest" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;padding: 8px;">
+				<i class="fa fa-moon"></i>
+	   		</a>
+			
+			<a class="nav-link mx-1 btn-secondary rounded text-center" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="width: 40px;height: 40px;border-radius: 25px!important;padding: 8px;">
+				<i class="fas fa-sign-in-alt"></i>
+			</a>
+			  
+			<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown2" style="right: 0; left: unset;">
+			  <li><?=$facebook_login_url?></li>
+			  <li><?=$login_google_button?></li>
+			</ul>
+			
+<?  }  ?>
+
+	     </div>
 		
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 	  
-    <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">
+    <ul class="nav navbar-nav mx-auto mt-2 mt-lg-0">
 		
+	<li class="nav-item use_tooltips rounded nav-hover" data-toggle="tooltip" data-placement="top" title="Home">
+        <a class="nav-link px-4" href="index.php"><i class="fa fa-home fa-2x"></i></a>
+    </li>
 		
-	<li class="nav-item">
+	<li class="nav-item use_tooltips rounded nav-hover" data-toggle="tooltip" data-placement="top" title="Movies">
 	    <div class="btn-group">
-        <a class="nav-link" >Movies</a>
-			<a href="#" class="dropdown-toggle dropdown-toggle-split" id="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"></a>
-
+        <a class="nav-link px-4" ><i class="fa fa-film fa-2x"></i></a>
+		
 			<div class="dropdown-menu" aria-labelledby="test">
 
 				<a class="dropdown-item" href="movies.php?type=Newest">Newest</a>
@@ -253,10 +302,9 @@ if(isset($_SESSION['access_token']))
 		</div>
     </li>
 		
-	<li class="nav-item">
+	<li class="nav-item use_tooltips rounded nav-hover" data-toggle="tooltip" data-placement="top" title="Tv Shows">
 	    <div class="btn-group">
-        <a class="nav-link" >Tv Shows</a>
-			<a href="#" class="dropdown-toggle dropdown-toggle-split" id="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"></a>
+			<a class="nav-link px-4" ><i class="fas fa-tv fa-2x"></i></a>
 
 			<div class="dropdown-menu" aria-labelledby="test">
 
@@ -272,32 +320,185 @@ if(isset($_SESSION['access_token']))
     </li>
 		
 		
-       <li class="nav-item">
-        <a class="nav-link" href="actors.php">People</a>
+       <li class="nav-item use_tooltips rounded nav-hover" data-toggle="tooltip" data-placement="top" title="People">
+        <a class="nav-link px-4" href="actors.php"><i class="fa fa-users fa-2x"></i></a>
       </li>
-    </ul>
-	  
-
-	  <ul class="nav navbar-nav navbar-right">
+		
 <?
    if(isset($_SESSION['user_name']))
    {
 ?>
-		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle btn-secondary rounded caramel_color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img class="avatar" src="<?=$_SESSION["user_image"]?>"><?=$_SESSION['user_name']?></a>
+       <li class="nav-item use_tooltips rounded nav-hover" data-toggle="tooltip" data-placement="top" title="Friends">
+        <a class="nav-link px-4" href="#"><i class="fa fa-user-friends fa-2x"></i></a>
+      </li>
+	
+<? } ?>
+		
+    </ul>
+	  
+
+	  <ul class="nav navbar-nav navbar-right pb-2">
+		  
+		 <li class="nav-item mr-0 use_tooltips" data-toggle="tooltip" data-placement="top" title="Search">
+			<a class="nav-link btn-secondary rounded text-center searchtool" data-tooltip-content="#searchDropdown" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;" >
+				<i class="fa fa-search"></i>
+	   		</a>
+			 
+	
+
+	<div class="d-none create_search">		
+			 
+		<div class="" id="searchDropdown" style="right: 0; left: unset;">
+		<div style="width: 330px;" class="mb-2">
+				 
+			<div class="top-search mb-2">
+
+				<div style="width: 100%; position: relative;">
+					<input class="search_bar" type="text" placeholder="Search for a Movie, TV Show or Actor" style="height: 46px;">
+			<!--	<div id="search_result"></div>-->
+				</div>
+
+				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
+
+			</div>
+			
+			 <nav class="search_nav mb-2">
+				  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link text-white active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-film"></i> Movies</a>
+					<a class="nav-item nav-link text-white" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-tv"></i> Tv Shows</a>
+					<a class="nav-item nav-link text-white" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa fa-users"></i> People</a>
+				  </div>
+			</nav>
+			
+			<div class="tab-content" id="search_results">
+			  <div class="tab-pane fade show active search-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				  <p class="text-center text-white">No Result Found.</p>
+			  </div>
+			  <div class="tab-pane fade search-pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> 
+				  <p class="text-center text-white">No Result Found.</p>
+			  </div>
+			  <div class="tab-pane fade search-pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> 
+				  <p class="text-center text-white">No Result Found.</p>
+			  </div>
+			</div>
+			
+		</div>
+	</div>
+		
+	</div>
+		
+		</li> 
+<?
+   if(isset($_SESSION['user_name']))
+   {
+?>
+		  <li class="nav-item mr-0 use_tooltips" data-toggle="tooltip" data-placement="top" title="Notifications">
+			<a class="nav-link btn-secondary rounded  text-center" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;">
+				<i class="fa fa-bell"></i>
+	   		</a>
+		  </li>
+		  
+		  <li class="nav-item dropdown use_tooltips" data-toggle="tooltip" data-placement="top" title="Account">
+			<a class="nav-link btn-secondary rounded caramel_color text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 40px; height: 40px;">
+				<i class="fa fa-caret-down"></i>
+	   		</a>
 			  
-			<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <li><a class="dropdown-item" href="corn.php"><img class="mr-2" src="layout/img/popcorn/<?=$logo ?>" width="35"> My Corn</a></li>
-			  <li><a class="dropdown-item" href="logout.php"><img class="mr-3" src="layout/img/logout.png" width="28"> Logout</a></li>
+			<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: unset;">
+				
+				<li>
+					<a class="dropdown-item" href="corn.php">
+						<div class="d-inline-block">
+							<img class="avatar" src="<?=$_SESSION["user_image"]?>" style="align-items: center;display: flex;">
+						</div>
+						<div class="d-inline-block">
+							<span><?=$_SESSION['user_name']?></span>
+							<span class="d-block text-muted">See your corn</span>
+						</div>
+        			</a>
+					<hr class="hr_light m-2" >
+				</li>
+				
+				<li>
+					<a class="dropdown-item" href="rate.php">
+						<div class="d-inline-block">
+							<i class="fa fa-exclamation-circle fa-2x mr-3"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Give Feedback</span>
+							<small class="d-block text-muted">Help us improve the website</small>
+						</div>
+        			</a>
+					<hr class="hr_light m-2" >
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" href="list.php">
+						<div class="d-inline-block pl-2">
+							<i class="fa fa-plus-circle mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Create List</span>
+						</div>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2">
+						<label class="col-12 p-0 mb-0 pointer dark_mode" data-user="<?=$user_id?>" data-mode="<?=$mode?>" for="dark_mode">
+							<div class="d-inline-block pl-2">
+								<i class="fa fa-moon mr-4"></i>
+							</div>
+							<div class="d-inline-block">
+								<span>Dark Mode</span>
+							</div>
+							<div class="d-inline-block float-right">
+								<div class="custom-control custom-switch">
+								  <input type="checkbox" class="custom-control-input dark_mode_check" id="dark_mode" data-user="<?=$user_id?>" <? if($mode == 1){echo 'checked';} ?>>
+								  <label class="custom-control-label ml-5 mb-2 pointer dark_mode" data-user="<?=$user_id?>" data-mode="<?=$mode?>" for="dark_mode" > </label>
+								</div>
+							</div>
+						</label>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" data-toggle="modal" data-target="#setting_modal">
+						<div class="d-inline-block pl-2">
+							<i class="fa fa-cog mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Setting & Privacy</span>
+						</div>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" href="logout.php">
+						<div class="d-inline-block pl-2">
+							<i class="fas fa-sign-out-alt mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Log Out</span>
+						</div>
+        			</a>
+				</li>
+				
 			</ul>
 			  
 		  </li>
 		  
-<? }else{ ?>
+<? }
+	else
+	{ ?>
+		   
+		 <li class="nav-item mr-0 use_tooltips" data-toggle="tooltip" data-placement="top" title="Dark Mode">
+			<a class="nav-link btn-secondary rounded text-center dark_mode_guest" href="#" style="width: 40px;height: 40px;border-radius: 25px!important;">
+				<i class="fa fa-moon"></i>
+	   		</a>
+		 </li> 
 		  
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle btn-secondary rounded " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Login</a>
+			<a class="nav-link btn-secondary rounded " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Sign In</a>
 			  
 			<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="right: 0; left: unset;">
 			  <li><?=$facebook_login_url?></li>
@@ -321,7 +522,169 @@ if(isset($_SESSION['access_token']))
 	
 	  
   </div>
+		
+  <div class="row mx-auto mt-1 col-12 mob-nav">
+		
+	<div class="col px-1 m-auto use_tooltips rounded nav-hover text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Home">
+        <a class="p-2 text-white text-white2" href="index.php"><i class="fa fa-home"></i></a>
+    </div>
+		
+	<div class="col px-1 m-auto use_tooltips rounded nav-hover text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Movies">
+	    <div class="btn-group">
+        <a class="text-white text-white2 p-2"><i class="fa fa-film"></i></a>
+		
+			<div class="dropdown-menu mob-dropdown" aria-labelledby="test">
+
+				<a class="dropdown-item" href="movies.php?type=Newest">Newest</a>
+				<a class="dropdown-item" href="movies.php?type=Trending">Trending</a>
+				<a class="dropdown-item" href="movies.php?type=In Theatres">In Theatres</a>
+				<a class="dropdown-item" href="movies.php?type=Popular">Popular</a>
+				<a class="dropdown-item" href="movies.php?type=Top Rated">Top Rated</a>
+				<a class="dropdown-item" href="movies.php?type=Top Revenue">Top Revenue</a>
+				<a class="dropdown-item" href="movies.php?type=Upcoming">Upcoming</a>
+				<a class="dropdown-item" href="m_browse.php">Browse All</a>
+
+			</div>
+		</div>
+    </div>
+		
+	<div class="col px-1 m-auto use_tooltips rounded nav-hover text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tv Shows">
+	    <div class="btn-group">
+			<a class="text-white text-white2 p-2"><i class="fas fa-tv"></i></a>
+
+			<div class="dropdown-menu mob-dropdown" aria-labelledby="test">
+
+				<a class="dropdown-item" href="tv.php?type=On Air">On Air</a>
+				<a class="dropdown-item" href="tv.php?type=Airing Today">Airing Today</a>
+				<a class="dropdown-item" href="tv.php?type=Trending">Trending</a>
+				<a class="dropdown-item" href="tv.php?type=Popular">Popular</a>
+				<a class="dropdown-item" href="tv.php?type=Top Rated">Top Rated</a>
+				<a class="dropdown-item" href="t_browse.php">Browse All</a>
+
+			</div>
+		</div>
+    </div>
+		
+    <div class="col px-1 m-auto use_tooltips rounded nav-hover text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="People">
+	<a class="text-white text-white2 p-2" href="actors.php"><i class="fa fa-users"></i></a>
+    </div>
+		
+	 		
+<?
+   if(isset($_SESSION['user_name']))
+   {
+?> 
+	  
+    <div class="col px-1 m-auto use_tooltips rounded nav-hover text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Friends">
+	<a class="text-white text-white2 p-2" href="#"><i class="fa fa-user-friends"></i></a>
+    </div>
+		
+    <div class="col px-1 m-auto rounded text-center">
+		<a class="text-white text-white2 p-2" id="mobile-nav-toggle">
+			<i class="fa fa-bars"></i>
+		</a>
+    </div>
+	  
+<?  }  ?>
+	
+  </div>
+		
 </nav>
+	
+<?
+   if(isset($_SESSION['user_name']))
+   {
+?>
+	
+	<nav id="mobile-nav">
+		<ul class="" style="touch-action: pan-y;" id="">
+			
+		 		<li>
+					<a class="dropdown-item" href="corn.php">
+						<div class="d-inline-block">
+							<img class="avatar" src="<?=$_SESSION["user_image"]?>" style="align-items: center;display: flex;">
+						</div>
+						<div class="d-inline-block">
+							<span><?=$_SESSION['user_name']?></span>
+							<span class="d-block text-muted">See your corn</span>
+						</div>
+        			</a>
+					<hr class="hr_light m-2" >
+				</li>
+				
+				<li>
+					<a class="dropdown-item" href="rate.php">
+						<div class="d-inline-block">
+							<i class="fa fa-exclamation-circle fa-2x mr-3"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Give Feedback</span>
+							<small class="d-block text-muted">Help us improve the website</small>
+						</div>
+        			</a>
+					<hr class="hr_light m-2" >
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" href="list.php">
+						<div class="d-inline-block pl-2">
+							<i class="fa fa-plus-circle mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Create List</span>
+						</div>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2">
+						<label class="col-12 p-0 mb-0 pointer dark_mode2" data-user="<?=$user_id?>" data-mode="<?=$mode?>" for="dark_mode2">
+							<div class="d-inline-block pl-2">
+								<i class="fa fa-moon mr-4"></i>
+							</div>
+							<div class="d-inline-block">
+								<span>Dark Mode</span>
+							</div>
+							<div class="d-inline-block float-right">
+								<div class="custom-control custom-switch">
+								  <input type="checkbox" class="custom-control-input dark_mode_check" id="dark_mode2" data-user="<?=$user_id?>" <? if($mode == 1){echo 'checked';} ?>>
+								  <label class="custom-control-label ml-5 mb-2 pointer dark_mode2" data-user="<?=$user_id?>" data-mode="<?=$mode?>" for="dark_mode2" > </label>
+								</div>
+							</div>
+						</label>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" data-toggle="modal" data-target="#setting_modal">
+						<div class="d-inline-block pl-2">
+							<i class="fa fa-cog mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Setting & Privacy</span>
+						</div>
+        			</a>
+				</li>
+				
+				<li>
+					<a class="dropdown-item py-2" href="logout.php">
+						<div class="d-inline-block pl-2">
+							<i class="fas fa-sign-out-alt mr-4"></i>
+						</div>
+						<div class="d-inline-block">
+							<span>Log Out</span>
+						</div>
+        			</a>
+				</li>
+
+		</ul>
+	</nav>
+	
+	<div id="mobile-body-overly"></div>
+	
+<?
+   }
+?>
 	
 	
 	

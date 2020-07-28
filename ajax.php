@@ -2467,4 +2467,37 @@ if (isset($_POST['private']))
 	}
 
 
+
+// ========================= UPDATE DARK MODE  =========================
+
+if (isset($_POST['dark_mode']))
+{
+	
+    	$user_id    = $_POST['user_id'];
+
+		$stmt = $conn->prepare("SELECT * FROM members WHERE id = ? ");
+		$stmt->execute(array($user_id));
+		$row = $stmt->fetch();
+	
+		$mode = $row['dark_mode'];
+	
+		if($mode == 1)
+		{
+			$dark_mode = 0;
+		}
+		else
+		{
+			$dark_mode = 1;
+		}
+	
+		$stmt = $conn->prepare("UPDATE members SET dark_mode = ? WHERE id = ?");
+		$stmt->execute(array($dark_mode, $user_id));
+	
+}
+
+
+
+
+
+
 ?>

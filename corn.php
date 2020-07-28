@@ -174,7 +174,8 @@ $logo    = $user['corn_logo'];
 			</div>
 
 
-				<div class="container px-0">
+				<div class="container pb-3">
+<!--
 				
 					<div class="row">
 
@@ -184,16 +185,17 @@ $logo    = $user['corn_logo'];
 								<img class="mr-2 mb-2" src="layout/img/popcorn/<?=$logo ?>" alt="" width="70"> 
 							</div>
 							
-							<h4 class="font-weight-bold" style="display: inline-block;color: #fbd747;font-family: Lobster, 'sans-serif';">My <span class="text-white" style="font-family: Lobster, 'sans-serif';">Corn</span> 
+							<h4 class="font-weight-bold caramel_color" style="display: inline-block;font-family: Lobster, 'sans-serif';">My <span class="text-white" style="font-family: Lobster, 'sans-serif';">Corn</span> 
 							</h4> 
 							
 							<button class="btn-filter btn-list float-right px-2 py-1 mt-4 mx-1" data-toggle="modal" data-target="#setting_modal"><i class="fa fa-cog"></i> </button>
 							
-							<a href="list.php" class="btn-filter btn-list text-white float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-plus"></i> Create List</a>
+							<a href="list.php" class="btn-filter btn-list text-white text-white2 float-right px-2 py-1 mt-4 mx-1"><i class="fa fa-plus"></i> Create List</a>
 
 						</div>
 
 					</div>
+-->
 					
 				</div>
 				
@@ -205,7 +207,7 @@ $logo    = $user['corn_logo'];
 	  
 			<div class="container-fluid">
 				
-				<div class="row py-1" style="color: #fff;text-align: center;background: rgba(255, 255, 255, 0.25);">
+				<div class="row py-1 sections_bar">
 					
 					<ul class="nav col-12" id="myTab" role="tablist">
 						
@@ -246,14 +248,16 @@ $logo    = $user['corn_logo'];
 		  <div class="tab-pane fade <?=$watchlist_sec?>" id="watchlist" role="tabpanel" aria-labelledby="watchlist-tab">  
 			
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="watchlist" data-type="movie" data-target="#watchlist_section_movie" data-user="<?=$user_id?>">
+						<i class="fa fa-film"></i>
 						<span > Movies </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'watchlist', 'Movie', 'user_id', $user_id) ?></span>
 					</div>
 
 					<div class="font-weight-bold toggle_type" data-kind="watchlist" data-type="tv" data-target="#watchlist_section_tv" data-user="<?=$user_id?>">
+						<i class="fa fa-tv"></i>
 						<span >Tv Shows </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'watchlist', 'TV', 'user_id', $user_id) ?></span>
 					</div>
@@ -276,14 +280,16 @@ $logo    = $user['corn_logo'];
 		  <div class="tab-pane fade <?=$likes_sec?>" id="likes" role="tabpanel" aria-labelledby="likes-tab">
 
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="likes" data-type="movie" data-target="#likes_section_movie" data-user="<?=$user_id?>">
+						<i class="fa fa-film"></i>
 						<span > Movies </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'likes', 'Movie', 'user_id', $user_id) ?></span>
 					</div>
 
 					<div class="font-weight-bold toggle_type" data-kind="likes" data-type="tv" data-target="#likes_section_tv" data-user="<?=$user_id?>">
+						<i class="fa fa-tv"></i>
 						<span >Tv Shows </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'likes', 'TV', 'user_id', $user_id) ?></span>
 					</div>
@@ -306,14 +312,16 @@ $logo    = $user['corn_logo'];
 		  <div class="tab-pane fade <?=$favorites_sec?>" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
 			
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="favorites" data-type="movie" data-target="#favorites_section_movie" data-user="<?=$user_id?>">
+						<i class="fa fa-film"></i>
 						<span > Movies </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'favorites', 'Movie', 'user_id', $user_id) ?></span>
 					</div>
 
 					<div class="font-weight-bold toggle_type" data-kind="favorites" data-type="tv" data-target="#favorites_section_tv" data-user="<?=$user_id?>">
+						<i class="fa fa-tv"></i>
 						<span >Tv Shows </span>
 						<span class="badge badge-toggle"><?= countItems3 ('type', 'favorites', 'TV', 'user_id', $user_id) ?></span>
 					</div>
@@ -352,67 +360,6 @@ $logo    = $user['corn_logo'];
 
 
 
-
-
-
-<!-- Setting Modal -->
-<div class="modal fade" id="setting_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content" style="background: rgba(0, 0, 0, 0.7);color: #fff;border: 1px solid rgba(255, 255, 255, 0.5);">
-      <div class="modal-header">
-        <h5 class="modal-title" id="setting_label">Setting</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		    
-        <div class="info">
-			
-			<span class="floaty"><i class="far fa-file-image mr-2"></i> Logo</span>
-			
-			<div class="mb-2">
-				<button class="btn btn-light get_logo px-1 py-0 ml-2" data-user="<?=$user_id ?>"><i class="fas fa-edit"></i> Change</button>
-			</div>
-			
-			<div id="corn_logos" class="text-center"></div>
-			
-		</div>
-		
-		  
-        <div class="info-last">
-			
-			<span class="floaty"><i class="fas fa-user-shield mr-2"></i> Private Account</span>
-			
-			<div class="custom-control custom-switch">
-			  <input type="checkbox" class="custom-control-input" id="private" data-user="<?=$user_id ?>" <? if($private == 1){echo 'checked';} ?>>
-			  <label class="custom-control-label ml-5 mb-2" for="private"> Private</label>
-			</div>
-			
-		</div>
-		  
-		  
-		<div class="info-last sharelink <? if($private == 1){echo 'd-none2';} ?>" style="border-top: 1px solid #bbb;">
-			
-			<span class="floaty"><i class="fas fa-share-alt mr-2"></i> Shareable Link</span>
-			
-			<div class="mb-2">
-				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
-				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; left: 0;" />
-
-				<p id="corn_link" class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
-			</div>
-			
-		</div>
-		  
-		  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-filter" data-dismiss="modal">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

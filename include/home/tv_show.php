@@ -11,7 +11,7 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h5 class="font-weight-bold title_btn" style="color:#fbd747;">On Air  <span style="color:#fff;">Tv Shows</span></h5>
+				<h5 class="font-weight-bold title_btn text-white" >On Air Tv Shows</h5>
 					
 
 				<a href="tv.php?type=On Air" class="viewall">View all <i class="ti-angle-right"></i></a>

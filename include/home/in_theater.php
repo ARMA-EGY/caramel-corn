@@ -34,7 +34,7 @@ $f_key = $trailer->results[0]->key;
 			  <div class="col-sm-12">
 				<div class="section-title text-center">
 
-				<h5 class="font-weight-bold title_btn"  >Box office <span class="text-white">Movies</span> </h5>
+				<h5 class="font-weight-bold title_btn text-white"  >Box office Movies </h5>
 					
 <!--				<a href="#" class="viewall" style="position: absolute; right: 10px;">View all <i class="ti-angle-right"></i></a>-->
 
@@ -107,7 +107,7 @@ $f_key = $trailer->results[0]->key;
 							<img width="60" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2<?= $movie->poster_path?>" alt=""/>
 						</div>
 					
-					<div class="ml-3 text-white">
+					<div class="ml-3" style="color: #fff;">
 						<h6><?= $movie->title?></h6>
 						<h6 style="
 							font-size: 9pt;

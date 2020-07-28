@@ -12,7 +12,7 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h5 class="font-weight-bold title_btn" style="color:#fff;">Tv Shows  <span style="color:#fbd747;">Airing Today</span></h5>
+				<h5 class="font-weight-bold title_btn text-white">Tv Shows Airing Today</h5>
 					
 
 				<a href="tv.php?type=Airing Today" class="viewall">View all <i class="ti-angle-right"></i></a>

@@ -23,7 +23,7 @@ if(isset($_POST['getreviews']))
 			$stmt->execute(array($row['user_id']));
 			$user = $stmt->fetch();
 ?>
-			<div class="p-2" style="border-bottom: 1px solid rgba(255, 255, 255, 0.6);">
+			<div class="p-2 review1">
 				<div>
 					<img class="avatar" src="<?=$user['image']?>">
 				

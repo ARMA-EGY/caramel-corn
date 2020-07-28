@@ -202,7 +202,7 @@ else
 	  
 			<div class="container-fluid">
 				
-				<div class="row py-1" style="color: #fff;text-align: center;background: rgba(255, 255, 255, 0.25);">
+				<div class="row py-1 sections_bar">
 					
 					<ul class="nav col-12" id="myTab" role="tablist">
 						
@@ -252,7 +252,7 @@ else
 		?>
 			
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="watchlist" data-type="movie" data-target="#watchlist_section_movie" data-user="<?=$user_id?>">
 						<span > Movies </span>
@@ -292,7 +292,7 @@ else
 			{
 		?>
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="likes" data-type="movie" data-target="#likes_section_movie" data-user="<?=$user_id?>">
 						<span > Movies </span>
@@ -332,7 +332,7 @@ else
 			{
 		?>
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-kind="favorites" data-type="movie" data-target="#favorites_section_movie" data-user="<?=$user_id?>">
 						<span > Movies </span>

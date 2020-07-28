@@ -7,14 +7,14 @@
 		
 		<div class="container text-white py-3">
 
-			<form class="col-md-10 p-3 m-auto rating_form" style="box-shadow:0 0 5px 1px rgba(255, 255, 255, 0.5);border-radius: 10px;">
+			<form class="col-md-10 p-3 m-auto rating_form">
 				
 				
 			<div class="col-12 text-center mb-4">
 				<h2>Rate Us</h2>
 				<p class="text-white mb-0">We would like your feedback to improve our website.</p>
 				<br>
-				<p class="text-white"> What's your opinion on this website? </p>
+				<p class="text-white font-weight-bold"> What's your opinion on this website? </p>
 			</div>
 				
 				
@@ -26,7 +26,7 @@
 				<div class="clearfix"></div>
 				
 				<div class="col-12 text-center mb-4">
-					<p class="text-white"> Please select your feedback category  </p>
+					<p class="text-white font-weight-bold"> Please select your feedback category  </p>
 					<div>
 						<span class="badge badge-light pointer p-2 m-2 feedback_category" data-category="idea" style="font-size: 14px;" ><i class="fa fa-lightbulb"></i> Idea</span>
 
@@ -38,7 +38,7 @@
 					</div>
 					
 					
-					<p class="text-white mt-3">Tell us what do you think, any kind of feedback is highly appreciated.  </p>
+					<p class="text-white font-weight-bold mt-3">Tell us what do you think, any kind of feedback is highly appreciated.  </p>
 					
 					<textarea id="feedback_text" class="form-control mt-3" rows="4" name="feedback" placeholder="Your Feedback ..." required></textarea>
 					
@@ -76,7 +76,7 @@
 
 		</div>
 		
-		<hr style="border-top: 1px solid rgba(255, 255, 255, 0.8);">
+		<hr class="hr2">
 		
 		
 		<div class="container text-white py-3">
@@ -103,7 +103,7 @@
 			$stmt->execute(array($row['user_id']));
 			$user = $stmt->fetch();
 ?>
-			<div class="p-2" style="border-bottom: 1px solid rgba(255, 255, 255, 0.6);">
+			<div class="p-2 review1">
 				<div>
 					<img class="avatar" src="<?=$user['image']?>">
 				

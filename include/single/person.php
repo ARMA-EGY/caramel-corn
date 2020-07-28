@@ -304,7 +304,7 @@ else
 	  
 			
 			<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#acting_movies" data-user="<?=$user_id?>">
 						<span > Movies </span>

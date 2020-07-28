@@ -88,7 +88,7 @@ if (isset($_POST['list_name']))
                     </tr>
 						
                     <tr>
-                      <td width="55" height="13" class="font-weight-bold" style="color: #fff;">Step : </td>
+                      <td width="55" height="13" class="font-weight-bold text-white">Step : </td>
                       <td width="55" height="13" align="center" bgcolor="#f3e095" class=""> 
 						  <u>1</u>
 					  </td>
@@ -188,7 +188,7 @@ if (isset($_POST['list_name']))
                     </tr>
 						
                     <tr>
-                      <td width="55" height="13" class="font-weight-bold" style="color: #fff;">Step : </td>
+                      <td width="55" height="13" class="font-weight-bold text-white">Step : </td>
                       <td width="55" height="13" align="center" bgcolor="#EEF5F9" class="f11"> 
 						  <u>1</u>
 					  </td>
@@ -301,7 +301,7 @@ if (isset($_POST['step_2']))
                     </tr>
 						
                     <tr>
-                      <td width="55" height="13" class="font-weight-bold" style="color: #fff;">Step : </td>
+                      <td width="55" height="13" class="font-weight-bold text-white">Step : </td>
                       <td width="55" height="13" align="center" bgcolor="#EEF5F9" class="f11"> 
 						  <u>1</u>
 					  </td>
@@ -1219,7 +1219,7 @@ if (isset($_POST['list_items']))
 		<div>
 			
 	  		<div class="row">
-				<div class="col-md-12 pb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#list_section_movie" data-user="<?=$user_id?>">
 						<span > Movies </span>

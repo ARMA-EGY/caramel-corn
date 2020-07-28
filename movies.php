@@ -78,7 +78,7 @@ elseif($type == 'Top Revenue')
       <div class="col-md-9 p-1">
 		  
         <div class="section-title ">
-			<h4 class="font-weight-bold title_btn" style="color:#fbd747;"><?= $type ?> <span style="color:#fff;">Movies</span></h4>
+			<h4 class="font-weight-bold title_btn text-white"><?= $type ?> Movies</h4>
 					  
 			<i class="ti-layout-list-thumb show_grid" data-show=".show_cards_details" data-target="#movies"></i>
 

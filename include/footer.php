@@ -4,6 +4,18 @@
 	$row = $stmt->fetch();
 
 	$background = $row['background'];
+
+if(isset($_SESSION['access_token']))
+{
+	$stmt = $conn->prepare("SELECT * FROM members WHERE id = ? ");
+	$stmt->execute(array($user_id));
+	$user = $stmt->fetch();
+
+	$private = $user['private'];
+	$uid     = $user['uid'];
+	$logo    = $user['corn_logo'];
+}
+	
 ?>
 
 <!--
@@ -215,7 +227,75 @@
   </div>
 </div>
 
-	
+
+<?
+if(isset($_SESSION['access_token']))
+{
+?>
+<!--========================== Setting Modal ================================-->
+<div class="modal fade" id="setting_modal" tabindex="-1" role="dialog" aria-labelledby="setting_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content modal-content2">
+      <div class="modal-header">
+        <h5 class="modal-title" id="setting_label">Setting</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		    
+        <div class="info">
+			
+			<span class="floaty"><i class="far fa-file-image mr-2"></i> Logo</span>
+			
+			<div class="mb-2">
+				<button class="btn btn-light get_logo px-1 py-0 ml-2" data-user="<?=$user_id ?>"><i class="fas fa-edit"></i> Change</button>
+			</div>
+			
+			<div id="corn_logos" class="text-center"></div>
+			
+		</div>
+		
+		  
+        <div class="info-last">
+			
+			<span class="floaty"><i class="fas fa-user-shield mr-2"></i> Private Account</span>
+			
+			<div class="custom-control custom-switch">
+			  <input type="checkbox" class="custom-control-input" id="private" data-user="<?=$user_id ?>" <? if($private == 1){echo 'checked';} ?>>
+			  <label class="custom-control-label ml-5 mb-2" for="private"> Private</label>
+			</div>
+			
+		</div>
+		  
+		  
+		<div class="info-last sharelink b-top-light <? if($private == 1){echo 'd-none2';} ?>" >
+			
+			<span class="floaty"><i class="fas fa-share-alt mr-2"></i> Shareable Link</span>
+			
+			<div class="mb-2">
+				<button class="btn btn-light copyButton px-1 py-0 ml-2"><i class="fas fa-copy"></i> Copy</button>
+				<input id="linkToCopy" class="linkToCopy" type="text" value="https://caramel-corn.com/viewcorn.php?u=<?=$uid ?>" style="position: absolute; opacity: 0;top: 0; left: 0;" />
+
+				<p id="corn_link" class="mt-3 ml-4">https://caramel-corn.com/viewcorn.php?u=<?=$uid ?></p>
+			</div>
+			
+		</div>
+		  
+		  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-filter" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?
+}
+?>		
+		
+		
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
@@ -391,6 +471,27 @@ messaging.requestPermission()
 
 	
 <script>
+	
+	
+	$(document).ready(function() {
+		$('.searchtool').tooltipster({
+		contentCloning: true, 
+		contentAsHTML: true, 
+		interactive: true, 
+		animation: 'fade',
+		side: ['bottom'],
+		delay: 200,
+		maxWidth: 360,
+		minWidth: 200,
+		theme: 'tooltipster-borderless',
+		trigger: 'click'
+		});
+		
+		$('.create_search').remove();
+		
+	});
+
+	
 $('.use_tooltips').tooltip({ boundary: 'window' });
 	
 	

@@ -11,7 +11,7 @@ include('ini.php');
 	
   <div class="back_layer">
 	  
-	 <div class="container-fluid p-3 layer_background">
+	 <div class="container-fluid p-3 ">
 			
         <h2 class="text-center title  p-4">Create New List</h2>
 		 
@@ -28,7 +28,7 @@ include('ini.php');
                     </tr>
 						
                     <tr>
-                      <td width="55" height="13" class="font-weight-bold" style="color: #fff;">Step : </td>
+                      <td width="55" height="13" class="font-weight-bold text-white">Step : </td>
                       <td width="55" height="13" align="center" bgcolor="#f3e095" class=""> 
 						  <u>1</u>
 					  </td>

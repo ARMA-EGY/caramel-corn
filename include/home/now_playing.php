@@ -10,7 +10,7 @@
 			  <div class="col-sm-12">
 				<div class="section-title">
 
-				<h5 class="font-weight-bold title_btn" style="color:#fbd747;">Newest <span style="color:#fff;">Movies</span></h5>
+				<h5 class="font-weight-bold title_btn text-white" >Newest Movies</h5>
 					
 
 				<a href="movies.php?type=Newest" class="viewall" >View all <i class="ti-angle-right"></i></a>

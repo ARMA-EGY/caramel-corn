@@ -100,7 +100,7 @@ if(isset($_POST['user_id']))
 			 	
 				<!--  Actor Card Starts -->
 				<div class="col-sm-3 d-flex justify-content-center px-2 col-person">
-					<a href="single.php?person=<?= $actor->id?>" class="card person-card transition" style="box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);border: none;border-radius: 1rem;">
+					<a href="single.php?person=<?= $actor->id?>" class="card person-card transition" >
 						<img class="card-img-top" src="<?= $img?>" alt="<?= $actor->name?>" style="">
 						<div class=" text-center">
 						  <h5 class="card-title text-dark font-weight-bold"><?= $actor->name?></h5>
