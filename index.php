@@ -14,7 +14,7 @@ include('ini.php');
 		
 	$tv_covers = api_connect("https://api.themoviedb.org/3/trending/tv/week?api_key=df264f8d059253c7e87471ab4809cbbf");
 
-	foreach (array_slice($movie_covers->results, 0, 10) as $movie_cover)
+	foreach (array_slice($movie_covers->results, 0, 9) as $movie_cover)
 	{
 	?>	
 	   <div style="background: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces<?= $movie_cover->backdrop_path?>') no-repeat ; background-size:cover; "> 
