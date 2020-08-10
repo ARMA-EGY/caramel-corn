@@ -25,27 +25,12 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
   <div class="container" >
     <div class="row pb-4">
 		
-      <div class="col-md-8 p-1">
+      <div class="col-md-12 p-1">
         <div class="section-title ">
 			<h4 class="font-weight-bold title_btn text-white">Popular People</h4>
         </div>
       </div>
 		
-	  <div class="col-md-4 p-1">
-    	<div class="top-search">
-			
-			
-			<input type="hidden" class="select-search" value="person" >
-
-				<div style="width: 100%; position: relative;">
-					<input class="search_bar" type="text" placeholder="Search for Person" style="border-left: none;">
-					<div id="search_result"></div>
-				</div>
-			
-				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
-
-		</div>
-	</div>
 		
     </div>
 	  

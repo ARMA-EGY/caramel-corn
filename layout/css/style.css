@@ -1615,7 +1615,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	.back_layer
 	{
 /*		background: rgba(0, 0, 0,0.8);*/
-		padding-top: 62px;
+		padding-top: 100px;
 		padding-bottom: 10px;
 	}
 
@@ -2243,5 +2243,7 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	.text-center-md {text-align: unset;}
 	
 	 h5 {font-size: 1rem;}
+	
+	.back_layer {padding-top: 93px;}
 	
 }

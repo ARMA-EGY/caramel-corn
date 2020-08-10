@@ -57,7 +57,7 @@ $total_pages = $tv_shows->total_pages;
 	  
     <div class="row pb-4">
 		
-      <div class="col-md-9 p-1">
+      <div class="col-md-12 p-1">
 		  
         <div class="section-title ">
 			<h4 class="font-weight-bold title_btn text-white"><?= $type ?> Tv Shows</h4>
@@ -71,21 +71,6 @@ $total_pages = $tv_shows->total_pages;
 		  
       </div>
 		
-	<div class="col-md-3 p-1">
-    	<div class="top-search">
-			
-			
-			<input type="hidden" class="select-search" value="tv" >
-
-				<div style="width: 100%; position: relative;">
-					<input class="search_bar" type="text" placeholder="Search for TV Show" style="border-left: none;">
-					<div id="search_result"></div>
-				</div>
-			
-				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
-
-		</div>
-	</div>
 		
     </div>
 	  

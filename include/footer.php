@@ -466,12 +466,15 @@ messaging.requestPermission()
 <!--===============================================================================================-->	
 	<script src="layout/js/java.js"></script>
 
-
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
 
 	
 <script>
 	
+	$(function() {
+        $('.lazy').Lazy();
+    });
 	
 	$(document).ready(function() {
 		$('.searchtool').tooltipster({

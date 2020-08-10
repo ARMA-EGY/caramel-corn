@@ -175,7 +175,7 @@ else
 
 
 
-						<div class="py-2 px-5">
+						<div class="py-2 px-4">
 
 
 							<div class="row justify-content-center cridets">
@@ -307,11 +307,11 @@ else
 				<div class="col-md-12 pb-3 b-border">
 
 					<div class="font-weight-bold toggle_type active" data-type="movie" data-target="#acting_movies" data-user="<?=$user_id?>">
-						<span > Movies </span>
+						<span ><i class="fa fa-film"></i> Movies </span>
 					</div>
 
 					<div class="font-weight-bold toggle_type" data-type="tv" data-target="#acting_tv" data-user="<?=$user_id?>">
-						<span >Tv Shows </span>
+						<span ><i class="fas fa-tv"></i> Tv Shows </span>
 					</div>
 
 				</div>	
