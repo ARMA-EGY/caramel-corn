@@ -65,7 +65,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 	?>
 		
 		<!--  Actor Card Starts -->
-		<div class="col-sm-3 d-flex justify-content-center px-2 col-person">
+		<div class="col-sm-3 d-flex justify-content-center px-2 mx-md-2 col-person">
   			<a href="single.php?person=<?= $actor->id?>" class="card person-card transition">
 				<img class="card-img-top" src="<?= $img?>" alt="<?= $actor->name?>" style="">
 				<div class=" text-center">
