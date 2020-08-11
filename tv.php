@@ -75,7 +75,7 @@ $total_pages = $tv_shows->total_pages;
     </div>
 	  
 
-	<div class="row py-4" id="tv">
+	<div class="py-4" id="tv">
 		
 		
 		
@@ -105,10 +105,10 @@ $total_pages = $tv_shows->total_pages;
 			?>
 
 			  <!-- Start New Card -->
-				<div class="variable_card px-2">  
+				<div class="variable_card px-2 mx-md-2">  
 
 
-					<div class="poster-card tooltip2" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
+					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $tv->id?>">
 						<div class="poster"> 
 							<a href="single.php?tv=<?= $tv->id?>">
 								<img width="100%" src="<?= $img?>" alt=""/>
@@ -170,7 +170,7 @@ $total_pages = $tv_shows->total_pages;
 
 							<span class="get_trailer" data-type="tv" data-id="<?= $tv->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?tv=<?= $tv->id?>" ><i class="fa fa-info" ></i> Details</a>
 						</div>
 
 
@@ -211,9 +211,9 @@ $total_pages = $tv_shows->total_pages;
 			  <!-- Start New Card -->
 				<div class="col-sm-6">  
 
-					<div class="poster-card" style="box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3)">
+					<div class="poster-card">
 						<div class="poster"> <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/<?= $tv->poster_path?>" alt=""/></div>
-						<div class="c-body" style="border-left: 1px solid rgba(255, 255, 255, 0.15);">
+						<div class="c-body">
 						  <div class="wrapper">
 
 							<div class="c-title">
@@ -263,7 +263,7 @@ $total_pages = $tv_shows->total_pages;
 
 							<span class="get_trailer" data-type="tv" data-id="<?= $tv->id?>" ><i class="fa fa-play"></i>Trailer</span>
 
-							<a class="" href="single.php?tv=<?= $movie->id?>" ><i class="fa fa-info" ></i> Details</a>
+							<a class="" href="single.php?tv=<?= $tv->id?>" ><i class="fa fa-info" ></i> Details</a>
 							
 						</div>
 

@@ -94,7 +94,7 @@ elseif($type == 'Top Revenue')
 	  
 	  
 	  
-	<div class="row py-4" id="movies">
+	<div class="py-4" id="movies">
 		
 		
 		
@@ -124,7 +124,7 @@ elseif($type == 'Top Revenue')
 			?>
 
 			  <!-- Start New Card -->
-				<div class="variable_card px-2">  
+				<div class="variable_card px-2 mx-md-2">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">

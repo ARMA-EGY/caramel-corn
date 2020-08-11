@@ -534,7 +534,7 @@ b {
     margin: 10px auto;
     border-radius: 6px;
     overflow: hidden;
-	box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+	box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.15);
 }
 
 .c-body {
@@ -1069,8 +1069,8 @@ h2 {
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.15);
     color: #fff; 
     font-size: 12pt;
 	transition: all 0.3s linear;
@@ -1153,8 +1153,8 @@ transform: scale(1.2);}
 margin: 0 5px;
 background: #000;
 border-radius: 5px;
-border: 1px solid rgba(255, 255, 255, 0.7);
-box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+border: 1px solid rgba(255, 255, 255, 0.5);
+box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.15);
 transition: all 0.3s linear;
 width: fit-content;
 display: inline-block;
@@ -2232,6 +2232,12 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	{
 	  color: #ffc107;
 	}
+	
+	.mx-md-2
+	{
+		margin-left: .5rem!important;
+		margin-right: .5rem!important;
+	}
 
 }
 
@@ -2244,6 +2250,6 @@ box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 	
 	 h5 {font-size: 1rem;}
 	
-	.back_layer {padding-top: 93px;}
+	
 	
 }
