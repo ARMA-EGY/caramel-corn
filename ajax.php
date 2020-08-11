@@ -191,7 +191,7 @@ if(isset($_POST['browse']))
 			?>
 
 			  <!-- Start New Card -->
-				<div class="variable_card px-2">  
+				<div class="variable_card px-2 mx-md-2">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
@@ -449,7 +449,7 @@ if(isset($_POST['browse']))
 			?>
 
 			  <!-- Start New Card -->
-				<div class="variable_card px-2">  
+				<div class="variable_card px-2 mx-md-2">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">

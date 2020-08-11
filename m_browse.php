@@ -127,7 +127,7 @@ else
 	  
     <div class="row pb-4">
 		
-      	<div class="col-md-9 py-2">
+      	<div class="col-md-12 py-2">
 		  
         <div class="section-title ">
 			<h4 class="font-weight-bold title_btn text-white">Browse Movies</h4>
@@ -138,21 +138,6 @@ else
       </div>
 		
 		
-		<div class="col-md-3 py-2 px-3">
-    	<div class="top-search">
-			
-			
-			<input type="hidden" class="select-search" value="movie" >
-
-				<div style="width: 100%; position: relative;">
-					<input class="search_bar" type="text" placeholder="Search for Movies" style="border-left: none;">
-					<div id="search_result"></div>
-				</div>
-			
-				<i class="fa fa-search" style="position: absolute;color: #ccc;right: 10px;"></i>
-
-		</div>
-	</div>
 		
 		
 		<div class="col-md-12">
@@ -296,7 +281,7 @@ else
 		</div>	
 	</div>
 	  
-	<div class="row" id="browse">
+	<div id="browse">
 		
 			<div class="col-md-12 text-center text-white mb-2">
 				<h5><?
@@ -337,7 +322,7 @@ else
 			?>
 
 			  <!-- Start New Card -->
-				<div class="variable_card px-2">  
+				<div class="variable_card px-2 mx-md-2">  
 
 
 					<div class="poster-card tooltip2" data-tooltip-content="#tooltip_content_<?= $movie->id?>">
